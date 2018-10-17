@@ -1,0 +1,18 @@
+version: '3'
+services:
+    frontend:
+      build: ./frontend
+      image: apyllon-frontend:latest
+      ports:
+          - 3000:80
+      networks:
+        apyllon-network:
+      container_name: "apyllon-frontend"
+      volumes:
+          - ./frontend/dist:/usr/share/nginx/html
+      restart:
+          always
+
+networks:
+    apyllon-network:
+        driver: bridge
