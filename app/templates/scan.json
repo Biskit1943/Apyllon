@@ -1,0 +1,35 @@
+{
+  "<directory name>": {
+    "files": {
+      "<file name 1>": {
+        "path": "<path to directory>",
+        "meta": {
+          "title": "<song title or None>",
+          "artist": "<song artist or None>",
+          "genre": "<song genre or None>",
+          "length": 123
+        }
+      },
+      "<file name 2>": {
+        "path": "<path to directory>",
+        "meta": {
+          "title": "<song title or None>",
+          "artist": "<song artist or None>",
+          "genre": "<song genre or None>",
+          "length": 123
+        }
+      }
+    },
+    "directories": {
+      "<directory name 1>": {
+        "files": {}
+        },
+        "<directory name 2>": {
+          "files": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
