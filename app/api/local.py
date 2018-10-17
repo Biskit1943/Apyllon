@@ -2,6 +2,7 @@
 import os
 
 from app.database import song_utils
+from app.database.exceptions import Exists
 from app.search import file_search
 from config import Config
 
@@ -13,4 +14,8 @@ def add_songs(path: str):
     crawler = file_search.FileSearch()
     songs = crawler.search(path, *Config.REQUIRED_META_DATA)
     for song in songs:
-        song_utils.add_songs(song)
+        try:
+            song_utils.add_songs(song)
+        except Exists:
+            # TODO check if data changed
+            pass
