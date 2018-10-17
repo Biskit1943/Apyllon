@@ -2,3 +2,6 @@ flask==1.0.2
 flask-sqlalchemy
 flask-migrate
 python-dotenv==0.9.1
+python-vlc==3.0.4106 
+pytaglib==1.4.3 
+pyyaml==3.13
