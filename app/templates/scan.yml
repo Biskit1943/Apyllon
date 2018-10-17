@@ -1,0 +1,17 @@
+<directory>:
+  files:
+    <filename>:
+      path: <path to directory>
+      meta:
+        title: <title or null>
+        artist: <artist or null>
+        genre: <genre or null>
+        length: <seconds as int>
+    ...
+  directories:
+    <directory>:
+      files:
+        ...
+      directories:
+        ...
+    ...
