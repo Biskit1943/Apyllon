@@ -35,3 +35,10 @@ def add_songs(song: dict):
         print(f'Adding {song} to database')
         db.session.add(song)
         db.session.commit()
+
+
+def list_songs():
+    """List all songs from the database"""
+    songs = Song.query.all()
+
+    print(songs)
