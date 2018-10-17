@@ -11,8 +11,7 @@ class Admin(db.Model):
         password_hash:  The password hash from the admin
     """
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True,
-                         default='admin')
+    username = db.Column(db.String(64), index=True, unique=True, default='admin')
     password_hash = db.Column(db.String(128))
 
 
