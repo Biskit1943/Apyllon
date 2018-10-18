@@ -4,6 +4,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config(object):
+    VERSION = (0, 0, 3)
+
     REQUIRED_META_DATA = [
         'artist',
         'title',

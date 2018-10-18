@@ -1,18 +1,32 @@
 version: '3'
 services:
-    frontend:
-      build: ./frontend
-      image: apyllon-frontend:latest
-      ports:
-          - 3000:80
-      networks:
-        apyllon-network:
-      container_name: "apyllon-frontend"
-      volumes:
-          - ./frontend/dist:/usr/share/nginx/html
-      restart:
-          always
+  frontend:
+    build: ./frontend
+    image: apyllon-frontend:latest
+    ports:
+      - 3000:80
+    networks:
+      - apyllon-network
+    container_name: apyllon-frontend
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
+    restart: always
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.backend.dev
+    expose:
+      - 5000
+    ports:
+      - 5000:8080
+    networks:
+      - apyllon-network
+    container_name: apyllon-backend
+    restart: always
 
 networks:
-    apyllon-network:
-        driver: bridge
+  apyllon-network:
+    driver: bridge

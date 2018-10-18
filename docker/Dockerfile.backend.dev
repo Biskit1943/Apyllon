@@ -1,0 +1,41 @@
+# Context must be `Apyllon/`
+FROM python:3.7-alpine
+
+LABEL Description="Apyllon - dev edition"
+LABEL Version="0.0.1"
+
+WORKDIR /home/backend
+
+RUN apk add --no-cache \
+    gcc \
+    g++ \
+    musl-dev \
+    linux-headers \
+    taglib
+
+COPY requirements.txt requirements.txt
+
+RUN python3 -m venv venv && \
+    venv/bin/pip3 install --upgrade pip && \
+    venv/bin/pip3 install -r requirements.txt
+
+COPY \
+    "apyllon.py" \
+    "config.py" \
+    "docker/boot_backend.sh" \
+    "./"
+COPY backend app
+COPY migrations migrations
+
+RUN adduser -D backend && \
+    mkdir -p /data/files && \
+    chown -R backend: ./ && \
+    chown -R backend: /data/files && \
+    chmod +x boot_backend.sh
+
+USER backend
+
+ENV FLASK_APP apyllon.py
+
+EXPOSE 5000
+ENTRYPOINT [ "./boot_backend.sh" ]
