@@ -1,0 +1,17 @@
+Deletes a user
+---
+tags:
+  - User
+  - UID
+parameters:
+  - in: path
+    name: uid
+    description: ID of the user which will be updated
+    type: integer
+    required: true
+    example: 1
+responses:
+  200:
+    description: Deleted user
+  404:
+    description: User with the given id not found

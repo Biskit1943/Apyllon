@@ -1,0 +1,19 @@
+Returns the user with the requested username
+---
+tags:
+  - User
+  - Username
+parameters:
+  - in: path
+    name: username
+    description: username of the user which is requested
+    type: string
+    required: true
+    example: Biskit1943
+responses:
+  200:
+    description: The requested user
+    schema:
+      $ref: '#/definitions/User'
+  404:
+    description: User with the given username not found

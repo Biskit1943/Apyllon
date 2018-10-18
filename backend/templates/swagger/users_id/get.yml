@@ -1,0 +1,19 @@
+Returns the user with the requested id
+---
+tags:
+  - User
+  - UID
+parameters:
+  - in: path
+    name: uid
+    description: ID of the user which is requested
+    type: integer
+    required: true
+    example: 1
+responses:
+  200:
+    description: The requested user
+    schema:
+      $ref: '#/definitions/User'
+  404:
+    description: User with the given id not found

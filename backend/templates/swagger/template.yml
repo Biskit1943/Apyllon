@@ -1,0 +1,61 @@
+swagger: '3.0'
+info:
+  title: 'Apyllon - A multi-user media player'
+  description: 'Backend REST-API definition'
+  version: '0.1'
+
+tags:
+- name: "User"
+  description: "User related things like registration, verification and
+  information requests"
+- name: "Username"
+  description: "User related stuff by username"
+- name: "UID"
+  description: "User related stuff by id"
+
+definitions:
+  # User
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1943
+      username:
+        type: string
+        example: Biskit1943
+  UserRegister:
+    type: object
+    properties:
+      password:
+        type: string
+        description: A Blake2 password-hash as hex string
+        example: "5bb55...faac2"
+      username:
+        type: string
+        example: Biskit1943
+  Users:
+    type: array
+    items:
+      $ref: '#/definitions/User'
+
+  # Errors
+  BadRequest:
+    type: object
+    properties:
+      error:
+        type: string
+        description: The error message
+        example: Missing parameter xy
+      expected:
+        schema:
+          oneOf:
+            $ref: '#/definitions/User'
+
+  Conflict:
+    type: object
+    properties:
+      error:
+        type: string
+        description: The error message
+        example: xy already exist

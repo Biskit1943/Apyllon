@@ -1,6 +1,6 @@
 """This module provides utilities for the filepath table in the database"""
-from app import db
-from app.database.models import (
+from backend import db
+from backend.database.models import (
     Filepath,
 )
 

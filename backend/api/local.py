@@ -1,9 +1,9 @@
 """This Module contains the functions for the local filesystem"""
 import os
 
-from app.database import song_utils
-from app.database.exceptions import Exists
-from app.search import file_search
+from backend.database import song_utils
+from backend.database.exceptions import Exists
+from backend.search import file_search
 from config import Config
 
 
@@ -15,7 +15,7 @@ def add_songs(path: str):
     songs = crawler.search(path, *Config.REQUIRED_META_DATA)
     for song in songs:
         try:
-            song_utils.add_songs(song)
+            song_utils.add_song(song)
         except Exists:
             # TODO check if data changed
             pass

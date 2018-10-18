@@ -1,0 +1,33 @@
+Updates information of a user
+---
+tags:
+  - User
+  - Username
+parameters:
+  - in: path
+    name: username
+    description: Username of the user which will be updated
+    type: string
+    required: true
+    example: Biskit1943
+  - in: body
+    name: user
+    description: The new user information
+    required: true
+    schema:
+      $ref: "#/definitions/User"
+responses:
+  200:
+    description: The updated user
+    schema:
+      $ref: '#/definitions/User'
+  400:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/BadRequest'
+  404:
+    description: User with the given username not found
+  409:
+    description: Conflict in request
+    schema:
+      $ref: '#/definitions/Conflict'

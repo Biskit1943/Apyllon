@@ -1,7 +1,7 @@
 """This file contains the Database models for sql"""
 from typing import Dict
 
-from app import db
+from backend import db
 
 
 class Admin(db.Model):
@@ -21,16 +21,28 @@ class User(db.Model):
     """Describes a user
 
     Attributes:
-        id: The id of this object (managed by the database)
+        uid: The id of this object (managed by the database)
         username: The username which was chosen by the user
         password_hash:  The password hash from the user
     """
-    id = db.Column(db.Integer, primary_key=True)
+    uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(128))
 
     def __repr__(self):
         return f'<User {self.username}>'
+
+    def to_dict(self) -> Dict:
+        """Transforms the database information into a dict
+
+        Returns:
+            A dict with all the song data, see the function for the schema
+        """
+        user = {
+            'uid': self.uid,
+            'username': self.username,
+        }
+        return user
 
 
 class Song(db.Model):
@@ -45,7 +57,7 @@ class Song(db.Model):
         genre: The genre(s) of the song in lowercase (eg. rap/hip-hop)
         length: The seconds of the song
     """
-    id = db.Column(db.Integer, primary_key=True)
+    sid = db.Column(db.Integer, primary_key=True)
     filepath_id = db.Column(db.Integer, db.ForeignKey('filepath.id'))
     filepath = db.relationship("Filepath", back_populates="song")
     artist = db.Column(db.String(64))
@@ -54,6 +66,9 @@ class Song(db.Model):
     genre = db.Column(db.String(32))
     length = db.Column(db.Integer)
 
+    def __repr__(self):
+        return f'<Song {self.filepath.filename}>'
+
     def to_dict(self) -> Dict:
         """Transforms the database information into a dict
 
@@ -61,6 +76,7 @@ class Song(db.Model):
             A dict with all the song data, see the function for the schema
         """
         song = {
+            'sid': self.sid,
             'filename': self.filepath.filename,
             'path': self.filepath.directory,
             'length': self.length,
@@ -72,9 +88,6 @@ class Song(db.Model):
             },
         }
         return song
-
-    def __repr__(self):
-        return f'<Song {self.filepath.filename}>'
 
 
 class Filepath(db.Model):
