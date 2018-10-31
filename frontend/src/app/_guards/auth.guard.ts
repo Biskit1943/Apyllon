@@ -9,6 +9,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (localStorage.getItem('currentUser')) {
       // logged in so return true
+      // TODO: Validate JWT
       return true;
     }
 
