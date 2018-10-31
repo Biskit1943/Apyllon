@@ -8,12 +8,15 @@ services:
       - 4200
     ports:
       - 80:4200
-    volumes:
-      - ./frontend:/home/frontend
     networks:
       - apyllon-network
     container_name: apyllon-frontend
+    volumes:
+      - ./frontend:/home/frontend
+      - certificates:/certificates:ro
     restart: always
+    depends_on:
+      - backend
 
   backend:
     build:
@@ -26,6 +29,8 @@ services:
     networks:
       - apyllon-network
     container_name: apyllon-backend
+    volumes:
+      - certificates:/certificates
     restart: always
     depends_on:
       - database
@@ -48,3 +53,6 @@ services:
 networks:
   apyllon-network:
     driver: bridge
+
+volumes:
+  certificates:
