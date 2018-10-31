@@ -29,12 +29,14 @@ COPY backend backend
 COPY migrations migrations
 
 RUN adduser -D backend && \
-    mkdir -p /data/files && \
+    mkdir -p /certificates && \
     chown -R backend: ./ && \
-    chown -R backend: /data/files && \
+    chown -R backend: /certificates && \
     chmod +x boot_backend.sh
 
 USER backend
+
+VOLUME [ "/certificates" ]
 
 ENV FLASK_APP apyllon.py
 

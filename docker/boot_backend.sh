@@ -1,6 +1,8 @@
 #!/bin/sh
 source venv/bin/activate
 
+touch /certificates/test.pem
+
 # Try to init the database
 while true; do
     flask db upgrade
