@@ -12,11 +12,9 @@ services:
       - apyllon-network
     container_name: apyllon-frontend
     volumes:
-      - ./frontend:/home/frontend
+      - ./frontend:/home/frontend/frontend
       - certificates:/certificates:ro
     restart: always
-    depends_on:
-      - backend
 
   backend:
     build:
