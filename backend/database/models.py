@@ -3,6 +3,11 @@ from typing import Dict
 
 from backend import db
 
+song_playlist_association = db.Table('song_playlist',
+                                     db.Column('song_id', db.Integer, db.ForeignKey('song.id')),
+                                     db.Column('playlist_id', db.Integer, db.ForeignKey('playlist.id'))
+                                     )
+
 
 class Admin(db.Model):
     """Describes the admin
@@ -28,6 +33,7 @@ class User(db.Model):
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    playlists = db.relationship("Playlist", back_populates="owner", uselist=False)
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -106,3 +112,21 @@ class Filepath(db.Model):
 
     def __repr__(self):
         return f'<SongFile {self.directory}/{self.filename}>'
+
+
+class Playlist(db.Model):
+    """Describes a Playlist of an User
+
+    Attributes:
+        id: The id of this object (managed by the database)
+        owner: The user which owns this playlist
+        songs: The songs of which this playlist consists
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    owner = db.relationship("User", back_populates="playlists")
+    songs = db.relationship("Song",
+                            secondary=song_playlist_association,
+                            backref="playlists")
+
+    def __repr__(self):
+        return f'<Playlist {id} with {len(self.songs.all())} songs>'

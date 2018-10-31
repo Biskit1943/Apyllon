@@ -1,13 +1,23 @@
 FROM node:10-alpine
 
 WORKDIR /home/frontend
-COPY frontend ./
-COPY docker/boot_frontend.sh ./
+
+COPY \
+    "frontend" \
+    "docker/boot_frontend.sh" \
+     "./"
 
 RUN apk add --update && \
     npm install -g @angular/cli && \
-    chmod +x ./boot_frontend.sh && \
     npm install
+
+RUN adduser -D frontend && \
+    chmod +x boot_frontend.sh && \
+    mkdir -p /certificates && \
+    chown -R frontend: ./ && \
+    chown -R frontend: /certificates
+
+USER frontend
 
 EXPOSE 4200
 ENTRYPOINT [ "./boot_frontend.sh" ]

@@ -6,7 +6,8 @@ LABEL Version="0.0.1"
 
 WORKDIR /home/backend
 
-RUN apk add --no-cache \
+RUN apk add --update && \
+    apk add --no-cache \
     gcc \
     g++ \
     musl-dev \
