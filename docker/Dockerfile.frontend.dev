@@ -10,5 +10,12 @@ COPY docker/boot_frontend.sh /home/frontend
 
 RUN chmod +x /home/frontend/boot_frontend.sh
 
+RUN adduser -D frontend && \
+    chmod +x /home/frontend/boot_frontend.sh && \
+    mkdir -p /home/frontend/certificates && \
+    chown -R frontend: /home/frontend
+
+USER frontend
+
 EXPOSE 4200
 ENTRYPOINT [ "/home/frontend/boot_frontend.sh" ]

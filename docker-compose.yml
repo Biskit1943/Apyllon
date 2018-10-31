@@ -13,7 +13,7 @@ services:
     container_name: apyllon-frontend
     volumes:
       - ./frontend:/home/frontend/frontend
-      - certificates:/certificates:ro
+      - certificates:/home/frontend/certificates:ro
     restart: always
 
   backend:
