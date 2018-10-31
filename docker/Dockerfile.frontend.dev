@@ -4,8 +4,7 @@ WORKDIR /home/frontend/frontend
 COPY frontend ./
 
 RUN apk add --update && \
-    npm install -g @angular/cli && \
-    npm install
+    npm install -g @angular/cli
 
 COPY docker/boot_frontend.sh /home/frontend
 
