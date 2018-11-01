@@ -26,3 +26,8 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
                               'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # Keys and secrets
+    SECRET_PATH = '/certificates'
+    SECRET_KEY = f'{SECRET_PATH}/key.pem'
+    PUBLIC_KEY = f'{SECRET_PATH}/public.pem'

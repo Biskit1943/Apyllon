@@ -33,8 +33,23 @@ def shutdown_session(exception=None):
 
 
 # User related endpoints
-app.add_url_rule('/users', view_func=users.UserView.as_view(name='user'), methods=['GET', 'POST', ])
-app.add_url_rule('/users/<int:uid>', view_func=users.UsersIdView.as_view(name='users_id'),
-                 methods=['GET', 'PUT', 'DELETE', ])
-app.add_url_rule('/users/<string:username>', view_func=users.UsersNameView.as_view(name='users_name'),
-                 methods=['GET', 'PUT', 'DELETE', ])
+app.add_url_rule('/users',
+                 view_func=users.UserView.as_view(name='user'),
+                 methods=['GET', 'POST', ]
+                 )
+app.add_url_rule('/users/<int:uid>',
+                 view_func=users.UsersIdView.as_view(name='users_id'),
+                 methods=['GET', 'PUT', 'DELETE', ]
+                 )
+app.add_url_rule('/users/<string:username>',
+                 view_func=users.UsersNameView.as_view(name='users_name'),
+                 methods=['GET', 'PUT', 'DELETE', ]
+                 )
+app.add_url_rule('/users/<int:uid>/authenticate',
+                 view_func=users.UsersIdAuthView.as_view(name='users_id_auth'),
+                 methods=['POST', ]
+                 )
+app.add_url_rule('/users/<string:username>/authenticate',
+                 view_func=users.UsersNameAuthView.as_view(name='users_name_auth'),
+                 methods=['POST', ]
+                 )

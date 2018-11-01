@@ -1,7 +1,10 @@
 #!/bin/sh
 source venv/bin/activate
 
-touch /certificates/test.pem
+cd /certificates
+openssl genrsa -out key.pem 4096
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+cd -
 
 # Try to init the database
 while true; do

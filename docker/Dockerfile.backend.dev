@@ -6,6 +6,8 @@ LABEL Version="0.0.1"
 
 WORKDIR /home/backend
 
+COPY requirements.txt requirements.txt
+
 RUN apk add --update && \
     apk add --no-cache \
     gcc \
@@ -13,11 +15,9 @@ RUN apk add --update && \
     musl-dev \
     linux-headers \
     postgresql-dev \
-    taglib-dev
-
-COPY requirements.txt requirements.txt
-
-RUN python3 -m venv venv && \
+    openssl \
+    taglib-dev && \
+    python3 -m venv venv && \
     venv/bin/pip3 install --upgrade pip && \
     venv/bin/pip3 install -r requirements.txt
 
@@ -31,7 +31,7 @@ COPY migrations migrations
 
 RUN adduser -D backend && \
     mkdir -p /certificates && \
-    chown -R backend: ./ && \
+    chown -R backend: /home/backend && \
     chown -R backend: /certificates && \
     chmod +x boot_backend.sh
 

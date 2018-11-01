@@ -10,3 +10,4 @@ pafy==0.5.4
 gevent==1.3.6 --no-binary=gevent
 flasgger==0.9.1
 psycopg2==2.7.5
+pyjwt==1.6.4

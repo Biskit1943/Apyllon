@@ -10,6 +10,10 @@ from backend.database.exceptions import Exists
 
 
 class UsersIdView(MethodView):
+    """Provides the HTTP methods for user related things with the user ID as
+    identification
+    """
+
     def get(self, uid: int):
         try:
             user = user_utils.get_user(uid=uid)
@@ -42,6 +46,10 @@ class UsersIdView(MethodView):
 
 
 class UsersNameView(MethodView):
+    """Provides the HTTP methods for user related things with the username as
+    identification
+    """
+
     def get(self, username: str):
         try:
             user = user_utils.get_user(username=username)
@@ -74,6 +82,10 @@ class UsersNameView(MethodView):
 
 
 class UserView(MethodView):
+    """Provides the HTTP methods for general user related things like
+    registration or listing all users
+    """
+
     def get(self):
         return jsonify(user_utils.list_users())
 
@@ -85,7 +97,21 @@ class UserView(MethodView):
             })
 
         try:
-            user = user_utils.add_user(request.data)
+            _, answer = user_utils.add_user(request.data)
         except Exists as e:
             raise exceptions.Conflict(str(e))
-        return jsonify(user.to_dict())
+        return jsonify(answer)
+
+
+class UsersIdAuthView(MethodView):
+    """Provides the HTTP methods for user authentication with the user ID"""
+
+    def post(self, uid, password):
+        return jsonify(user_utils.auth_user(password=password, uid=uid))
+
+
+class UsersNameAuthView(MethodView):
+    """Provides the HTTP methods for user authentication with the username"""
+
+    def post(self, username, password):
+        return jsonify(user_utils.auth_user(password=password, username=username))

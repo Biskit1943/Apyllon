@@ -28,7 +28,7 @@ services:
       - apyllon-network
     container_name: apyllon-backend
     volumes:
-      - certificates:/certificates
+      - certificates:/home/backend/certificates
     restart: always
     depends_on:
       - database
