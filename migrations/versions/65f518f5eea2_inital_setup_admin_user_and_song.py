@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('admin',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=64), nullable=True),
-    sa.Column('password_hash', sa.String(length=128), nullable=True),
+    sa.Column('password_hash', sa.String(length=88), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_admin_username'), 'admin', ['username'], unique=True)
@@ -38,7 +38,7 @@ def upgrade():
     op.create_table('user',
     sa.Column('uid', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=64), nullable=True),
-    sa.Column('password_hash', sa.String(length=128), nullable=True),
+    sa.Column('password_hash', sa.String(length=88), nullable=True),
     sa.PrimaryKeyConstraint('uid')
     )
     op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=True)

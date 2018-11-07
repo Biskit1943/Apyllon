@@ -19,7 +19,7 @@ class Admin(db.Model):
     """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, default='admin')
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(88))
 
 
 class User(db.Model):
@@ -32,7 +32,7 @@ class User(db.Model):
     """
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(88))
     playlists = db.relationship("Playlist", back_populates="owner", uselist=False)
 
     def __repr__(self):

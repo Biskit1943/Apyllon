@@ -30,7 +30,9 @@ def gen_jwt(password: str, uid: int = None, username: str = None) -> Dict:
         }
 
     Raises:
-        FileNotFoundError: If the private key was not found
+        FileNotFoundxists(Config.SECRET_KEY):
+        raise FileNotFoundError("Secret key was not found")
+Error: If the private key was not found
         RuntimeError:
             - If the created JWT fails the validation
             - If the function call didn't contain uid or username

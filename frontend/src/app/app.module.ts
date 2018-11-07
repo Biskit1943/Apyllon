@@ -10,7 +10,7 @@ import {SidebarContentPlaylistsItemComponent} from './sidebar-content-playlists-
 import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 // used to create fake backend
-import {ErrorInterceptor, fakeBackendProvider, JwtInterceptor} from './_helpers';
+import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {routing} from './app.routing';
 
 import {AlertComponent} from './_directives';
@@ -57,7 +57,7 @@ import {MainSidebarComponent} from './main-sidebar/main-sidebar.component';
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 
     // provider used to create fake backend
-    fakeBackendProvider
+    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

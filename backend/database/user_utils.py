@@ -41,7 +41,7 @@ def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:
         print(e, file=sys.stderr)
         raise
 
-    if len(password) != 128:  # Blake2b.hexdigest() -> 128 chars
+    if len(password) != 88:  # Blake2b.hexdigest() -> 128 chars
         raise ValueError(f"Password has {len(password)} characters but must be 128 characters long")
 
     if len(User.query.filter_by(username=username).all()) > 0:

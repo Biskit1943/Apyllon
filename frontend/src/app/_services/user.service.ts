@@ -29,7 +29,7 @@ export class UserService {
   }
 }
 
-function hashPwd(user) {
+function hashPwd(user: User) {
   const input = Buffer.from(user.password);
   const proto = blake2b(64);
   proto.update(input);
