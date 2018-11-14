@@ -2,6 +2,11 @@ import vlc
 import pafy
 import time
 from abc import ABC
+
+import logging 
+import os
+logging = logging.getLogger("__main__")
+
 """
 TODO: 
     * Exceptions []
@@ -19,7 +24,6 @@ class Player():
             player: holding the vlc.Mediaplayer object
         """
         self.player = vlc.MediaPlayer()
-        self.queue = []
         self.playing = False
 
     def load(self, filepath):
@@ -39,6 +43,7 @@ class Player():
             * Check if File is already loaded.
         """
         self.player.play()
+        self.playing = True
 
     def stop(self):
         """
@@ -46,6 +51,7 @@ class Player():
 
         """
         self.player.stop()
+        self.playing = False
 
     def pause(self):
         """
@@ -53,8 +59,9 @@ class Player():
 
         """
         self.player.pause()
+        self.plaing = False
 
-    def load(self, url):
+    def load_youtube(self, url):
         """
         Overides the default load method of Player object.
         Uses pafy to get the url for the best availible audiostream.
@@ -65,30 +72,3 @@ class Player():
         bestaudio = video.getbestaudio()
         self.player.set_mrl(bestaudio.url)
 
-    def media_fatory(media_resource_locator, source, meta=None):
-
-        class media(ABC):
-
-            @abstractmethod
-            def __init__(self, media_resource_locator, meta):
-                pass
-
-            @abstractmethod
-            def get_media_resource_locator(self):
-                pass
-
-            @abstractmethod
-            def get_meta(self):
-                pass
-
-        class youtube_audio(media):
-
-            def __init__(self, media_resource_locator, meta):
-                self.me
-
-        if source is "local":
-            pass
-        elif source is "youtube":
-            pass
-        else:
-            pass

@@ -275,7 +275,7 @@ FileSearch	app/search/file_search.py	/^class FileSearch():$/;"	c
 Frontend	frontend/README.md	/^# Frontend$/;"	c
 Further help	frontend/README.md	/^## Further help$/;"	s
 Here are some links to help you start:	frontend/src/app/app.component.html	/^<h2>Here are some links to help you start: <\/h2>$/;"	i
-Player	app/player/queue_player.py	/^class Player():$/;"	c
+Player	app/player/player.py	/^class Player():$/;"	c
 REQUIRED_META_DATA	config.py	/^    REQUIRED_META_DATA = [$/;"	v	class:Config
 Running end-to-end tests	frontend/README.md	/^## Running end-to-end tests$/;"	s
 Running unit tests	frontend/README.md	/^## Running unit tests$/;"	s
@@ -286,10 +286,8 @@ Song	app/database/models.py	/^class Song(db.Model):$/;"	c
 Tour of Heroes	frontend/src/app/app.component.html	/^    <h2><a target="_blank" rel="noopener" href="https:\/\/angular.io\/tutorial">Tour of Heroes<\//;"	i
 User	app/database/models.py	/^class User(db.Model):$/;"	c
 Welcome to {{ title }}!	frontend/src/app/app.component.html	/^  <\/h1>$/;"	h
-YoutubePlayer	app/player/queue_player.py	/^class YoutubePlayer(Player):$/;"	c
 YoutubeSearch	app/search/youtube_search.py	/^class YoutubeSearch():$/;"	c
-__init__	app/player/queue_player.py	/^    def __init__(self):$/;"	m	class:Player
-__init__	app/player/queue_player.py	/^    def __init__(self):$/;"	m	class:YoutubePlayer
+__init__	app/player/player.py	/^    def __init__(self):$/;"	m	class:Player
 __init__	app/search/file_search.py	/^    def __init__(self):$/;"	m	class:FileSearch
 __init__	app/search/youtube_search.py	/^    def __init__(self):$/;"	m	class:YoutubeSearch
 __repr__	app/database/models.py	/^    def __repr__(self):$/;"	m	class:Song
@@ -5095,10 +5093,10 @@ lie	frontend/package-lock.json	/^    "lie": {$/;"	o	object:dependencies
 lint	frontend/angular.json	/^        "lint": {$/;"	o	object:projects.frontend-e2e.architect
 lint	frontend/angular.json	/^        "lint": {$/;"	o	object:projects.frontend.architect
 lint	frontend/package.json	/^    "lint": "ng lint",$/;"	s	object:scripts
-load	app/player/queue_player.py	/^    def load(self, filepath):$/;"	m	class:Player
-load	app/player/queue_player.py	/^    def load(self, url):$/;"	m	class:YoutubePlayer
+load	app/player/player.py	/^    def load(self, filepath):$/;"	m	class:Player
 load-json-file	frontend/package-lock.json	/^        "load-json-file": "^1.0.0",$/;"	s	object:dependencies.read-pkg.requires
 load-json-file	frontend/package-lock.json	/^    "load-json-file": {$/;"	o	object:dependencies
+load_youtube	app/player/player.py	/^    def load_youtube(self, url):$/;"	m	class:Player
 loader-runner	frontend/package-lock.json	/^        "loader-runner": "^2.3.0",$/;"	s	object:dependencies.webpack.requires
 loader-runner	frontend/package-lock.json	/^    "loader-runner": {$/;"	o	object:dependencies
 loader-utils	frontend/package-lock.json	/^        "loader-utils": "^0.2.16",$/;"	s	object:dependencies.html-webpack-plugin.requires
@@ -5165,6 +5163,7 @@ logger_alembic	migrations/alembic.ini	/^[logger_alembic]$/;"	s
 logger_root	migrations/alembic.ini	/^[logger_root]$/;"	s
 logger_sqlalchemy	migrations/alembic.ini	/^[logger_sqlalchemy]$/;"	s
 loggers	migrations/alembic.ini	/^[loggers]$/;"	s
+logging	app/player/player.py	/^logging = logging.getLogger("__main__")$/;"	v
 loglevel	frontend/package-lock.json	/^        "loglevel": "^1.4.1",$/;"	s	object:dependencies.webpack-dev-server.requires
 loglevel	frontend/package-lock.json	/^    "loglevel": {$/;"	o	object:dependencies
 loose-envify	frontend/package-lock.json	/^        "loose-envify": "^1.0.0"$/;"	s	object:dependencies.invariant.requires
@@ -5921,7 +5920,7 @@ path-type	frontend/package-lock.json	/^        "path-type": "^1.0.0"$/;"	s	objec
 path-type	frontend/package-lock.json	/^        "path-type": "^3.0.0"$/;"	s	object:dependencies.dir-glob.requires
 path-type	frontend/package-lock.json	/^        "path-type": {$/;"	o	object:dependencies.read-pkg.dependencies
 path-type	frontend/package-lock.json	/^    "path-type": {$/;"	o	object:dependencies
-pause	app/player/queue_player.py	/^    def pause(self):$/;"	m	class:Player
+pause	app/player/player.py	/^    def pause(self):$/;"	m	class:Player
 pbkdf2	frontend/package-lock.json	/^        "pbkdf2": "^3.0.3"$/;"	s	object:dependencies.parse-asn1.requires
 pbkdf2	frontend/package-lock.json	/^        "pbkdf2": "^3.0.3",$/;"	s	object:dependencies.crypto-browserify.requires
 pbkdf2	frontend/package-lock.json	/^    "pbkdf2": {$/;"	o	object:dependencies
@@ -5961,7 +5960,7 @@ pkg-dir	frontend/package-lock.json	/^        "pkg-dir": "^2.0.0"$/;"	s	object:de
 pkg-dir	frontend/package-lock.json	/^        "pkg-dir": "^3.0.0",$/;"	s	object:dependencies.import-local.requires
 pkg-dir	frontend/package-lock.json	/^        "pkg-dir": {$/;"	o	object:dependencies.import-local.dependencies
 pkg-dir	frontend/package-lock.json	/^    "pkg-dir": {$/;"	o	object:dependencies
-play	app/player/queue_player.py	/^    def play(self):$/;"	m	class:Player
+play	app/player/player.py	/^    def play(self):$/;"	m	class:Player
 polyfills	frontend/angular.json	/^            "polyfills": "src\/polyfills.ts",$/;"	s	object:projects.frontend.architect.build.options
 polyfills	frontend/angular.json	/^            "polyfills": "src\/polyfills.ts",$/;"	s	object:projects.frontend.architect.test.options
 portfinder	frontend/package-lock.json	/^        "portfinder": "^1.0.13",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
@@ -8744,7 +8743,7 @@ statuses	frontend/package-lock.json	/^        "statuses": {$/;"	o	object:depende
 statuses	frontend/package-lock.json	/^    "statuses": {$/;"	o	object:dependencies
 stdout-stream	frontend/package-lock.json	/^        "stdout-stream": "^1.4.0",$/;"	s	object:dependencies.node-sass.requires
 stdout-stream	frontend/package-lock.json	/^    "stdout-stream": {$/;"	o	object:dependencies
-stop	app/player/queue_player.py	/^    def stop(self):$/;"	m	class:Player
+stop	app/player/player.py	/^    def stop(self):$/;"	m	class:Player
 stream-browserify	frontend/package-lock.json	/^        "stream-browserify": "^2.0.1",$/;"	s	object:dependencies.node-libs-browser.requires
 stream-browserify	frontend/package-lock.json	/^    "stream-browserify": {$/;"	o	object:dependencies
 stream-each	frontend/package-lock.json	/^        "stream-each": "^1.1.0",$/;"	s	object:dependencies.mississippi.requires
