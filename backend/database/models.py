@@ -123,7 +123,8 @@ class Playlist(db.Model):
         songs: The songs of which this playlist consists
     """
     id = db.Column(db.Integer, primary_key=True)
-    owner = db.relationship("User", back_populates="playlists")
+    # owner = db.relationship("User", back_populates="playlists")
+    owner = db.Column("User", db.Integer, db.ForeignKey("User.uid"), nullable=False)
     songs = db.relationship("Song",
                             secondary=song_playlist_association,
                             backref="playlists")
