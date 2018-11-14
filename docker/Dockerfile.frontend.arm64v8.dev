@@ -1,0 +1,23 @@
+FROM arm64v8/node:10-alpine
+
+WORKDIR /home/frontend/frontend
+COPY frontend ./
+COPY qemu-aarch64-static /usr/local/bin/qemu-aarch64-static
+
+RUN apk add --update && \
+    npm install -g @angular/cli
+
+COPY docker/boot_frontend.sh /home/frontend
+
+RUN \
+    #adduser -D frontend && \
+    chmod +x /home/frontend/boot_frontend.sh && \
+    mkdir -p /home/frontend/certificates
+    #chown -R frontend: /home/frontend
+
+RUN rm -f /usr/local/bin/qemu-aarch64-static
+
+#USER frontend
+
+EXPOSE 4200
+ENTRYPOINT [ "/home/frontend/boot_frontend.sh" ]

@@ -39,7 +39,9 @@ RUN adduser -D backend && \
 
 USER backend
 
+VOLUME [ "/certificates" ]
+
 ENV FLASK_APP apyllon.py
 
 EXPOSE 5000
-#ENTRYPOINT [ "./boot_backend.sh" ]
+ENTRYPOINT [ "./boot_backend.sh" ]
