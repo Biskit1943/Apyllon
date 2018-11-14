@@ -6,16 +6,28 @@
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/6aa62c97/
 $schema	frontend/angular.json	/^  "$schema": ".\/node_modules\/@angular\/cli\/lib\/config\/schema.json",$/;"	s
+*	frontend/src/styles.css	/^* {$/;"	s
+.DEFAULT_GOAL	Makefile	/^.DEFAULT_GOAL := help$/;"	m
+.div-sidebar	frontend/src/app/home/home.component.css	/^.div-sidebar {$/;"	c
+.div-sidebar-content-folders	frontend/src/app/main-sidebar/main-sidebar.component.css	/^.div-sidebar-content-folders {$/;"	c
+.div-sidebar-content-playlists	frontend/src/app/main-sidebar/main-sidebar.component.css	/^.div-sidebar-content-playlists {$/;"	c
+.list-item	frontend/src/app/sidebar-content-playlists/sidebar-content-playlists.component.css	/^.list-item {$/;"	c
+.logout-button	frontend/src/app/main-sidebar/main-sidebar.component.css	/^.logout-button {$/;"	c
+.mat-toolbar.mat-primary	frontend/src/app/main-sidebar/main-sidebar.component.css	/^.mat-toolbar.mat-primary {$/;"	c
+.sidebar-content-playlists-list	frontend/src/app/sidebar-content-playlists/sidebar-content-playlists.component.css	/^.sidebar-content-playlists-list {$/;"	c
+.sidenav	frontend/src/app/main-sidebar/main-sidebar.component.css	/^.sidenav {$/;"	c
+.sidenav-container	frontend/src/app/main-sidebar/main-sidebar.component.css	/^.sidenav-container {$/;"	c
 0	frontend/angular.json	/^                {$/;"	o	array:projects.frontend.architect.build.configurations.production.fileReplacements
 0	frontend/angular.json	/^              "**\/node_modules\/**"$/;"	s	array:projects.frontend-e2e.architect.lint.options.exclude
 0	frontend/angular.json	/^              "**\/node_modules\/**"$/;"	s	array:projects.frontend.architect.lint.options.exclude
 0	frontend/angular.json	/^              "src\/favicon.ico",$/;"	s	array:projects.frontend.architect.build.options.assets
 0	frontend/angular.json	/^              "src\/favicon.ico",$/;"	s	array:projects.frontend.architect.test.options.assets
-0	frontend/angular.json	/^              "src\/styles.css"$/;"	s	array:projects.frontend.architect.build.options.styles
-0	frontend/angular.json	/^              "src\/styles.css"$/;"	s	array:projects.frontend.architect.test.options.styles
 0	frontend/angular.json	/^              "src\/tsconfig.app.json",$/;"	s	array:projects.frontend.architect.lint.options.tsConfig
+0	frontend/angular.json	/^              {$/;"	o	array:projects.frontend.architect.build.options.styles
+0	frontend/angular.json	/^              {$/;"	o	array:projects.frontend.architect.test.options.styles
 0	frontend/e2e/tsconfig.e2e.json	/^      "jasmine",$/;"	s	array:compilerOptions.types
 0	frontend/src/tsconfig.app.json	/^    "test.ts",$/;"	s	array:exclude
+0	frontend/src/tsconfig.app.json	/^  "types": ["node"]$/;"	s	array:types
 0	frontend/src/tsconfig.spec.json	/^      "jasmine",$/;"	s	array:compilerOptions.types
 0	frontend/src/tsconfig.spec.json	/^    "**\/*.spec.ts",$/;"	s	array:include
 0	frontend/src/tsconfig.spec.json	/^    "test.ts",$/;"	s	array:files
@@ -40,6 +52,8 @@ $schema	frontend/angular.json	/^  "$schema": ".\/node_modules\/@angular\/cli\/li
 0	frontend/tslint.json	/^    "node_modules\/codelyzer"$/;"	s	array:rulesDirectory
 1	frontend/angular.json	/^              "src\/assets"$/;"	s	array:projects.frontend.architect.build.options.assets
 1	frontend/angular.json	/^              "src\/assets"$/;"	s	array:projects.frontend.architect.test.options.assets
+1	frontend/angular.json	/^              "src\/styles.css"$/;"	s	array:projects.frontend.architect.build.options.styles
+1	frontend/angular.json	/^              "src\/styles.css"$/;"	s	array:projects.frontend.architect.test.options.styles
 1	frontend/angular.json	/^              "src\/tsconfig.spec.json"$/;"	s	array:projects.frontend.architect.lint.options.tsConfig
 1	frontend/e2e/tsconfig.e2e.json	/^      "jasminewd2",$/;"	s	array:compilerOptions.types
 1	frontend/src/tsconfig.app.json	/^    "**\/*.spec.ts"$/;"	s	array:exclude
@@ -117,7 +131,9 @@ $schema	frontend/angular.json	/^  "$schema": ".\/node_modules\/@angular\/cli\/li
 @angular-devkit/schematics	package-lock.json	/^        "@angular-devkit\/schematics": "0.8.5",$/;"	s	object:dependencies.@schematics/update.requires
 @angular-devkit/schematics	package-lock.json	/^    "@angular-devkit\/schematics": {$/;"	o	object:dependencies
 @angular/animations	frontend/package-lock.json	/^    "@angular\/animations": {$/;"	o	object:dependencies
-@angular/animations	frontend/package.json	/^    "@angular\/animations": "^6.1.0",$/;"	s	object:dependencies
+@angular/animations	frontend/package.json	/^    "@angular\/animations": "^6.0.0",$/;"	s	object:dependencies
+@angular/cdk	frontend/package-lock.json	/^    "@angular\/cdk": {$/;"	o	object:dependencies
+@angular/cdk	frontend/package.json	/^    "@angular\/cdk": "^6.2.0",$/;"	s	object:dependencies
 @angular/cli	frontend/package-lock.json	/^    "@angular\/cli": {$/;"	o	object:dependencies
 @angular/cli	frontend/package.json	/^    "@angular\/cli": "~6.2.5",$/;"	s	object:devDependencies
 @angular/cli	package-lock.json	/^    "@angular\/cli": {$/;"	o	object:dependencies
@@ -129,12 +145,16 @@ $schema	frontend/angular.json	/^  "$schema": ".\/node_modules\/@angular\/cli\/li
 @angular/compiler-cli	frontend/package.json	/^    "@angular\/compiler-cli": "^6.1.0",$/;"	s	object:devDependencies
 @angular/core	frontend/package-lock.json	/^    "@angular\/core": {$/;"	o	object:dependencies
 @angular/core	frontend/package.json	/^    "@angular\/core": "^6.1.0",$/;"	s	object:dependencies
+@angular/flex-layout	frontend/package-lock.json	/^    "@angular\/flex-layout": {$/;"	o	object:dependencies
+@angular/flex-layout	frontend/package.json	/^    "@angular\/flex-layout": "^7.0.0-beta.19",$/;"	s	object:dependencies
 @angular/forms	frontend/package-lock.json	/^    "@angular\/forms": {$/;"	o	object:dependencies
 @angular/forms	frontend/package.json	/^    "@angular\/forms": "^6.1.0",$/;"	s	object:dependencies
 @angular/http	frontend/package-lock.json	/^    "@angular\/http": {$/;"	o	object:dependencies
 @angular/http	frontend/package.json	/^    "@angular\/http": "^6.1.0",$/;"	s	object:dependencies
 @angular/language-service	frontend/package-lock.json	/^    "@angular\/language-service": {$/;"	o	object:dependencies
 @angular/language-service	frontend/package.json	/^    "@angular\/language-service": "^6.1.0",$/;"	s	object:devDependencies
+@angular/material	frontend/package-lock.json	/^    "@angular\/material": {$/;"	o	object:dependencies
+@angular/material	frontend/package.json	/^    "@angular\/material": "^6.4.7",$/;"	s	object:dependencies
 @angular/platform-browser	frontend/package-lock.json	/^    "@angular\/platform-browser": {$/;"	o	object:dependencies
 @angular/platform-browser	frontend/package.json	/^    "@angular\/platform-browser": "^6.1.0",$/;"	s	object:dependencies
 @angular/platform-browser-dynamic	frontend/package-lock.json	/^    "@angular\/platform-browser-dynamic": {$/;"	o	object:dependencies
@@ -190,7 +210,7 @@ $schema	frontend/angular.json	/^  "$schema": ".\/node_modules\/@angular\/cli\/li
 @types/node	frontend/package-lock.json	/^        "@types\/node": "^6.0.46",$/;"	s	object:dependencies.protractor.requires
 @types/node	frontend/package-lock.json	/^        "@types\/node": {$/;"	o	object:dependencies.protractor.dependencies
 @types/node	frontend/package-lock.json	/^    "@types\/node": {$/;"	o	object:dependencies
-@types/node	frontend/package.json	/^    "@types\/node": "~8.9.4",$/;"	s	object:devDependencies
+@types/node	frontend/package.json	/^    "@types\/node": "^8.10.36",$/;"	s	object:devDependencies
 @types/q	frontend/package-lock.json	/^        "@types\/q": "^0.0.32",$/;"	s	object:dependencies.protractor.requires
 @types/q	frontend/package-lock.json	/^    "@types\/q": {$/;"	o	object:dependencies
 @types/selenium-webdriver	frontend/package-lock.json	/^        "@types\/selenium-webdriver": "^3.0.0",$/;"	s	object:dependencies.protractor.requires
@@ -262,36 +282,74 @@ $schema	frontend/angular.json	/^  "$schema": ".\/node_modules\/@angular\/cli\/li
 @xtuc/long	frontend/package-lock.json	/^        "@xtuc\/long": "4.2.1"$/;"	s	object:dependencies.@webassemblyjs/wast-parser.requires
 @xtuc/long	frontend/package-lock.json	/^        "@xtuc\/long": "4.2.1"$/;"	s	object:dependencies.@webassemblyjs/wast-printer.requires
 @xtuc/long	frontend/package-lock.json	/^    "@xtuc\/long": {$/;"	o	object:dependencies
-Admin	app/database/models.py	/^class Admin(db.Model):$/;"	c
-Angular blog	frontend/src/app/app.component.html	/^    <h2><a target="_blank" rel="noopener" href="https:\/\/blog.angular.io\/">Angular blog<\/a><\//;"	i
+APP_NAME	Makefile	/^APP_NAME=poi-storage$/;"	m
+Admin	backend/database/models.py	/^class Admin(db.Model):$/;"	c
 Apyllon	README.md	/^# Apyllon$/;"	c
+BadRequest	backend/api/routes/exceptions.py	/^class BadRequest(Exception):$/;"	c
 Build	frontend/README.md	/^## Build$/;"	s
-CLI Documentation	frontend/src/app/app.component.html	/^    <h2><a target="_blank" rel="noopener" href="https:\/\/github.com\/angular\/angular-cli\/wiki/;"	i
 Code scaffolding	frontend/README.md	/^## Code scaffolding$/;"	s
 Config	config.py	/^class Config(object):$/;"	c
+Conflict	backend/api/routes/exceptions.py	/^class Conflict(Exception):$/;"	c
 Contributors	README.md	/^# Contributors$/;"	c
 Development server	frontend/README.md	/^## Development server$/;"	s
+DoesNotExist	backend/database/exceptions.py	/^class DoesNotExist(Exception):$/;"	c
+Exists	backend/database/exceptions.py	/^class Exists(Exception):$/;"	c
 FileSearch	app/search/file_search.py	/^class FileSearch():$/;"	c
+FileSearch	backend/search/file_search.py	/^class FileSearch():$/;"	c
+Filepath	backend/database/models.py	/^class Filepath(db.Model):$/;"	c
 Frontend	frontend/README.md	/^# Frontend$/;"	c
 Further help	frontend/README.md	/^## Further help$/;"	s
-Here are some links to help you start:	frontend/src/app/app.component.html	/^<h2>Here are some links to help you start: <\/h2>$/;"	i
+Hi {{currentUser.username}}! Welcome to {{ title }}!	frontend/src/app/main-sidebar/main-sidebar.component.html	/^      <\/h1>$/;"	h
+Login	frontend/src/app/login/login.component.html	/^<h2>Login<\/h2>$/;"	i
+MultipleReturned	backend/database/exceptions.py	/^class MultipleReturned(Exception):$/;"	c
+PUBLIC_KEY	config.py	/^    PUBLIC_KEY = f'{SECRET_PATH}\/public.pem'$/;"	v	class:Config
 Player	app/player/player.py	/^class Player():$/;"	c
+Player	backend/player/player.py	/^class Player():$/;"	c
+Playlist	backend/database/models.py	/^class Playlist(db.Model):$/;"	c
+Playlists	frontend/src/app/sidebar-content-playlists/sidebar-content-playlists.component.html	/^  <h3>Playlists<\/h3>$/;"	j
 REQUIRED_META_DATA	config.py	/^    REQUIRED_META_DATA = [$/;"	v	class:Config
+Register	frontend/src/app/register/register.component.html	/^<h2>Register<\/h2>$/;"	i
 Running end-to-end tests	frontend/README.md	/^## Running end-to-end tests$/;"	s
 Running unit tests	frontend/README.md	/^## Running unit tests$/;"	s
+SECRET_KEY	config.py	/^    SECRET_KEY = f'{SECRET_PATH}\/key.pem'$/;"	v	class:Config
+SECRET_PATH	config.py	/^    SECRET_PATH = '\/certificates'$/;"	v	class:Config
 SONG_EXTENSIONS	config.py	/^    SONG_EXTENSIONS = [$/;"	v	class:Config
 SQLALCHEMY_DATABASE_URI	config.py	/^    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \\$/;"	v	class:Config
 SQLALCHEMY_TRACK_MODIFICATIONS	config.py	/^    SQLALCHEMY_TRACK_MODIFICATIONS = False$/;"	v	class:Config
-Song	app/database/models.py	/^class Song(db.Model):$/;"	c
-Tour of Heroes	frontend/src/app/app.component.html	/^    <h2><a target="_blank" rel="noopener" href="https:\/\/angular.io\/tutorial">Tour of Heroes<\//;"	i
-User	app/database/models.py	/^class User(db.Model):$/;"	c
-Welcome to {{ title }}!	frontend/src/app/app.component.html	/^  <\/h1>$/;"	h
+SWAGGER	config.py	/^    SWAGGER = {$/;"	v	class:Config
+Song	backend/database/models.py	/^class Song(db.Model):$/;"	c
+TODO:	README.md	/^# TODO:$/;"	c
+User	backend/database/models.py	/^class User(db.Model):$/;"	c
+UserView	backend/api/routes/users.py	/^class UserView(MethodView):$/;"	c
+UsersIdAuthView	backend/api/routes/users.py	/^class UsersIdAuthView(MethodView):$/;"	c
+UsersIdView	backend/api/routes/users.py	/^class UsersIdView(MethodView):$/;"	c
+UsersNameAuthView	backend/api/routes/users.py	/^class UsersNameAuthView(MethodView):$/;"	c
+UsersNameView	backend/api/routes/users.py	/^class UsersNameView(MethodView):$/;"	c
+VERSION	Makefile	/^VERSION=$(shell .\/version.sh)$/;"	m
+VERSION	config.py	/^    VERSION = (0, 0, 3)$/;"	v	class:Config
+YoutubePlayer	backend/player/player.py	/^class YoutubePlayer(Player):$/;"	c
 YoutubeSearch	app/search/youtube_search.py	/^class YoutubeSearch():$/;"	c
+YoutubeSearch	backend/search/youtube_search.py	/^class YoutubeSearch():$/;"	c
+__init__	app/player/media.py	/^    def __init__(self, path, meta=None):$/;"	m	class:local_media
+__init__	app/player/media.py	/^    def __init__(self, path, meta=None):$/;"	m	class:media
+__init__	app/player/media.py	/^    def __init__(self, url, meta=None):$/;"	m	class:youtube_media
 __init__	app/player/player.py	/^    def __init__(self):$/;"	m	class:Player
+__init__	app/player/queue.py	/^    def __init__(self, identifier):$/;"	m	class:queue
 __init__	app/search/file_search.py	/^    def __init__(self):$/;"	m	class:FileSearch
 __init__	app/search/youtube_search.py	/^    def __init__(self):$/;"	m	class:YoutubeSearch
-__repr__	app/database/models.py	/^    def __repr__(self):$/;"	m	class:Song
-__repr__	app/database/models.py	/^    def __repr__(self):$/;"	m	class:User
+__init__	backend/api/routes/exceptions.py	/^    def __init__(self, message, payload=None, status_code=None):$/;"	m	class:BadRequest
+__init__	backend/api/routes/exceptions.py	/^    def __init__(self, message, status_code=None):$/;"	m	class:Conflict
+__init__	backend/player/player.py	/^    def __init__(self):$/;"	m	class:Player
+__init__	backend/player/player.py	/^    def __init__(self):$/;"	m	class:YoutubePlayer
+__init__	backend/search/file_search.py	/^    def __init__(self):$/;"	m	class:FileSearch
+__init__	backend/search/youtube_search.py	/^    def __init__(self):$/;"	m	class:YoutubeSearch
+__repr__	backend/database/models.py	/^    def __repr__(self):$/;"	m	class:Filepath
+__repr__	backend/database/models.py	/^    def __repr__(self):$/;"	m	class:Playlist
+__repr__	backend/database/models.py	/^    def __repr__(self):$/;"	m	class:Song
+__repr__	backend/database/models.py	/^    def __repr__(self):$/;"	m	class:User
+__version__	backend/__init__.py	/^__version__ = get_version()$/;"	v
+_filter_dict	backend/database/user_utils.py	/^def _filter_dict(**kwargs) -> Dict:$/;"	f
+a	frontend/src/styles.css	/^a {$/;"	s
 abbrev	frontend/package-lock.json	/^            "abbrev": "1",$/;"	s	object:dependencies.fsevents.dependencies.nopt.requires
 abbrev	frontend/package-lock.json	/^        "abbrev": "1"$/;"	s	object:dependencies.nopt.requires
 abbrev	frontend/package-lock.json	/^        "abbrev": "1.0.x",$/;"	s	object:dependencies.istanbul.requires
@@ -309,7 +367,10 @@ acorn	frontend/package-lock.json	/^        "acorn": "^5.6.2",$/;"	s	object:depen
 acorn	frontend/package-lock.json	/^    "acorn": {$/;"	o	object:dependencies
 acorn-dynamic-import	frontend/package-lock.json	/^        "acorn-dynamic-import": "^3.0.0",$/;"	s	object:dependencies.webpack.requires
 acorn-dynamic-import	frontend/package-lock.json	/^    "acorn-dynamic-import": {$/;"	o	object:dependencies
-add_songs	app/database/song_utils.py	/^def add_songs(song: dict):$/;"	f
+add_media	app/player/queue.py	/^    def add_media(media, pos=None):$/;"	m	class:queue
+add_song	backend/database/song_utils.py	/^def add_song(data: Dict):$/;"	f
+add_songs	backend/api/local.py	/^def add_songs(path: str):$/;"	f
+add_user	backend/database/user_utils.py	/^def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:$/;"	f
 adm-zip	frontend/package-lock.json	/^            "adm-zip": "^0.4.9",$/;"	s	object:dependencies.protractor.dependencies.webdriver-manager.requires
 adm-zip	frontend/package-lock.json	/^    "adm-zip": {$/;"	o	object:dependencies
 after	frontend/package-lock.json	/^        "after": "0.8.2",$/;"	s	object:dependencies.engine.io-parser.requires
@@ -342,7 +403,7 @@ ajv-keywords	frontend/package-lock.json	/^            "ajv-keywords": "^3.1.0"$/
 ajv-keywords	frontend/package-lock.json	/^        "ajv-keywords": "^3.1.0"$/;"	s	object:dependencies.schema-utils.requires
 ajv-keywords	frontend/package-lock.json	/^        "ajv-keywords": "^3.1.0",$/;"	s	object:dependencies.webpack.requires
 ajv-keywords	frontend/package-lock.json	/^    "ajv-keywords": {$/;"	o	object:dependencies
-album	app/templates/scan.json	/^    "album": "<song album>",$/;"	s	object:meta
+album	backend/database/models.py	/^    album = db.Column(db.String(64))$/;"	v	class:Song
 alembic	migrations/alembic.ini	/^[alembic]$/;"	s
 alembic	migrations/alembic.ini	/^[logger_alembic]$/;"	L
 alembic	migrations/alembic.ini	/^qualname = alembic$/;"	q	loggerSection:alembic
@@ -382,7 +443,7 @@ anymatch	frontend/package-lock.json	/^    "anymatch": {$/;"	o	object:dependencie
 anymatch	package-lock.json	/^        "anymatch": "^2.0.0",$/;"	s	object:dependencies.chokidar.requires
 anymatch	package-lock.json	/^    "anymatch": {$/;"	o	object:dependencies
 aot	frontend/angular.json	/^              "aot": true,$/;"	b	object:projects.frontend.architect.build.configurations.production
-app	app/__init__.py	/^app = Flask(__name__)$/;"	v
+app	backend/__init__.py	/^app = Flask(__name__)$/;"	v
 app-root-path	frontend/package-lock.json	/^        "app-root-path": "^2.0.1",$/;"	s	object:dependencies.codelyzer.requires
 app-root-path	frontend/package-lock.json	/^    "app-root-path": {$/;"	o	object:dependencies
 append-transform	frontend/package-lock.json	/^        "append-transform": "^1.0.0"$/;"	s	object:dependencies.istanbul-lib-hook.requires
@@ -410,6 +471,11 @@ are-we-there-yet	package-lock.json	/^        "are-we-there-yet": {$/;"	o	object:
 are-we-there-yet	package-lock.json	/^    "are-we-there-yet": {$/;"	o	object:dependencies
 argparse	frontend/package-lock.json	/^        "argparse": "^1.0.7",$/;"	s	object:dependencies.js-yaml.requires
 argparse	frontend/package-lock.json	/^    "argparse": {$/;"	o	object:dependencies
+args	logger.ini	/^args=('.logs', 'a+')$/;"	k	section:handler_debug
+args	logger.ini	/^args=(sys.stderr,)$/;"	k	section:handler_critical
+args	logger.ini	/^args=(sys.stderr,)$/;"	k	section:handler_error
+args	logger.ini	/^args=(sys.stdout,)$/;"	k	section:handler_info
+args	logger.ini	/^args=(sys.stdout,)$/;"	k	section:handler_warning
 args	migrations/alembic.ini	/^args = (sys.stderr,)$/;"	k	section:handler_console
 arr-diff	frontend/package-lock.json	/^            "arr-diff": "^2.0.0",$/;"	s	object:dependencies.@angular/compiler-cli.dependencies.micromatch.requires
 arr-diff	frontend/package-lock.json	/^        "arr-diff": "^4.0.0",$/;"	s	object:dependencies.micromatch.requires
@@ -465,8 +531,7 @@ arrify	frontend/package-lock.json	/^        "arrify": "^1.0.0",$/;"	s	object:dep
 arrify	frontend/package-lock.json	/^        "arrify": "^1.0.1",$/;"	s	object:dependencies.dir-glob.requires
 arrify	frontend/package-lock.json	/^    "arrify": {$/;"	o	object:dependencies
 arrow-return-shorthand	frontend/tslint.json	/^    "arrow-return-shorthand": true,$/;"	b	object:rules
-artist	app/database/models.py	/^    artist = db.Column(db.String(64))$/;"	v	class:Song
-artist	app/templates/scan.json	/^    "artist": "<song artist>",$/;"	s	object:meta
+artist	backend/database/models.py	/^    artist = db.Column(db.String(64))$/;"	v	class:Song
 asap	frontend/package-lock.json	/^        "asap": "~2.0.3"$/;"	s	object:dependencies.promise.requires
 asap	frontend/package-lock.json	/^    "asap": {$/;"	o	object:dependencies
 asn1	frontend/package-lock.json	/^        "asn1": "~0.2.3",$/;"	s	object:dependencies.sshpk.requires
@@ -523,6 +588,7 @@ atob	frontend/package-lock.json	/^        "atob": "^2.1.1",$/;"	s	object:depende
 atob	frontend/package-lock.json	/^    "atob": {$/;"	o	object:dependencies
 atob	package-lock.json	/^        "atob": "^2.1.1",$/;"	s	object:dependencies.source-map-resolve.requires
 atob	package-lock.json	/^    "atob": {$/;"	o	object:dependencies
+auth_user	backend/database/user_utils.py	/^def auth_user(password: str, uid: int = None, username: str = None) -> Dict:$/;"	f
 autoprefixer	frontend/package-lock.json	/^        "autoprefixer": "^8.4.1",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
 autoprefixer	frontend/package-lock.json	/^    "autoprefixer": {$/;"	o	object:dependencies
 aws-sign2	frontend/package-lock.json	/^        "aws-sign2": "~0.7.0",$/;"	s	object:dependencies.request.requires
@@ -576,6 +642,7 @@ base	package-lock.json	/^    "base": {$/;"	o	object:dependencies
 base64-arraybuffer	frontend/package-lock.json	/^        "base64-arraybuffer": "0.1.5",$/;"	s	object:dependencies.engine.io-parser.requires
 base64-arraybuffer	frontend/package-lock.json	/^        "base64-arraybuffer": "0.1.5",$/;"	s	object:dependencies.socket.io-client.requires
 base64-arraybuffer	frontend/package-lock.json	/^    "base64-arraybuffer": {$/;"	o	object:dependencies
+base64-js	frontend/package-lock.json	/^            "base64-js": "^1.0.2",$/;"	s	object:dependencies.node-libs-browser.dependencies.buffer.requires
 base64-js	frontend/package-lock.json	/^        "base64-js": "^1.0.2",$/;"	s	object:dependencies.buffer.requires
 base64-js	frontend/package-lock.json	/^    "base64-js": {$/;"	o	object:dependencies
 base64id	frontend/package-lock.json	/^        "base64id": "1.0.0",$/;"	s	object:dependencies.engine.io.requires
@@ -599,6 +666,10 @@ binary-extensions	frontend/package-lock.json	/^        "binary-extensions": "^1.
 binary-extensions	frontend/package-lock.json	/^    "binary-extensions": {$/;"	o	object:dependencies
 binary-extensions	package-lock.json	/^        "binary-extensions": "^1.0.0"$/;"	s	object:dependencies.is-binary-path.requires
 binary-extensions	package-lock.json	/^    "binary-extensions": {$/;"	o	object:dependencies
+blake2b	frontend/package-lock.json	/^    "blake2b": {$/;"	o	object:dependencies
+blake2b	frontend/package.json	/^    "blake2b": "^2.1.3",$/;"	s	object:dependencies
+blake2b-wasm	frontend/package-lock.json	/^        "blake2b-wasm": "^1.1.0",$/;"	s	object:dependencies.blake2b.requires
+blake2b-wasm	frontend/package-lock.json	/^    "blake2b-wasm": {$/;"	o	object:dependencies
 blob	frontend/package-lock.json	/^        "blob": "0.0.4",$/;"	s	object:dependencies.engine.io-parser.requires
 blob	frontend/package-lock.json	/^    "blob": {$/;"	o	object:dependencies
 block-stream	frontend/package-lock.json	/^        "block-stream": "*",$/;"	s	object:dependencies.tar.requires
@@ -617,6 +688,9 @@ bn.js	frontend/package-lock.json	/^        "bn.js": "^4.1.0",$/;"	s	object:depen
 bn.js	frontend/package-lock.json	/^        "bn.js": "^4.1.1",$/;"	s	object:dependencies.browserify-sign.requires
 bn.js	frontend/package-lock.json	/^        "bn.js": "^4.4.0",$/;"	s	object:dependencies.elliptic.requires
 bn.js	frontend/package-lock.json	/^    "bn.js": {$/;"	o	object:dependencies
+body	frontend/src/styles.css	/^body {$/;"	s
+body	frontend/src/styles.css	/^body, input[text], button {$/;"	s
+body	frontend/src/styles.css	/^html, body {$/;"	s
 body-parser	frontend/package-lock.json	/^        "body-parser": "1.18.3",$/;"	s	object:dependencies.express.requires
 body-parser	frontend/package-lock.json	/^        "body-parser": "^1.16.1",$/;"	s	object:dependencies.karma.requires
 body-parser	frontend/package-lock.json	/^    "body-parser": {$/;"	o	object:dependencies
@@ -641,6 +715,8 @@ braces	frontend/package-lock.json	/^    "braces": {$/;"	o	object:dependencies
 braces	package-lock.json	/^        "braces": "^2.3.0",$/;"	s	object:dependencies.chokidar.requires
 braces	package-lock.json	/^        "braces": "^2.3.1",$/;"	s	object:dependencies.micromatch.requires
 braces	package-lock.json	/^    "braces": {$/;"	o	object:dependencies
+branch_labels	migrations/versions/23386b2b8429_add_filepath_table_to_song_remove_.py	/^branch_labels = None$/;"	v
+branch_labels	migrations/versions/3d7db9e741ca_add_album_to_song.py	/^branch_labels = None$/;"	v
 branch_labels	migrations/versions/65f518f5eea2_inital_setup_admin_user_and_song.py	/^branch_labels = None$/;"	v
 brorand	frontend/package-lock.json	/^        "brorand": "^1.0.1"$/;"	s	object:dependencies.miller-rabin.requires
 brorand	frontend/package-lock.json	/^        "brorand": "^1.0.1",$/;"	s	object:dependencies.elliptic.requires
@@ -668,7 +744,9 @@ browserslist	frontend/package-lock.json	/^    "browserslist": {$/;"	o	object:dep
 browserstack	frontend/package-lock.json	/^        "browserstack": "^1.5.1",$/;"	s	object:dependencies.protractor.requires
 browserstack	frontend/package-lock.json	/^    "browserstack": {$/;"	o	object:dependencies
 buffer	frontend/package-lock.json	/^        "buffer": "^4.3.0",$/;"	s	object:dependencies.node-libs-browser.requires
+buffer	frontend/package-lock.json	/^        "buffer": {$/;"	o	object:dependencies.node-libs-browser.dependencies
 buffer	frontend/package-lock.json	/^    "buffer": {$/;"	o	object:dependencies
+buffer	frontend/package.json	/^    "buffer": "^5.2.1",$/;"	s	object:dependencies
 buffer-alloc	frontend/package-lock.json	/^        "buffer-alloc": "^1.2.0"$/;"	s	object:dependencies.isbinaryfile.requires
 buffer-alloc	frontend/package-lock.json	/^    "buffer-alloc": {$/;"	o	object:dependencies
 buffer-alloc-unsafe	frontend/package-lock.json	/^        "buffer-alloc-unsafe": "^1.1.0",$/;"	s	object:dependencies.buffer-alloc.requires
@@ -838,6 +916,7 @@ bundled	package-lock.json	/^          "bundled": true,$/;"	b	object:dependencies
 bundled	package-lock.json	/^          "bundled": true,$/;"	b	object:dependencies.fsevents.dependencies.tar
 bundled	package-lock.json	/^          "bundled": true,$/;"	b	object:dependencies.fsevents.dependencies.util-deprecate
 bundled	package-lock.json	/^          "bundled": true,$/;"	b	object:dependencies.fsevents.dependencies.wide-align
+button	frontend/src/styles.css	/^body, input[text], button {$/;"	s
 bytes	frontend/package-lock.json	/^        "bytes": "3.0.0",$/;"	s	object:dependencies.body-parser.requires
 bytes	frontend/package-lock.json	/^        "bytes": "3.0.0",$/;"	s	object:dependencies.compression.requires
 bytes	frontend/package-lock.json	/^        "bytes": "3.0.0",$/;"	s	object:dependencies.raw-body.requires
@@ -914,6 +993,11 @@ circular-dependency-plugin	frontend/package-lock.json	/^        "circular-depend
 circular-dependency-plugin	frontend/package-lock.json	/^    "circular-dependency-plugin": {$/;"	o	object:dependencies
 circular-json	frontend/package-lock.json	/^        "circular-json": "^0.5.5",$/;"	s	object:dependencies.log4js.requires
 circular-json	frontend/package-lock.json	/^    "circular-json": {$/;"	o	object:dependencies
+class	logger.ini	/^class=FileHandler$/;"	k	section:handler_debug
+class	logger.ini	/^class=StreamHandler$/;"	k	section:handler_critical
+class	logger.ini	/^class=StreamHandler$/;"	k	section:handler_error
+class	logger.ini	/^class=StreamHandler$/;"	k	section:handler_info
+class	logger.ini	/^class=StreamHandler$/;"	k	section:handler_warning
 class	migrations/alembic.ini	/^class = StreamHandler$/;"	k	section:handler_console
 class-name	frontend/tslint.json	/^    "class-name": true,$/;"	b	object:rules
 class-utils	frontend/package-lock.json	/^        "class-utils": "^0.3.5",$/;"	s	object:dependencies.base.requires
@@ -1130,7 +1214,7 @@ date-format	frontend/package-lock.json	/^    "date-format": {$/;"	o	object:depen
 date-now	frontend/package-lock.json	/^        "date-now": "^0.1.4"$/;"	s	object:dependencies.console-browserify.requires
 date-now	frontend/package-lock.json	/^    "date-now": {$/;"	o	object:dependencies
 datefmt	migrations/alembic.ini	/^datefmt = %H:%M:%S$/;"	k	section:formatter_generic
-db	app/__init__.py	/^db = SQLAlchemy(app)$/;"	v
+db	backend/__init__.py	/^db = SQLAlchemy(app)$/;"	v
 debug	frontend/package-lock.json	/^            "debug": "2.6.9",$/;"	s	object:dependencies.connect.dependencies.finalhandler.requires
 debug	frontend/package-lock.json	/^            "debug": "^2.1.2",$/;"	s	object:dependencies.fsevents.dependencies.needle.requires
 debug	frontend/package-lock.json	/^        "debug": "*",$/;"	s	object:dependencies.stylus.requires
@@ -1264,6 +1348,9 @@ delegates	package-lock.json	/^            "delegates": "^1.0.0",$/;"	s	object:de
 delegates	package-lock.json	/^        "delegates": "^1.0.0",$/;"	s	object:dependencies.are-we-there-yet.requires
 delegates	package-lock.json	/^        "delegates": {$/;"	o	object:dependencies.fsevents.dependencies
 delegates	package-lock.json	/^    "delegates": {$/;"	o	object:dependencies
+delete	backend/api/routes/users.py	/^    def delete(self, uid: int):$/;"	m	class:UsersIdView
+delete	backend/api/routes/users.py	/^    def delete(self, username: str):$/;"	m	class:UsersNameView
+delete_user	backend/database/user_utils.py	/^def delete_user(uid: int = None, username: str = None):$/;"	f
 depd	frontend/package-lock.json	/^        "depd": "~1.1.2",$/;"	s	object:dependencies.body-parser.requires
 depd	frontend/package-lock.json	/^        "depd": "~1.1.2",$/;"	s	object:dependencies.express.requires
 depd	frontend/package-lock.json	/^        "depd": "~1.1.2",$/;"	s	object:dependencies.http-errors.requires
@@ -1276,6 +1363,7 @@ dependencies	frontend/package-lock.json	/^          "dependencies": {$/;"	o	obje
 dependencies	frontend/package-lock.json	/^          "dependencies": {$/;"	o	object:dependencies.webpack-dev-server.dependencies.string-width
 dependencies	frontend/package-lock.json	/^      "dependencies": {$/;"	o	object:dependencies.@angular/cli
 dependencies	frontend/package-lock.json	/^      "dependencies": {$/;"	o	object:dependencies.@angular/compiler-cli
+dependencies	frontend/package-lock.json	/^      "dependencies": {$/;"	o	object:dependencies.@angular/material
 dependencies	frontend/package-lock.json	/^      "dependencies": {$/;"	o	object:dependencies.@babel/generator
 dependencies	frontend/package-lock.json	/^      "dependencies": {$/;"	o	object:dependencies.@babel/highlight
 dependencies	frontend/package-lock.json	/^      "dependencies": {$/;"	o	object:dependencies.@babel/traverse
@@ -1422,6 +1510,8 @@ dependencies	package-lock.json	/^      "dependencies": {$/;"	o	object:dependenci
 dependencies	package-lock.json	/^      "dependencies": {$/;"	o	object:dependencies.union-value
 dependencies	package-lock.json	/^      "dependencies": {$/;"	o	object:dependencies.unset-value
 dependencies	package-lock.json	/^  "dependencies": {$/;"	o
+depends_on	migrations/versions/23386b2b8429_add_filepath_table_to_song_remove_.py	/^depends_on = None$/;"	v
+depends_on	migrations/versions/3d7db9e741ca_add_album_to_song.py	/^depends_on = None$/;"	v
 depends_on	migrations/versions/65f518f5eea2_inital_setup_admin_user_and_song.py	/^depends_on = None$/;"	v
 deprecation	frontend/tslint.json	/^    "deprecation": {$/;"	o	object:rules
 des.js	frontend/package-lock.json	/^        "des.js": "^1.0.0",$/;"	s	object:dependencies.browserify-des.requires
@@ -1673,6 +1763,7 @@ dev	frontend/package-lock.json	/^          "dev": true,$/;"	b	object:dependencie
 dev	frontend/package-lock.json	/^          "dev": true,$/;"	b	object:dependencies.mini-css-extract-plugin.dependencies.schema-utils
 dev	frontend/package-lock.json	/^          "dev": true,$/;"	b	object:dependencies.mixin-deep.dependencies.is-extendable
 dev	frontend/package-lock.json	/^          "dev": true,$/;"	b	object:dependencies.node-gyp.dependencies.semver
+dev	frontend/package-lock.json	/^          "dev": true,$/;"	b	object:dependencies.node-libs-browser.dependencies.buffer
 dev	frontend/package-lock.json	/^          "dev": true,$/;"	b	object:dependencies.node-sass.dependencies.ansi-styles
 dev	frontend/package-lock.json	/^          "dev": true,$/;"	b	object:dependencies.node-sass.dependencies.chalk
 dev	frontend/package-lock.json	/^          "dev": true,$/;"	b	object:dependencies.node-sass.dependencies.supports-color
@@ -1779,7 +1870,6 @@ dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.bab
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.backo2
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.balanced-match
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.base64-arraybuffer
-dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.base64-js
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.base64id
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.batch
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.big.js
@@ -1895,7 +1985,6 @@ dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.htm
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.http-deceiver
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.http-parser-js
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.https-browserify
-dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.ieee754
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.iferr
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.ignore
 dev	frontend/package-lock.json	/^      "dev": true$/;"	b	object:dependencies.immediate
@@ -2171,7 +2260,6 @@ dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.br
 dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.browserify-zlib
 dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.browserslist
 dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.browserstack
-dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.buffer
 dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.buffer-alloc
 dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.cacache
 dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.cache-base
@@ -2556,6 +2644,7 @@ dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.xm
 dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.xxhashjs
 dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.yargs
 dev	frontend/package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.yargs-parser
+dev-aarch64	Makefile	/^dev-aarch64:  ## Build the development aarch64 image$/;"	t
 devDependencies	frontend/package.json	/^  "devDependencies": {$/;"	o
 devServerTarget	frontend/angular.json	/^              "devServerTarget": "frontend:serve:production"$/;"	s	object:projects.frontend-e2e.architect.e2e.configurations.production
 devServerTarget	frontend/angular.json	/^            "devServerTarget": "frontend:serve"$/;"	s	object:projects.frontend-e2e.architect.e2e.options
@@ -2572,7 +2661,7 @@ dir-glob	frontend/package-lock.json	/^    "dir-glob": {$/;"	o	object:dependencie
 directConnect	frontend/e2e/protractor.conf.js	/^  directConnect: true,$/;"	p	class:exports.config
 directive-class-suffix	frontend/tslint.json	/^    "directive-class-suffix": true$/;"	b	object:rules
 directive-selector	frontend/src/tslint.json	/^        "directive-selector": [$/;"	a	object:rules
-directory	app/database/models.py	/^    directory = db.Column(db.Text, nullable=False)$/;"	v	class:Song
+directory	backend/database/models.py	/^    directory = db.Column(db.Text, nullable=False)$/;"	v	class:Filepath
 dns-equal	frontend/package-lock.json	/^        "dns-equal": "^1.0.0",$/;"	s	object:dependencies.bonjour.requires
 dns-equal	frontend/package-lock.json	/^    "dns-equal": {$/;"	o	object:dependencies
 dns-packet	frontend/package-lock.json	/^        "dns-packet": "^1.3.1",$/;"	s	object:dependencies.multicast-dns.requires
@@ -2600,7 +2689,11 @@ domutils	frontend/package-lock.json	/^        "domutils": "1.1",$/;"	s	object:de
 domutils	frontend/package-lock.json	/^        "domutils": "1.5.1",$/;"	s	object:dependencies.css-select.requires
 domutils	frontend/package-lock.json	/^        "domutils": {$/;"	o	object:dependencies.htmlparser2.dependencies
 domutils	frontend/package-lock.json	/^    "domutils": {$/;"	o	object:dependencies
+down_revision	migrations/versions/23386b2b8429_add_filepath_table_to_song_remove_.py	/^down_revision = '3d7db9e741ca'$/;"	v
+down_revision	migrations/versions/3d7db9e741ca_add_album_to_song.py	/^down_revision = '65f518f5eea2'$/;"	v
 down_revision	migrations/versions/65f518f5eea2_inital_setup_admin_user_and_song.py	/^down_revision = None$/;"	v
+downgrade	migrations/versions/23386b2b8429_add_filepath_table_to_song_remove_.py	/^def downgrade():$/;"	f
+downgrade	migrations/versions/3d7db9e741ca_add_album_to_song.py	/^def downgrade():$/;"	f
 downgrade	migrations/versions/65f518f5eea2_inital_setup_admin_user_and_song.py	/^def downgrade():$/;"	f
 duplexify	frontend/package-lock.json	/^        "duplexify": "^3.4.2",$/;"	s	object:dependencies.mississippi.requires
 duplexify	frontend/package-lock.json	/^        "duplexify": "^3.6.0",$/;"	s	object:dependencies.pumpify.requires
@@ -2827,10 +2920,11 @@ faye-websocket	frontend/package-lock.json	/^    "faye-websocket": {$/;"	o	object
 file-loader	frontend/package-lock.json	/^        "file-loader": "^1.1.11",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
 file-loader	frontend/package-lock.json	/^    "file-loader": {$/;"	o	object:dependencies
 fileReplacements	frontend/angular.json	/^              "fileReplacements": [$/;"	a	object:projects.frontend.architect.build.configurations.production
-filename	app/database/models.py	/^    filename = db.Column(db.String(64), nullable=False)$/;"	v	class:Song
-filename	app/templates/scan.json	/^  "filename": "<filename>",$/;"	s
+filename	backend/database/models.py	/^    filename = db.Column(db.String(64), nullable=False)$/;"	v	class:Filepath
 filename-regex	frontend/package-lock.json	/^            "filename-regex": "^2.0.0",$/;"	s	object:dependencies.@angular/compiler-cli.dependencies.micromatch.requires
 filename-regex	frontend/package-lock.json	/^    "filename-regex": {$/;"	o	object:dependencies
+filepath	backend/database/models.py	/^    filepath = db.relationship("Filepath", back_populates="song")$/;"	v	class:Song
+filepath_id	backend/database/models.py	/^    filepath_id = db.Column(db.Integer, db.ForeignKey('filepath.id'))$/;"	v	class:Song
 files	frontend/src/tsconfig.spec.json	/^  "files": [$/;"	a
 fileset	frontend/package-lock.json	/^        "fileset": "^2.0.3",$/;"	s	object:dependencies.istanbul-api.requires
 fileset	frontend/package-lock.json	/^    "fileset": {$/;"	o	object:dependencies
@@ -2880,9 +2974,21 @@ form-data	frontend/package-lock.json	/^        "form-data": "~2.3.2",$/;"	s	obje
 form-data	frontend/package-lock.json	/^    "form-data": {$/;"	o	object:dependencies
 form-data	package-lock.json	/^        "form-data": "~2.3.2",$/;"	s	object:dependencies.request.requires
 form-data	package-lock.json	/^    "form-data": {$/;"	o	object:dependencies
+format	logger.ini	/^format=%(asctime)s - %(name)s - %(levelname)s - %(message)s$/;"	k	section:formatter_debug
+format	logger.ini	/^format=%(levelname)s - %(message)s$/;"	k	section:formatter_info
+format	logger.ini	/^format=%(levelname)s - %(message)s/;"	k	section:formatter_error
 format	migrations/alembic.ini	/^format = %(levelname)-5.5s [%(name)s] %(message)s$/;"	k	section:formatter_generic
+formatter	logger.ini	/^formatter=debug$/;"	k	section:handler_debug
+formatter	logger.ini	/^formatter=error$/;"	k	section:handler_critical
+formatter	logger.ini	/^formatter=error$/;"	k	section:handler_error
+formatter	logger.ini	/^formatter=info$/;"	k	section:handler_info
+formatter	logger.ini	/^formatter=info$/;"	k	section:handler_warning
 formatter	migrations/alembic.ini	/^formatter = generic$/;"	k	section:handler_console
+formatter_debug	logger.ini	/^[formatter_debug]$/;"	s
+formatter_error	logger.ini	/^[formatter_error]$/;"	s
 formatter_generic	migrations/alembic.ini	/^[formatter_generic]$/;"	s
+formatter_info	logger.ini	/^[formatter_info]$/;"	s
+formatters	logger.ini	/^[formatters]$/;"	s
 formatters	migrations/alembic.ini	/^[formatters]$/;"	s
 forwarded	frontend/package-lock.json	/^        "forwarded": "~0.1.2",$/;"	s	object:dependencies.proxy-addr.requires
 forwarded	frontend/package-lock.json	/^    "forwarded": {$/;"	o	object:dependencies
@@ -2939,8 +3045,11 @@ gauge	package-lock.json	/^        "gauge": {$/;"	o	object:dependencies.fsevents.
 gauge	package-lock.json	/^    "gauge": {$/;"	o	object:dependencies
 gaze	frontend/package-lock.json	/^        "gaze": "^1.0.0",$/;"	s	object:dependencies.node-sass.requires
 gaze	frontend/package-lock.json	/^    "gaze": {$/;"	o	object:dependencies
-genre	app/database/models.py	/^    genre = db.Column(db.String(32))$/;"	v	class:Song
-genre	app/templates/scan.json	/^    "genre": "<song genre>"$/;"	s	object:meta
+gen_jwt	backend/security/user.py	/^def gen_jwt(password: str, uid: int = None, username: str = None) -> Dict:$/;"	f
+genre	backend/database/models.py	/^    genre = db.Column(db.String(32))$/;"	v	class:Song
+get	backend/api/routes/users.py	/^    def get(self):$/;"	m	class:UserView
+get	backend/api/routes/users.py	/^    def get(self, uid: int):$/;"	m	class:UsersIdView
+get	backend/api/routes/users.py	/^    def get(self, username: str):$/;"	m	class:UsersNameView
 get-caller-file	frontend/package-lock.json	/^            "get-caller-file": "^1.0.1",$/;"	s	object:dependencies.webpack-dev-server.dependencies.yargs.requires
 get-caller-file	frontend/package-lock.json	/^        "get-caller-file": "^1.0.1",$/;"	s	object:dependencies.yargs.requires
 get-caller-file	frontend/package-lock.json	/^    "get-caller-file": {$/;"	o	object:dependencies
@@ -2959,6 +3068,9 @@ get-value	package-lock.json	/^        "get-value": "^2.0.6",$/;"	s	object:depend
 get-value	package-lock.json	/^        "get-value": "^2.0.6",$/;"	s	object:dependencies.has-value.requires
 get-value	package-lock.json	/^        "get-value": "^2.0.6",$/;"	s	object:dependencies.union-value.requires
 get-value	package-lock.json	/^    "get-value": {$/;"	o	object:dependencies
+get_player_state	app/player/queue.py	/^    def get_player_state():$/;"	m	class:queue
+get_user	backend/database/user_utils.py	/^def get_user(uid: int = None, username: str = None) -> Union[User, None]:$/;"	f
+get_version	backend/__init__.py	/^def get_version():$/;"	f
 getpass	frontend/package-lock.json	/^        "getpass": "^0.1.1",$/;"	s	object:dependencies.sshpk.requires
 getpass	frontend/package-lock.json	/^    "getpass": {$/;"	o	object:dependencies
 getpass	package-lock.json	/^        "getpass": "^0.1.1",$/;"	s	object:dependencies.sshpk.requires
@@ -3027,12 +3139,23 @@ graceful-fs	frontend/package-lock.json	/^    "graceful-fs": {$/;"	o	object:depen
 graceful-fs	package-lock.json	/^        "graceful-fs": "^4.1.11",$/;"	s	object:dependencies.readdirp.requires
 graceful-fs	package-lock.json	/^        "graceful-fs": "^4.1.6",$/;"	s	object:dependencies.npm-registry-client.requires
 graceful-fs	package-lock.json	/^    "graceful-fs": {$/;"	o	object:dependencies
+h1	frontend/src/styles.css	/^h1 {$/;"	s
+h2	frontend/src/styles.css	/^h2, h3 {$/;"	s
+h3	frontend/src/styles.css	/^h2, h3 {$/;"	s
 handle-thing	frontend/package-lock.json	/^        "handle-thing": "^1.2.5",$/;"	s	object:dependencies.spdy.requires
 handle-thing	frontend/package-lock.json	/^    "handle-thing": {$/;"	o	object:dependencies
+handle_bad_request	backend/api/routes/exceptions.py	/^def handle_bad_request(error):$/;"	f
 handlebars	frontend/package-lock.json	/^        "handlebars": "^4.0.1",$/;"	s	object:dependencies.istanbul.requires
 handlebars	frontend/package-lock.json	/^        "handlebars": "^4.0.11"$/;"	s	object:dependencies.istanbul-reports.requires
 handlebars	frontend/package-lock.json	/^    "handlebars": {$/;"	o	object:dependencies
 handler_console	migrations/alembic.ini	/^[handler_console]$/;"	s
+handler_critical	logger.ini	/^[handler_critical]$/;"	s
+handler_debug	logger.ini	/^[handler_debug]$/;"	s
+handler_error	logger.ini	/^[handler_error]$/;"	s
+handler_info	logger.ini	/^[handler_info]$/;"	s
+handler_warning	logger.ini	/^[handler_warning]$/;"	s
+handlers	logger.ini	/^[handlers]$/;"	s
+handlers	logger.ini	/^handlers=debug, info, warning, error, critical$/;"	k	section:logger_root
 handlers	migrations/alembic.ini	/^[handlers]$/;"	s
 handlers	migrations/alembic.ini	/^handlers = console$/;"	k	section:logger_root
 handlers	migrations/alembic.ini	/^handlers =$/;"	k	section:logger_alembic
@@ -3097,6 +3220,7 @@ hash.js	frontend/package-lock.json	/^        "hash.js": "^1.0.3",$/;"	s	object:d
 hash.js	frontend/package-lock.json	/^    "hash.js": {$/;"	o	object:dependencies
 he	frontend/package-lock.json	/^        "he": "1.1.x",$/;"	s	object:dependencies.html-minifier.requires
 he	frontend/package-lock.json	/^    "he": {$/;"	o	object:dependencies
+help	Makefile	/^help:$/;"	t
 hmac-drbg	frontend/package-lock.json	/^        "hmac-drbg": "^1.0.0",$/;"	s	object:dependencies.elliptic.requires
 hmac-drbg	frontend/package-lock.json	/^    "hmac-drbg": {$/;"	o	object:dependencies
 hosted-git-info	frontend/package-lock.json	/^        "hosted-git-info": "^2.1.4",$/;"	s	object:dependencies.normalize-package-data.requires
@@ -3107,6 +3231,7 @@ hosted-git-info	package-lock.json	/^        "hosted-git-info": "^2.6.0",$/;"	s	o
 hosted-git-info	package-lock.json	/^    "hosted-git-info": {$/;"	o	object:dependencies
 hpack.js	frontend/package-lock.json	/^        "hpack.js": "^2.1.6",$/;"	s	object:dependencies.spdy-transport.requires
 hpack.js	frontend/package-lock.json	/^    "hpack.js": {$/;"	o	object:dependencies
+html	frontend/src/styles.css	/^html, body {$/;"	s
 html-entities	frontend/package-lock.json	/^        "html-entities": "^1.2.0",$/;"	s	object:dependencies.webpack-dev-server.requires
 html-entities	frontend/package-lock.json	/^    "html-entities": {$/;"	o	object:dependencies
 html-minifier	frontend/package-lock.json	/^        "html-minifier": "^3.2.3",$/;"	s	object:dependencies.html-webpack-plugin.requires
@@ -3145,10 +3270,11 @@ iconv-lite	frontend/package-lock.json	/^        "iconv-lite": {$/;"	o	object:dep
 iconv-lite	frontend/package-lock.json	/^    "iconv-lite": {$/;"	o	object:dependencies
 iconv-lite	package-lock.json	/^            "iconv-lite": "^0.4.4",$/;"	s	object:dependencies.fsevents.dependencies.needle.requires
 iconv-lite	package-lock.json	/^        "iconv-lite": {$/;"	o	object:dependencies.fsevents.dependencies
-id	app/database/models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:Admin
-id	app/database/models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:Song
-id	app/database/models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:User
-ieee754	frontend/package-lock.json	/^        "ieee754": "^1.1.4",$/;"	s	object:dependencies.buffer.requires
+id	backend/database/models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:Admin
+id	backend/database/models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:Filepath
+id	backend/database/models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:Playlist
+ieee754	frontend/package-lock.json	/^            "ieee754": "^1.1.4",$/;"	s	object:dependencies.node-libs-browser.dependencies.buffer.requires
+ieee754	frontend/package-lock.json	/^        "ieee754": "^1.1.4"$/;"	s	object:dependencies.buffer.requires
 ieee754	frontend/package-lock.json	/^    "ieee754": {$/;"	o	object:dependencies
 iferr	frontend/package-lock.json	/^        "iferr": "^0.1.5",$/;"	s	object:dependencies.copy-concurrently.requires
 iferr	frontend/package-lock.json	/^        "iferr": "^0.1.5",$/;"	s	object:dependencies.fs-write-stream-atomic.requires
@@ -3180,7 +3306,7 @@ include	frontend/src/tsconfig.spec.json	/^  "include": [$/;"	a
 indent	frontend/tslint.json	/^    "indent": [$/;"	a	object:rules
 indent-string	frontend/package-lock.json	/^        "indent-string": "^2.1.0",$/;"	s	object:dependencies.redent.requires
 indent-string	frontend/package-lock.json	/^    "indent-string": {$/;"	o	object:dependencies
-index	app/routes.py	/^def index():$/;"	f
+index	backend/routes.py	/^def index():$/;"	f
 index	frontend/angular.json	/^            "index": "src\/index.html",$/;"	s	object:projects.frontend.architect.build.options
 index-signature	frontend/tslint.json	/^        "index-signature": "nospace",$/;"	s	object:rules.typedef-whitespace.1
 indexof	frontend/package-lock.json	/^        "indexof": "0.0.1"$/;"	s	object:dependencies.vm-browserify.requires
@@ -3252,6 +3378,9 @@ ini	frontend/package-lock.json	/^        "ini": {$/;"	o	object:dependencies.fsev
 ini	frontend/package-lock.json	/^    "ini": {$/;"	o	object:dependencies
 ini	package-lock.json	/^            "ini": "~1.3.0",$/;"	s	object:dependencies.fsevents.dependencies.rc.requires
 ini	package-lock.json	/^        "ini": {$/;"	o	object:dependencies.fsevents.dependencies
+input	frontend/angular.json	/^                "input": "node_modules\/@angular\/material\/prebuilt-themes\/indigo-pink.css"$/;"	s	object:projects.frontend.architect.build.options.styles.0
+input	frontend/angular.json	/^                "input": "node_modules\/@angular\/material\/prebuilt-themes\/indigo-pink.css"$/;"	s	object:projects.frontend.architect.test.options.styles.0
+input[text]	frontend/src/styles.css	/^body, input[text], button {$/;"	s
 integrity	frontend/package-lock.json	/^              "integrity": "sha1-7RQaasBDqEnqWISY59yosVMw6Qw=",$/;"	s	object:dependencies.del.dependencies.globby.dependencies.pify
 integrity	frontend/package-lock.json	/^              "integrity": "sha1-8GVWEJaj8dou9GJy+BXIQNh+DIk=",$/;"	s	object:dependencies.unset-value.dependencies.has-value.dependencies.isobject
 integrity	frontend/package-lock.json	/^              "integrity": "sha1-qEeQIusaw2iocTibY1JixQXuNo8=",$/;"	s	object:dependencies.webpack-dev-server.dependencies.cliui.dependencies.strip-ansi
@@ -3324,6 +3453,7 @@ integrity	frontend/package-lock.json	/^          "integrity": "sha1-aaevEWlj1HIG
 integrity	frontend/package-lock.json	/^          "integrity": "sha1-ay6YIrGizgpgq2TWEOzK1TyyTQ8=",$/;"	s	object:dependencies.read-pkg-up.dependencies.find-up
 integrity	frontend/package-lock.json	/^          "integrity": "sha1-bGWGGb7PFAMdDQtZSxYELOTcBj0=",$/;"	s	object:dependencies.useragent.dependencies.lru-cache
 integrity	frontend/package-lock.json	/^          "integrity": "sha1-bRX7qITAhnnA136I53WegR4H+kE=",$/;"	s	object:dependencies.yargs.dependencies.y18n
+integrity	frontend/package-lock.json	/^          "integrity": "sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=",$/;"	s	object:dependencies.node-libs-browser.dependencies.buffer
 integrity	frontend/package-lock.json	/^          "integrity": "sha1-bWHeldkd\/Km5oCCJrThL\/49it3E=",$/;"	s	object:dependencies.unset-value.dependencies.has-values
 integrity	frontend/package-lock.json	/^          "integrity": "sha1-c7Xuyj+rZT49P5Qis0GtQiBdyWU=",$/;"	s	object:dependencies.har-validator.dependencies.ajv
 integrity	frontend/package-lock.json	/^          "integrity": "sha1-c7Xuyj+rZT49P5Qis0GtQiBdyWU=",$/;"	s	object:dependencies.istanbul-instrumenter-loader.dependencies.ajv
@@ -3442,6 +3572,7 @@ integrity	frontend/package-lock.json	/^          "integrity": "sha512-fNEiL2+AZt
 integrity	frontend/package-lock.json	/^          "integrity": "sha512-fNEiL2+AZt6AlAw\/29Cr0UDe4sRAHCpEHh54WMz+Bb7QfNcFw4h3loofyJpLeQs4/;"	s	object:dependencies.source-map-loader.dependencies.async
 integrity	frontend/package-lock.json	/^          "integrity": "sha512-fl5s52lI5ahKCernzzIyAP0QAZbGIovtVHGwpcu1Jr\/EpzLVDI2myISHwGqK7m8u/;"	s	object:dependencies.import-local.dependencies.p-limit
 integrity	frontend/package-lock.json	/^          "integrity": "sha512-fl5s52lI5ahKCernzzIyAP0QAZbGIovtVHGwpcu1Jr\/EpzLVDI2myISHwGqK7m8u/;"	s	object:dependencies.webpack-dev-server.dependencies.p-limit
+integrity	frontend/package-lock.json	/^          "integrity": "sha512-fxNG2sQjHvlVAYmzBZS9YlDp6PTSSDwa98vkD4QgVDDCAo84z5X1t5XyJQ62ImdLX/;"	s	object:dependencies.@angular/material.dependencies.parse5
 integrity	frontend/package-lock.json	/^          "integrity": "sha512-hMp0onDKIajHfIkdRk3P4CdCmErkYAxxDtP3Wx\/4nZ3aGlau2VKh3mZpcuFkH27W/;"	s	object:dependencies.import-local.dependencies.p-try
 integrity	frontend/package-lock.json	/^          "integrity": "sha512-hMp0onDKIajHfIkdRk3P4CdCmErkYAxxDtP3Wx\/4nZ3aGlau2VKh3mZpcuFkH27W/;"	s	object:dependencies.webpack-dev-server.dependencies.p-try
 integrity	frontend/package-lock.json	/^          "integrity": "sha512-i27Mic4KovM\/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhK/;"	s	object:dependencies.mini-css-extract-plugin.dependencies.schema-utils
@@ -3704,6 +3835,7 @@ integrity	frontend/package-lock.json	/^      "integrity": "sha1-T7lJRB2rGCVA8f4D
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-TapNnbAPmBmIDHn6RXrlsJof04k=",$/;"	s	object:dependencies.emojis-list
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-TkMekrEalzFjaqH5yNHMvP2reN8=",$/;"	s	object:dependencies.isobject
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-TkkvjQTftviQA1B\/btvy1QHnxvQ=",$/;"	s	object:dependencies.faye-websocket
+integrity	frontend/package-lock.json	/^      "integrity": "sha1-TzFS4JVA\/eKMdvRLGbvNHVpCR40="$/;"	s	object:dependencies.nanoassert
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-U+z2mf\/LyzljdpGrE7rxYIGXZuU=",$/;"	s	object:dependencies.del
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-UQnWLz5W6pZ8S2NQWu8IKRyKUgM=",$/;"	s	object:dependencies.es6-promisify
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-UhTFOpJtNVJwdSf7q0FdvAjQbdo=",$/;"	s	object:dependencies.repeating
@@ -3756,7 +3888,6 @@ integrity	frontend/package-lock.json	/^      "integrity": "sha1-ajhfuIU9lS1f8F0O
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-awicChFXax8W3xG4AUbZHU6Lij4=",$/;"	s	object:dependencies.jasmine
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-b2gragJ6Tp3fpFZM0lidHU5mnt4=",$/;"	s	object:dependencies.num2fraction
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-bAFq3qxVT3WCP+N6wFuS1aTtsfc=",$/;"	s	object:dependencies.regjsgen
-integrity	frontend/package-lock.json	/^      "integrity": "sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=",$/;"	s	object:dependencies.buffer
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-blwtClYhtdra7O+AuQ7ftc13cvA=",$/;"	s	object:dependencies.entities
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=",$/;"	s	object:dependencies.co
 integrity	frontend/package-lock.json	/^      "integrity": "sha1-c5JncZI7Whl0etZmqlzUv5xunOg=",$/;"	s	object:dependencies.base64-arraybuffer
@@ -3933,6 +4064,7 @@ integrity	frontend/package-lock.json	/^      "integrity": "sha512-0Pm9hTQ3se5ll1
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-0UxfQkMhYAUaZI+xrNZOz\/as5KgDU0M\/fQ9b6SpkyLbk3GEswDi6PADJVaYJradtRVs/;"	s	object:dependencies.dns-packet
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-0xy4A\/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE/;"	s	object:dependencies.ejs
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-115fLhvZVqWwHPbClyntxEVfVDfl9DLLTuJvq3g2O\/Oxi8AiNouAHvDSzHS0viUJc+V5/;"	s	object:dependencies.miller-rabin
+integrity	frontend/package-lock.json	/^      "integrity": "sha512-18x0U66fLD5kGQWZ9n3nb75xQouXlWs7kUDaTd8HTrHpT1s2QIAqlLd1KxfrYiVhsEC2j/;"	s	object:dependencies.@angular/cdk
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-1G6UTDi7Jc1ELFwnR58HV4fK9OQK4S6N985f166xqXxpjU6plxFISJa2Ba9KCQuFa8RCn/;"	s	object:dependencies.eslint-scope
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-1G6jJVDWrt0rK99kBjvEtziZNCICAuvIPkSiUFIQxVP06RCVpq3dmDo2oi6ABpYaDYaTR/;"	s	object:dependencies.regenerate
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-1JU\/8q+VgFZyxwrJ+SVIOsh+KywWGpds3NTqikiKpDMZWScmAYyKIgqkO+ARvNWJfXeX/;"	s	object:dependencies.readdirp
@@ -4060,6 +4192,7 @@ integrity	frontend/package-lock.json	/^      "integrity": "sha512-MJG9liiZ+ogc4T
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO\/k9V3hjVUF\/zwW7KBVdSK4gIt\/bzwS9Mb/;"	s	object:dependencies.buffer-from
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-MWikgl9n9M3w+bpsY3He8L+w9eF9338xRl8IAO5viDizwSzziFEyUzo2xrrloB64ADbTf/;"	s	object:dependencies.micromatch
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-MXkOJqva62dfC0w85mEf\/LucPPS\/1+04nmmRMPEBUB++hiiThQ2zPtX\/mEWQ3mtzCE/;"	s	object:dependencies.@babel/helper-split-export-declaration
+integrity	frontend/package-lock.json	/^      "integrity": "sha512-MXq+zZ6\/s5\/+GsL9fZ42mKL0LjZ\/+L0sVU5FaQuSAJ57soLl5QAGWvdxVmROtqcHd3/;"	s	object:dependencies.@angular/flex-layout
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-MXyurANsUoE4\/6KmfMkwGcBzAnJQ5xJBGW7Ei6ea8KnUKuzHr\/SguVBIi3uaUAHtZCP/;"	s	object:dependencies.node-sass
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-MfrRBDWzIWifgq6tJj60gkAwtLNb6sQPlcFrSOflcP1aFmmruKQ2wRnze\/8V6kgyz7H3/;"	s	object:dependencies.errno
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUI/;"	s	object:dependencies.regenerator-runtime
@@ -4107,8 +4240,10 @@ integrity	frontend/package-lock.json	/^      "integrity": "sha512-RhmTekP+FZL+XN
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-RpPOVfK+yatXyn8n4PB1NW6k9qjinrXrRR8ugBN8fD6hCy5RXI6PSbVqpOJBO9oSaY7No/;"	s	object:dependencies.@babel/types
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-RszJCAxg\/PP6uzXVXL6BsxSXx\/B05oJAQ2vkJRjyjrEcNVycaqOmNb5OTxZPE3xa5gw/;"	s	object:dependencies.core-js
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-S0nG3CLEQiY\/ILxqtztTWH\/3iRRdyBLw6KMDxnKMchrtbj2OFmehVh0WUCfW3DUrIgx/;"	s	object:dependencies.globals
+integrity	frontend/package-lock.json	/^      "integrity": "sha512-SL6KhfM7PTqiFmbCW3eVNwVBZ+88Mrzbuvn9olPsfv43mbiWaFY+nRcz\/TGGku0\/lc2/;"	s	object:dependencies.@types/node
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-SY1MmplssORfFiLDcOETrW7fCLl+PavlwMh92rrGcikQaRq4iWPVH0MpwPpY3etVMx6Rn/;"	s	object:dependencies.@babel/template
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-SZegPTKjCgpQH63E+eN6mVEEPdQBOUzjyJm5Pora4lrwWRFS8I0QAxV\/KD6vV\/i0Wui/;"	s	object:dependencies.clone-deep
+integrity	frontend/package-lock.json	/^      "integrity": "sha512-SdNx7Xovi24Kw9eU6lkLhY\/7f2M7L9F+\/uh6XuPr4jbGgCUVVpeeVI5ztZhsZRbj1sN/;"	s	object:dependencies.@angular/material
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-T+UNsAcl3Yg+BsPKs1vd22Fr8sVT+CJMtzqc6LEw9bbJZb43lm9GoeIfUcDEefBSWC0Bh/;"	s	object:dependencies.style-loader
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-T2ZUsdZFHgA3u4e5PfPbjd7HDDpxPnQb5jN0SrDsjNSuVXHJqtwTnWqG0B1jZrgmJ\/7l/;"	s	object:dependencies.path-type
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-TEM2iMIEQdJ2yjPJoSIsldnleVaAk1oW3DBVUykyOLsEsFmEc9kn+SFFPz+gl54KQNxlD/;"	s	object:dependencies.buffer-alloc-unsafe
@@ -4170,6 +4305,7 @@ integrity	frontend/package-lock.json	/^      "integrity": "sha512-bdMR4DRbINUFt+
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-bpUeGpZcmZ692rrTiqf9\/2EUakI6\/kXX1Rpe0ib\/DyOzbiexVfXkw6GnvI9hVGvIwV/;"	s	object:dependencies.spdy-transport
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-brWl9y6vOB1xYPZcpZde3N9zDByXTosAeMDo4p1wzo6UMOX4vumB+TP1RZ76sfE6Md68Q/;"	s	object:dependencies.combined-stream
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-bzpH\/oBhoS\/QI\/YtbkqCg6VEiPYjSZtrHQM6\/QnJS6OL9pKUFLqb3aFh4Scvwm45+/;"	s	object:dependencies.upath
+integrity	frontend/package-lock.json	/^      "integrity": "sha512-c+Ko0loDaFfuPWiL02ls9Xd3GO3cPVmUobQ6t3rXNUk304u6hGq+8N\/kFi+QEIKhzK3u/;"	s	object:dependencies.buffer
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-c3sIjNUow0+8swNwVpqoH4YCShKNFkMaw6oH1mNS2haDZQqkeZFlHS3dhoeEbKKmJB4vX/;"	s	object:dependencies.make-error
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0/;"	s	object:dependencies.lodash
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-cX8G2vR\/85UYG59FgkoMamwHUIkSSlV3bBMRsbxVXVUk2j6NleCKjQ\/WE9eYg9WY4w2/;"	s	object:dependencies.webpack-log
@@ -4221,7 +4357,6 @@ integrity	frontend/package-lock.json	/^      "integrity": "sha512-j12Uuyb4FMrd\/
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-j38EvO5+LHX84jlo6h4UzmOwi0UgW61WRyPtJz4qaadK5eY3BTS5TY\/S1Stc3Uk2lIM6/;"	s	object:dependencies.chownr
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-j4emi03KXqJWcIeF8eIXkjMFN1Cmb8gUlDYGeBALLPo5qdyTfA9bOtl8m33lRoC+vFMkP/;"	s	object:dependencies.stdout-stream
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJ/;"	s	object:dependencies.tmp
-integrity	frontend/package-lock.json	/^      "integrity": "sha512-jRHfWsvyMtXdbhnz5CVHxaBgnV6duZnPlQuRSo\/dm\/GnmikNcmZhxIES4E9OZjUmQ8C/;"	s	object:dependencies.@types/node
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-jf84uxzwiuiIVKiOLpfYk7N46TSy8ubTonmneY9vrpHNAnp0QBt2BxWV9dO3\/j+BoVAb/;"	s	object:dependencies.mimic-fn
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-ji6J5enbMyGRHIAkAOu3WdV8nggqviKCEKtXcOqfphZZtQrmHKycfynJ2V7eVPUA4NhJ6/;"	s	object:dependencies.multicast-dns
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-jlX3FGdWvYf4Q3LFfFWS1QvPg3IGCGWxIc8QBFdPTbpTJnt\/v17FHXYVAn7C8sHf1yUX/;"	s	object:dependencies.saucelabs
@@ -4259,12 +4394,14 @@ integrity	frontend/package-lock.json	/^      "integrity": "sha512-o+Jm+ocb0asEng
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-o5Roy6tNG4SL\/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGv/;"	s	object:dependencies.argparse
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-oC7\/DVAyfcY3UWKm0sN\/oVoDedQDQiw\/vIiAnuTWTpE5s0zWf7l3WY417Xw\/Fbi\//;"	s	object:dependencies.circular-dependency-plugin
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-oClZI37HvuUJJxSKKrC17bZ9Cu0ZYhEAGPsPUy9KlMUmv9dKX2o77RUmq7f3XjIxbwyGw/;"	s	object:dependencies.pumpify
+integrity	frontend/package-lock.json	/^      "integrity": "sha512-oFIHvXhlz\/DUgF0kq5B1CqxIDjIJwh9iDeUUGQUcvgiGz7Wdw03McEO7CfLBy7QKGdsy/;"	s	object:dependencies.blake2b-wasm
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-oeXreoKR\/SyNJtRJMAKPDSvd28OqEwG4eR\/xc856cRGBII7gX9lvAqDxusPm0846z\//;"	s	object:dependencies.shallow-clone
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-ovHIch0AMlxjD\/97j9AYovZxG5wnHOPkL7T1GKochBADp\/Zwc44pEWNqpKl1Loupp1W/;"	s	object:dependencies.uglifyjs-webpack-plugin
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-p32cOF5q0Zqs9uBiONKYLm6BClCoBCM5O9JfeUSlnQLBTxYdTK+pW+nXflm8UkKd2UYlE/;"	s	object:dependencies.asn1.js
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-pISE66AbVkp4fDQ7VHBwRNXzAAKJjw4Vw7nWI\/+Q3vuly7SNfgYXvm6i5IgFylHGK5sP/;"	s	object:dependencies.postcss-value-parser
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-p\/tdJrO4U387R9oMjb1oj7qSMaMfmOyd4j9hOFoxZe2baQszgHcSWjuya\/CiT5kgZZK/;"	s	object:dependencies.serve-static
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns\/\/LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60J/;"	s	object:dependencies.invariant
+integrity	frontend/package-lock.json	/^      "integrity": "sha512-pkDss4xFVbMb4270aCyGD3qLv92314Et+FsKzilCLxDz5DuZ2\/1g3w4nmBbu6nKApPsp/;"	s	object:dependencies.blake2b
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-q9hedtzyXHr5S0A1vEPoK\/7l8NpfkFYTq6iCY+Pno2ZbdZR6WexZFtqeVGkGxW3TEJMN/;"	s	object:dependencies.spdx-correct
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-qOhPa\/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsS/;"	s	object:dependencies.class-utils
 integrity	frontend/package-lock.json	/^      "integrity": "sha512-qZryBOJjV\/\/LaxLTV6UC\/\/WewneB3LcXOL9NP++ozKVXsIIIpm\/2c13UDiD9Jp2e/;"	s	object:dependencies.es-to-primitive
@@ -4824,14 +4961,15 @@ is-wsl	frontend/package-lock.json	/^        "is-wsl": "^1.1.0"$/;"	s	object:depe
 is-wsl	frontend/package-lock.json	/^    "is-wsl": {$/;"	o	object:dependencies
 is-wsl	package-lock.json	/^        "is-wsl": "^1.1.0"$/;"	s	object:dependencies.opn.requires
 is-wsl	package-lock.json	/^    "is-wsl": {$/;"	o	object:dependencies
+is_unique	backend/database/filepath_utils.py	/^def is_unique(filename: str, directory: str) -> bool:$/;"	f
 isarray	frontend/package-lock.json	/^                "isarray": "1.0.0"$/;"	s	object:dependencies.unset-value.dependencies.has-value.dependencies.isobject.requires
 isarray	frontend/package-lock.json	/^            "isarray": "0.0.1",$/;"	s	object:dependencies.htmlparser2.dependencies.readable-stream.requires
 isarray	frontend/package-lock.json	/^            "isarray": "1.0.0"$/;"	s	object:dependencies.expand-range.dependencies.isobject.requires
+isarray	frontend/package-lock.json	/^            "isarray": "^1.0.0"$/;"	s	object:dependencies.node-libs-browser.dependencies.buffer.requires
 isarray	frontend/package-lock.json	/^            "isarray": "~1.0.0",$/;"	s	object:dependencies.fsevents.dependencies.readable-stream.requires
 isarray	frontend/package-lock.json	/^            "isarray": "~1.0.0",$/;"	s	object:dependencies.jszip.dependencies.readable-stream.requires
 isarray	frontend/package-lock.json	/^        "isarray": "2.0.1"$/;"	s	object:dependencies.has-binary2.requires
 isarray	frontend/package-lock.json	/^        "isarray": "2.0.1"$/;"	s	object:dependencies.socket.io-parser.requires
-isarray	frontend/package-lock.json	/^        "isarray": "^1.0.0"$/;"	s	object:dependencies.buffer.requires
 isarray	frontend/package-lock.json	/^        "isarray": "~1.0.0",$/;"	s	object:dependencies.readable-stream.requires
 isarray	frontend/package-lock.json	/^        "isarray": {$/;"	o	object:dependencies.fsevents.dependencies
 isarray	frontend/package-lock.json	/^        "isarray": {$/;"	o	object:dependencies.has-binary2.dependencies
@@ -4993,6 +5131,9 @@ karma-jasmine-html-reporter	frontend/package.json	/^    "karma-jasmine-html-repo
 karma-source-map-support	frontend/package-lock.json	/^        "karma-source-map-support": "^1.2.0",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
 karma-source-map-support	frontend/package-lock.json	/^    "karma-source-map-support": {$/;"	o	object:dependencies
 karmaConfig	frontend/angular.json	/^            "karmaConfig": "src\/karma.conf.js",$/;"	s	object:projects.frontend.architect.test.options
+keys	logger.ini	/^keys=debug, info, error$/;"	k	section:formatters
+keys	logger.ini	/^keys=debug, info, warning, error, critical$/;"	k	section:handlers
+keys	logger.ini	/^keys=root$/;"	k	section:loggers
 keys	migrations/alembic.ini	/^keys = console$/;"	k	section:handlers
 keys	migrations/alembic.ini	/^keys = generic$/;"	k	section:formatters
 keys	migrations/alembic.ini	/^keys = root,sqlalchemy,alembic$/;"	k	section:loggers
@@ -5069,16 +5210,22 @@ kind-of	package-lock.json	/^        "kind-of": {$/;"	o	object:dependencies.snapd
 kind-of	package-lock.json	/^        "kind-of": {$/;"	o	object:dependencies.to-object-path.dependencies
 kind-of	package-lock.json	/^    "kind-of": {$/;"	o	object:dependencies
 label-position	frontend/tslint.json	/^    "label-position": true,$/;"	b	object:rules
+last_track	app/player/queue.py	/^    def last_track():$/;"	m	class:queue
 lcid	frontend/package-lock.json	/^            "lcid": "^2.0.0",$/;"	s	object:dependencies.webpack-dev-server.dependencies.os-locale.requires
 lcid	frontend/package-lock.json	/^        "lcid": "^1.0.0"$/;"	s	object:dependencies.os-locale.requires
 lcid	frontend/package-lock.json	/^        "lcid": {$/;"	o	object:dependencies.webpack-dev-server.dependencies
 lcid	frontend/package-lock.json	/^    "lcid": {$/;"	o	object:dependencies
-length	app/database/models.py	/^    length = db.Column(db.Integer)$/;"	v	class:Song
-length	app/templates/scan.json	/^  "length": 123,$/;"	n
+length	backend/database/models.py	/^    length = db.Column(db.Integer)$/;"	v	class:Song
 less	frontend/package-lock.json	/^        "less": "^3.7.1",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
 less	frontend/package-lock.json	/^    "less": {$/;"	o	object:dependencies
 less-loader	frontend/package-lock.json	/^        "less-loader": "^4.1.0",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
 less-loader	frontend/package-lock.json	/^    "less-loader": {$/;"	o	object:dependencies
+level	logger.ini	/^level=CRITICAL$/;"	k	section:handler_critical
+level	logger.ini	/^level=DEBUG$/;"	k	section:handler_debug
+level	logger.ini	/^level=DEBUG$/;"	k	section:logger_root
+level	logger.ini	/^level=ERROR$/;"	k	section:handler_error
+level	logger.ini	/^level=INFO$/;"	k	section:handler_info
+level	logger.ini	/^level=WARNING$/;"	k	section:handler_warning
 level	migrations/alembic.ini	/^level = INFO$/;"	k	section:logger_alembic
 level	migrations/alembic.ini	/^level = NOTSET$/;"	k	section:handler_console
 level	migrations/alembic.ini	/^level = WARN$/;"	k	section:logger_root
@@ -5093,7 +5240,11 @@ lie	frontend/package-lock.json	/^    "lie": {$/;"	o	object:dependencies
 lint	frontend/angular.json	/^        "lint": {$/;"	o	object:projects.frontend-e2e.architect
 lint	frontend/angular.json	/^        "lint": {$/;"	o	object:projects.frontend.architect
 lint	frontend/package.json	/^    "lint": "ng lint",$/;"	s	object:scripts
+list_songs	backend/database/song_utils.py	/^def list_songs() -> Dict:$/;"	f
+list_users	backend/database/user_utils.py	/^def list_users() -> List:$/;"	f
 load	app/player/player.py	/^    def load(self, filepath):$/;"	m	class:Player
+load	backend/player/player.py	/^    def load(self, filepath):$/;"	m	class:Player
+load	backend/player/player.py	/^    def load(self, url):$/;"	m	class:YoutubePlayer
 load-json-file	frontend/package-lock.json	/^        "load-json-file": "^1.0.0",$/;"	s	object:dependencies.read-pkg.requires
 load-json-file	frontend/package-lock.json	/^    "load-json-file": {$/;"	o	object:dependencies
 load_youtube	app/player/player.py	/^    def load_youtube(self, url):$/;"	m	class:Player
@@ -5116,6 +5267,7 @@ loader-utils	frontend/package-lock.json	/^        "loader-utils": "^1.1.0",$/;"	
 loader-utils	frontend/package-lock.json	/^        "loader-utils": "^1.1.0",$/;"	s	object:dependencies.webpack.requires
 loader-utils	frontend/package-lock.json	/^        "loader-utils": {$/;"	o	object:dependencies.html-webpack-plugin.dependencies
 loader-utils	frontend/package-lock.json	/^    "loader-utils": {$/;"	o	object:dependencies
+local_media	app/player/media.py	/^class local_media(media):$/;"	c
 locate-path	frontend/package-lock.json	/^            "locate-path": "^3.0.0"$/;"	s	object:dependencies.import-local.dependencies.find-up.requires
 locate-path	frontend/package-lock.json	/^            "locate-path": "^3.0.0"$/;"	s	object:dependencies.webpack-dev-server.dependencies.find-up.requires
 locate-path	frontend/package-lock.json	/^        "locate-path": "^2.0.0"$/;"	s	object:dependencies.find-up.requires
@@ -5158,10 +5310,14 @@ lodash.tail	frontend/package-lock.json	/^        "lodash.tail": "^4.1.1",$/;"	s	
 lodash.tail	frontend/package-lock.json	/^    "lodash.tail": {$/;"	o	object:dependencies
 log4js	frontend/package-lock.json	/^        "log4js": "^3.0.0",$/;"	s	object:dependencies.karma.requires
 log4js	frontend/package-lock.json	/^    "log4js": {$/;"	o	object:dependencies
+logger	apyllon.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	backend/api/routes/users.py	/^logger = logging.getLogger('__main__')$/;"	v
 logger	migrations/env.py	/^logger = logging.getLogger('alembic.env')$/;"	v
 logger_alembic	migrations/alembic.ini	/^[logger_alembic]$/;"	s
+logger_root	logger.ini	/^[logger_root]$/;"	s
 logger_root	migrations/alembic.ini	/^[logger_root]$/;"	s
 logger_sqlalchemy	migrations/alembic.ini	/^[logger_sqlalchemy]$/;"	s
+loggers	logger.ini	/^[loggers]$/;"	s
 loggers	migrations/alembic.ini	/^[loggers]$/;"	s
 logging	app/player/player.py	/^logging = logging.getLogger("__main__")$/;"	v
 loglevel	frontend/package-lock.json	/^        "loglevel": "^1.4.1",$/;"	s	object:dependencies.webpack-dev-server.requires
@@ -5177,6 +5333,8 @@ lru-cache	frontend/package-lock.json	/^        "lru-cache": "^4.0.1",$/;"	s	obje
 lru-cache	frontend/package-lock.json	/^        "lru-cache": "^4.1.1",$/;"	s	object:dependencies.cacache.requires
 lru-cache	frontend/package-lock.json	/^        "lru-cache": {$/;"	o	object:dependencies.useragent.dependencies
 lru-cache	frontend/package-lock.json	/^    "lru-cache": {$/;"	o	object:dependencies
+ls	backend/routes.py	/^def ls():$/;"	f
+main	apyllon.py	/^def main():$/;"	f
 main	frontend/angular.json	/^            "main": "src\/main.ts",$/;"	s	object:projects.frontend.architect.build.options
 main	frontend/angular.json	/^            "main": "src\/test.ts",$/;"	s	object:projects.frontend.architect.test.options
 make-dir	frontend/package-lock.json	/^        "make-dir": "^1.0.0",$/;"	s	object:dependencies.find-cache-dir.requires
@@ -5207,6 +5365,7 @@ max-line-length	frontend/tslint.json	/^    "max-line-length": [$/;"	a	object:rul
 md5.js	frontend/package-lock.json	/^        "md5.js": "^1.3.4",$/;"	s	object:dependencies.create-hash.requires
 md5.js	frontend/package-lock.json	/^        "md5.js": "^1.3.4",$/;"	s	object:dependencies.evp_bytestokey.requires
 md5.js	frontend/package-lock.json	/^    "md5.js": {$/;"	o	object:dependencies
+media	app/player/media.py	/^class media():$/;"	c
 media-typer	frontend/package-lock.json	/^        "media-typer": "0.3.0",$/;"	s	object:dependencies.type-is.requires
 media-typer	frontend/package-lock.json	/^    "media-typer": {$/;"	o	object:dependencies
 mem	frontend/package-lock.json	/^            "mem": "^4.0.0"$/;"	s	object:dependencies.webpack-dev-server.dependencies.os-locale.requires
@@ -5221,7 +5380,6 @@ meow	frontend/package-lock.json	/^        "meow": "^3.7.0",$/;"	s	object:depende
 meow	frontend/package-lock.json	/^    "meow": {$/;"	o	object:dependencies
 merge-descriptors	frontend/package-lock.json	/^        "merge-descriptors": "1.0.1",$/;"	s	object:dependencies.express.requires
 merge-descriptors	frontend/package-lock.json	/^    "merge-descriptors": {$/;"	o	object:dependencies
-meta	app/templates/scan.json	/^  "meta": {$/;"	o
 methods	frontend/package-lock.json	/^        "methods": "~1.1.2",$/;"	s	object:dependencies.express.requires
 methods	frontend/package-lock.json	/^    "methods": {$/;"	o	object:dependencies
 micromatch	frontend/package-lock.json	/^            "micromatch": "^2.1.5",$/;"	s	object:dependencies.@angular/compiler-cli.dependencies.anymatch.requires
@@ -5234,7 +5392,7 @@ micromatch	frontend/package-lock.json	/^    "micromatch": {$/;"	o	object:depende
 micromatch	package-lock.json	/^        "micromatch": "^3.1.10",$/;"	s	object:dependencies.readdirp.requires
 micromatch	package-lock.json	/^        "micromatch": "^3.1.4",$/;"	s	object:dependencies.anymatch.requires
 micromatch	package-lock.json	/^    "micromatch": {$/;"	o	object:dependencies
-migrate	app/__init__.py	/^migrate = Migrate(app, db)$/;"	v
+migrate	backend/__init__.py	/^migrate = Migrate(app, db)$/;"	v
 miller-rabin	frontend/package-lock.json	/^        "miller-rabin": "^4.0.0",$/;"	s	object:dependencies.diffie-hellman.requires
 miller-rabin	frontend/package-lock.json	/^    "miller-rabin": {$/;"	o	object:dependencies
 mime	frontend/package-lock.json	/^        "mime": "1.4.1",$/;"	s	object:dependencies.send.requires
@@ -5403,6 +5561,9 @@ nan	frontend/package-lock.json	/^        "nan": "^2.9.2",$/;"	s	object:dependenc
 nan	frontend/package-lock.json	/^    "nan": {$/;"	o	object:dependencies
 nan	package-lock.json	/^        "nan": "^2.9.2",$/;"	s	object:dependencies.fsevents.requires
 nan	package-lock.json	/^    "nan": {$/;"	o	object:dependencies
+nanoassert	frontend/package-lock.json	/^        "nanoassert": "^1.0.0"$/;"	s	object:dependencies.blake2b-wasm.requires
+nanoassert	frontend/package-lock.json	/^        "nanoassert": "^1.0.0"$/;"	s	object:dependencies.blake2b.requires
+nanoassert	frontend/package-lock.json	/^    "nanoassert": {$/;"	o	object:dependencies
 nanomatch	frontend/package-lock.json	/^        "nanomatch": "^1.2.9",$/;"	s	object:dependencies.micromatch.requires
 nanomatch	frontend/package-lock.json	/^    "nanomatch": {$/;"	o	object:dependencies
 nanomatch	package-lock.json	/^        "nanomatch": "^1.2.9",$/;"	s	object:dependencies.micromatch.requires
@@ -5418,6 +5579,7 @@ neo-async	frontend/package-lock.json	/^        "neo-async": "^2.5.0",$/;"	s	obje
 neo-async	frontend/package-lock.json	/^        "neo-async": "^2.5.0",$/;"	s	object:dependencies.webpack.requires
 neo-async	frontend/package-lock.json	/^    "neo-async": {$/;"	o	object:dependencies
 newProjectRoot	frontend/angular.json	/^  "newProjectRoot": "projects",$/;"	s
+next_track	app/player/queue.py	/^    def next_track():$/;"	m	class:queue
 ng	frontend/package.json	/^    "ng": "ng",$/;"	s	object:scripts
 nice-try	frontend/package-lock.json	/^            "nice-try": "^1.0.4",$/;"	s	object:dependencies.execa.dependencies.cross-spawn.requires
 nice-try	frontend/package-lock.json	/^    "nice-try": {$/;"	o	object:dependencies
@@ -5612,6 +5774,7 @@ optimist	frontend/package-lock.json	/^        "optimist": "~0.6.0",$/;"	s	object
 optimist	frontend/package-lock.json	/^    "optimist": {$/;"	o	object:dependencies
 optimization	frontend/angular.json	/^              "optimization": true,$/;"	b	object:projects.frontend.architect.build.configurations.production
 optional	frontend/package-lock.json	/^              "optional": true$/;"	b	object:dependencies.fsevents.dependencies.rc.dependencies.minimist
+optional	frontend/package-lock.json	/^          "optional": true$/;"	b	object:dependencies.@angular/material.dependencies.parse5
 optional	frontend/package-lock.json	/^          "optional": true$/;"	b	object:dependencies.fsevents.dependencies.abbrev
 optional	frontend/package-lock.json	/^          "optional": true$/;"	b	object:dependencies.fsevents.dependencies.aproba
 optional	frontend/package-lock.json	/^          "optional": true$/;"	b	object:dependencies.fsevents.dependencies.chownr
@@ -5817,6 +5980,8 @@ outDir	frontend/src/tsconfig.spec.json	/^    "outDir": "..\/out-tsc\/spec",$/;"	
 outDir	frontend/tsconfig.json	/^    "outDir": ".\/dist\/out-tsc",$/;"	s	object:compilerOptions
 outputHashing	frontend/angular.json	/^              "outputHashing": "all",$/;"	s	object:projects.frontend.architect.build.configurations.production
 outputPath	frontend/angular.json	/^            "outputPath": "dist\/frontend",$/;"	s	object:projects.frontend.architect.build.options
+owner	backend/database/models.py	/^    owner = db.relationship("User", back_populates="playlists")$/;"	v	class:Playlist
+owner_id	backend/database/models.py	/^    owner_id = db.Column(db.Integer, db.ForeignKey("user.uid"))$/;"	v	class:Playlist
 p-defer	frontend/package-lock.json	/^        "p-defer": "^1.0.0"$/;"	s	object:dependencies.map-age-cleaner.requires
 p-defer	frontend/package-lock.json	/^    "p-defer": {$/;"	o	object:dependencies
 p-finally	frontend/package-lock.json	/^        "p-finally": "^1.0.0",$/;"	s	object:dependencies.execa.requires
@@ -5862,6 +6027,8 @@ parse-json	frontend/package-lock.json	/^        "parse-json": "^4.0.0",$/;"	s	ob
 parse-json	frontend/package-lock.json	/^        "parse-json": {$/;"	o	object:dependencies.cosmiconfig.dependencies
 parse-json	frontend/package-lock.json	/^    "parse-json": {$/;"	o	object:dependencies
 parse5	frontend/package-lock.json	/^        "parse5": "^4.0.0",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
+parse5	frontend/package-lock.json	/^        "parse5": "^5.0.0",$/;"	s	object:dependencies.@angular/material.requires
+parse5	frontend/package-lock.json	/^        "parse5": {$/;"	o	object:dependencies.@angular/material.dependencies
 parse5	frontend/package-lock.json	/^    "parse5": {$/;"	o	object:dependencies
 parseqs	frontend/package-lock.json	/^        "parseqs": "0.0.5",$/;"	s	object:dependencies.engine.io-client.requires
 parseqs	frontend/package-lock.json	/^        "parseqs": "0.0.5",$/;"	s	object:dependencies.socket.io-client.requires
@@ -5880,9 +6047,8 @@ pascalcase	frontend/package-lock.json	/^        "pascalcase": "^0.1.1"$/;"	s	obj
 pascalcase	frontend/package-lock.json	/^    "pascalcase": {$/;"	o	object:dependencies
 pascalcase	package-lock.json	/^        "pascalcase": "^0.1.1"$/;"	s	object:dependencies.base.requires
 pascalcase	package-lock.json	/^    "pascalcase": {$/;"	o	object:dependencies
-password_hash	app/database/models.py	/^    password_hash = db.Column(db.String(128))$/;"	v	class:Admin
-password_hash	app/database/models.py	/^    password_hash = db.Column(db.String(128))$/;"	v	class:User
-path	app/templates/scan.json	/^  "path": "<path to directory>",$/;"	s
+password_hash	backend/database/models.py	/^    password_hash = db.Column(db.String(88))$/;"	v	class:Admin
+password_hash	backend/database/models.py	/^    password_hash = db.Column(db.String(88))$/;"	v	class:User
 path-browserify	frontend/package-lock.json	/^        "path-browserify": "0.0.0",$/;"	s	object:dependencies.node-libs-browser.requires
 path-browserify	frontend/package-lock.json	/^    "path-browserify": {$/;"	o	object:dependencies
 path-dirname	frontend/package-lock.json	/^        "path-dirname": "^1.0.0"$/;"	s	object:dependencies.glob-parent.requires
@@ -5921,6 +6087,7 @@ path-type	frontend/package-lock.json	/^        "path-type": "^3.0.0"$/;"	s	objec
 path-type	frontend/package-lock.json	/^        "path-type": {$/;"	o	object:dependencies.read-pkg.dependencies
 path-type	frontend/package-lock.json	/^    "path-type": {$/;"	o	object:dependencies
 pause	app/player/player.py	/^    def pause(self):$/;"	m	class:Player
+pause	backend/player/player.py	/^    def pause(self):$/;"	m	class:Player
 pbkdf2	frontend/package-lock.json	/^        "pbkdf2": "^3.0.3"$/;"	s	object:dependencies.parse-asn1.requires
 pbkdf2	frontend/package-lock.json	/^        "pbkdf2": "^3.0.3",$/;"	s	object:dependencies.crypto-browserify.requires
 pbkdf2	frontend/package-lock.json	/^    "pbkdf2": {$/;"	o	object:dependencies
@@ -5961,6 +6128,10 @@ pkg-dir	frontend/package-lock.json	/^        "pkg-dir": "^3.0.0",$/;"	s	object:d
 pkg-dir	frontend/package-lock.json	/^        "pkg-dir": {$/;"	o	object:dependencies.import-local.dependencies
 pkg-dir	frontend/package-lock.json	/^    "pkg-dir": {$/;"	o	object:dependencies
 play	app/player/player.py	/^    def play(self):$/;"	m	class:Player
+play	backend/player/player.py	/^    def play(self):$/;"	m	class:Player
+play_current_position	app/player/queue.py	/^    def play_current_position():$/;"	m	class:queue
+play_position	app/player/queue.py	/^    def play_position(pos):$/;"	m	class:queue
+playlists	backend/database/models.py	/^    playlists = db.relationship("Playlist", back_populates="owner", uselist=False)$/;"	v	class:User
 polyfills	frontend/angular.json	/^            "polyfills": "src\/polyfills.ts",$/;"	s	object:projects.frontend.architect.build.options
 polyfills	frontend/angular.json	/^            "polyfills": "src\/polyfills.ts",$/;"	s	object:projects.frontend.architect.test.options
 portfinder	frontend/package-lock.json	/^        "portfinder": "^1.0.13",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
@@ -5970,6 +6141,9 @@ posix-character-classes	frontend/package-lock.json	/^        "posix-character-cl
 posix-character-classes	frontend/package-lock.json	/^    "posix-character-classes": {$/;"	o	object:dependencies
 posix-character-classes	package-lock.json	/^        "posix-character-classes": "^0.1.0",$/;"	s	object:dependencies.expand-brackets.requires
 posix-character-classes	package-lock.json	/^    "posix-character-classes": {$/;"	o	object:dependencies
+post	backend/api/routes/users.py	/^    def post(self):$/;"	m	class:UserView
+post	backend/api/routes/users.py	/^    def post(self, uid: int):$/;"	m	class:UsersIdAuthView
+post	backend/api/routes/users.py	/^    def post(self, username: str):$/;"	m	class:UsersNameAuthView
 postcss	frontend/package-lock.json	/^        "postcss": "^6.0.0",$/;"	s	object:dependencies.postcss-loader.requires
 postcss	frontend/package-lock.json	/^        "postcss": "^6.0.1",$/;"	s	object:dependencies.postcss-import.requires
 postcss	frontend/package-lock.json	/^        "postcss": "^6.0.1",$/;"	s	object:dependencies.postcss-url.requires
@@ -6022,6 +6196,7 @@ promise	frontend/package-lock.json	/^        "promise": "^7.1.1",$/;"	s	object:d
 promise	frontend/package-lock.json	/^    "promise": {$/;"	o	object:dependencies
 promise-inflight	frontend/package-lock.json	/^        "promise-inflight": "^1.0.1",$/;"	s	object:dependencies.cacache.requires
 promise-inflight	frontend/package-lock.json	/^    "promise-inflight": {$/;"	o	object:dependencies
+propagate	logger.ini	/^propagate=0$/;"	k	section:logger_root
 property-declaration	frontend/tslint.json	/^        "property-declaration": "nospace",$/;"	s	object:rules.typedef-whitespace.1
 protractor	frontend/package-lock.json	/^    "protractor": {$/;"	o	object:dependencies
 protractor	frontend/package.json	/^    "protractor": "~5.4.0",$/;"	s	object:devDependencies
@@ -6055,6 +6230,8 @@ punycode	package-lock.json	/^        "punycode": "^1.4.1"$/;"	s	object:dependenc
 punycode	package-lock.json	/^        "punycode": "^2.1.0"$/;"	s	object:dependencies.uri-js.requires
 punycode	package-lock.json	/^        "punycode": {$/;"	o	object:dependencies.tough-cookie.dependencies
 punycode	package-lock.json	/^    "punycode": {$/;"	o	object:dependencies
+put	backend/api/routes/users.py	/^    def put(self, uid: int):$/;"	m	class:UsersIdView
+put	backend/api/routes/users.py	/^    def put(self, username: str):$/;"	m	class:UsersNameView
 q	frontend/package-lock.json	/^            "q": "^1.4.1",$/;"	s	object:dependencies.protractor.dependencies.webdriver-manager.requires
 q	frontend/package-lock.json	/^        "q": "1.4.1",$/;"	s	object:dependencies.protractor.requires
 q	frontend/package-lock.json	/^    "q": {$/;"	o	object:dependencies
@@ -6075,6 +6252,7 @@ querystring-es3	frontend/package-lock.json	/^        "querystring-es3": "^0.2.0"
 querystring-es3	frontend/package-lock.json	/^    "querystring-es3": {$/;"	o	object:dependencies
 querystringify	frontend/package-lock.json	/^        "querystringify": "^2.0.0",$/;"	s	object:dependencies.url-parse.requires
 querystringify	frontend/package-lock.json	/^    "querystringify": {$/;"	o	object:dependencies
+queue	app/player/queue.py	/^class queue():$/;"	c
 quotemark	frontend/tslint.json	/^    "quotemark": [$/;"	a	object:rules
 radix	frontend/tslint.json	/^    "radix": true,$/;"	b	object:rules
 randomatic	frontend/package-lock.json	/^            "randomatic": "^3.0.0",$/;"	s	object:dependencies.expand-range.dependencies.fill-range.requires
@@ -6176,6 +6354,7 @@ remove-trailing-separator	frontend/package-lock.json	/^        "remove-trailing-
 remove-trailing-separator	frontend/package-lock.json	/^    "remove-trailing-separator": {$/;"	o	object:dependencies
 remove-trailing-separator	package-lock.json	/^        "remove-trailing-separator": "^1.0.1"$/;"	s	object:dependencies.normalize-path.requires
 remove-trailing-separator	package-lock.json	/^    "remove-trailing-separator": {$/;"	o	object:dependencies
+remove_media	app/player/queue.py	/^    def remove_media(pos):$/;"	m	class:queue
 renderkid	frontend/package-lock.json	/^        "renderkid": "^2.0.1",$/;"	s	object:dependencies.pretty-error.requires
 renderkid	frontend/package-lock.json	/^    "renderkid": {$/;"	o	object:dependencies
 repeat-element	frontend/package-lock.json	/^            "repeat-element": "^1.1.2"$/;"	s	object:dependencies.@angular/compiler-cli.dependencies.braces.requires
@@ -6321,6 +6500,7 @@ requires	frontend/package-lock.json	/^          "requires": {$/;"	o	object:depen
 requires	frontend/package-lock.json	/^          "requires": {$/;"	o	object:dependencies.log4js.dependencies.debug
 requires	frontend/package-lock.json	/^          "requires": {$/;"	o	object:dependencies.mini-css-extract-plugin.dependencies.schema-utils
 requires	frontend/package-lock.json	/^          "requires": {$/;"	o	object:dependencies.mixin-deep.dependencies.is-extendable
+requires	frontend/package-lock.json	/^          "requires": {$/;"	o	object:dependencies.node-libs-browser.dependencies.buffer
 requires	frontend/package-lock.json	/^          "requires": {$/;"	o	object:dependencies.node-sass.dependencies.chalk
 requires	frontend/package-lock.json	/^          "requires": {$/;"	o	object:dependencies.object-copy.dependencies.define-property
 requires	frontend/package-lock.json	/^          "requires": {$/;"	o	object:dependencies.object-copy.dependencies.kind-of
@@ -6380,13 +6560,16 @@ requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependenc
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular-devkit/core
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular-devkit/schematics
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/animations
+requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/cdk
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/cli
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/common
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/compiler
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/compiler-cli
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/core
+requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/flex-layout
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/forms
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/http
+requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/material
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/platform-browser
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/platform-browser-dynamic
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.@angular/router
@@ -6438,6 +6621,8 @@ requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependenc
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.base
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.bcrypt-pbkdf
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.better-assert
+requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.blake2b
+requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.blake2b-wasm
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.block-stream
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.blocking-proxy
 requires	frontend/package-lock.json	/^      "requires": {$/;"	o	object:dependencies.body-parser
@@ -7019,6 +7204,7 @@ resolved	frontend/package-lock.json	/^              "resolved": "https:\/\/regis
 resolved	frontend/package-lock.json	/^              "resolved": "https:\/\/registry.npmjs.org\/pify\/-\/pify-2.3.0.tgz",$/;"	s	object:dependencies.del.dependencies.globby.dependencies.pify
 resolved	frontend/package-lock.json	/^              "resolved": "https:\/\/registry.npmjs.org\/strip-ansi\/-\/strip-ansi-4.0.0.tgz",$/;"	s	object:dependencies.webpack-dev-server.dependencies.cliui.dependencies.strip-ansi
 resolved	frontend/package-lock.json	/^              "resolved": "https:\/\/registry.npmjs.org\/strip-ansi\/-\/strip-ansi-4.0.0.tgz",$/;"	s	object:dependencies.webpack-dev-server.dependencies.string-width.dependencies.strip-ansi
+resolved	frontend/package-lock.json	/^          "resolved": "http:\/\/registry.npmjs.org\/buffer\/-\/buffer-4.9.1.tgz",$/;"	s	object:dependencies.node-libs-browser.dependencies.buffer
 resolved	frontend/package-lock.json	/^          "resolved": "http:\/\/registry.npmjs.org\/chalk\/-\/chalk-1.1.3.tgz",$/;"	s	object:dependencies.babel-code-frame.dependencies.chalk
 resolved	frontend/package-lock.json	/^          "resolved": "http:\/\/registry.npmjs.org\/chalk\/-\/chalk-1.1.3.tgz",$/;"	s	object:dependencies.node-sass.dependencies.chalk
 resolved	frontend/package-lock.json	/^          "resolved": "http:\/\/registry.npmjs.org\/chalk\/-\/chalk-1.1.3.tgz",$/;"	s	object:dependencies.protractor.dependencies.chalk
@@ -7189,6 +7375,7 @@ resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.
 resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/p-try\/-\/p-try-2.0.0.tgz",$/;"	s	object:dependencies.import-local.dependencies.p-try
 resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/p-try\/-\/p-try-2.0.0.tgz",$/;"	s	object:dependencies.webpack-dev-server.dependencies.p-try
 resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/parse-json\/-\/parse-json-4.0.0.tgz",$/;"	s	object:dependencies.cosmiconfig.dependencies.parse-json
+resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/parse5\/-\/parse5-5.1.0.tgz",$/;"	s	object:dependencies.@angular/material.dependencies.parse5
 resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/path-exists\/-\/path-exists-2.1.0.tgz",$/;"	s	object:dependencies.read-pkg-up.dependencies.path-exists
 resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/path-type\/-\/path-type-1.1.0.tgz",$/;"	s	object:dependencies.read-pkg.dependencies.path-type
 resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/pify\/-\/pify-2.3.0.tgz",$/;"	s	object:dependencies.load-json-file.dependencies.pify
@@ -7243,13 +7430,11 @@ resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.
 resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/yargs-parser\/-\/yargs-parser-10.1.0.tgz",$/;"	s	object:dependencies.@angular/cli.dependencies.yargs-parser
 resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/yargs-parser\/-\/yargs-parser-10.1.0.tgz",$/;"	s	object:dependencies.webpack-dev-server.dependencies.yargs-parser
 resolved	frontend/package-lock.json	/^          "resolved": "https:\/\/registry.npmjs.org\/yargs\/-\/yargs-12.0.2.tgz",$/;"	s	object:dependencies.webpack-dev-server.dependencies.yargs
-resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/@types\/node\/-\/node-8.9.5.tgz",$/;"	s	object:dependencies.@types/node
 resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/@types\/q\/-\/q-0.0.32.tgz",$/;"	s	object:dependencies.@types/q
 resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/ajv\/-\/ajv-6.4.0.tgz",$/;"	s	object:dependencies.ajv
 resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/async\/-\/async-1.5.2.tgz",$/;"	s	object:dependencies.async
 resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/browserify-aes\/-\/browserify-aes-1.2.0.tgz",$/;"	s	object:dependencies.browserify-aes
 resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/browserify-rsa\/-\/browserify-rsa-4.0.1.tgz",$/;"	s	object:dependencies.browserify-rsa
-resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/buffer\/-\/buffer-4.9.1.tgz",$/;"	s	object:dependencies.buffer
 resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/camelcase-keys\/-\/camelcase-keys-2.1.0.tgz",$/;"	s	object:dependencies.camelcase-keys
 resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/create-hash\/-\/create-hash-1.2.0.tgz",$/;"	s	object:dependencies.create-hash
 resolved	frontend/package-lock.json	/^      "resolved": "http:\/\/registry.npmjs.org\/create-hmac\/-\/create-hmac-1.1.7.tgz",$/;"	s	object:dependencies.create-hmac
@@ -7283,14 +7468,17 @@ resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmj
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular-devkit\/core\/-\/core-0.8.5.tgz",$/;"	s	object:dependencies.@angular-devkit/core
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular-devkit\/schematics\/-\/schematics-0.8./;"	s	object:dependencies.@angular-devkit/schematics
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/animations\/-\/animations-6.1.10.tgz"/;"	s	object:dependencies.@angular/animations
+resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/cdk\/-\/cdk-6.4.7.tgz",$/;"	s	object:dependencies.@angular/cdk
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/cli\/-\/cli-6.2.5.tgz",$/;"	s	object:dependencies.@angular/cli
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/common\/-\/common-6.1.10.tgz",$/;"	s	object:dependencies.@angular/common
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/compiler-cli\/-\/compiler-cli-6.1.10./;"	s	object:dependencies.@angular/compiler-cli
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/compiler\/-\/compiler-6.1.10.tgz",$/;"	s	object:dependencies.@angular/compiler
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/core\/-\/core-6.1.10.tgz",$/;"	s	object:dependencies.@angular/core
+resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/flex-layout\/-\/flex-layout-7.0.0-bet/;"	s	object:dependencies.@angular/flex-layout
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/forms\/-\/forms-6.1.10.tgz",$/;"	s	object:dependencies.@angular/forms
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/http\/-\/http-6.1.10.tgz",$/;"	s	object:dependencies.@angular/http
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/language-service\/-\/language-service/;"	s	object:dependencies.@angular/language-service
+resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/material\/-\/material-6.4.7.tgz",$/;"	s	object:dependencies.@angular/material
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/platform-browser-dynamic\/-\/platform/;"	s	object:dependencies.@angular/platform-browser-dynamic
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/platform-browser\/-\/platform-browser/;"	s	object:dependencies.@angular/platform-browser
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@angular\/router\/-\/router-6.1.10.tgz",$/;"	s	object:dependencies.@angular/router
@@ -7309,6 +7497,7 @@ resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmj
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@schematics\/update\/-\/update-0.8.5.tgz",$/;"	s	object:dependencies.@schematics/update
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@types\/jasmine\/-\/jasmine-2.8.9.tgz",$/;"	s	object:dependencies.@types/jasmine
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@types\/jasminewd2\/-\/jasminewd2-2.0.5.tgz",$/;"	s	object:dependencies.@types/jasminewd2
+resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@types\/node\/-\/node-8.10.36.tgz",$/;"	s	object:dependencies.@types/node
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@types\/selenium-webdriver\/-\/selenium-webdriv/;"	s	object:dependencies.@types/selenium-webdriver
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@webassemblyjs\/ast\/-\/ast-1.7.8.tgz",$/;"	s	object:dependencies.@webassemblyjs/ast
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/@webassemblyjs\/floating-point-hex-parser\/-\/f/;"	s	object:dependencies.@webassemblyjs/floating-point-hex-parser
@@ -7394,6 +7583,8 @@ resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmj
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/better-assert\/-\/better-assert-1.0.2.tgz",$/;"	s	object:dependencies.better-assert
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/big.js\/-\/big.js-3.2.0.tgz",$/;"	s	object:dependencies.big.js
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/binary-extensions\/-\/binary-extensions-1.12.0./;"	s	object:dependencies.binary-extensions
+resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/blake2b-wasm\/-\/blake2b-wasm-1.1.7.tgz",$/;"	s	object:dependencies.blake2b-wasm
+resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/blake2b\/-\/blake2b-2.1.3.tgz",$/;"	s	object:dependencies.blake2b
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/blob\/-\/blob-0.0.4.tgz",$/;"	s	object:dependencies.blob
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/block-stream\/-\/block-stream-0.0.9.tgz",$/;"	s	object:dependencies.block-stream
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/blocking-proxy\/-\/blocking-proxy-1.0.1.tgz",$/;"	s	object:dependencies.blocking-proxy
@@ -7417,6 +7608,7 @@ resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmj
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/buffer-from\/-\/buffer-from-1.1.1.tgz",$/;"	s	object:dependencies.buffer-from
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/buffer-indexof\/-\/buffer-indexof-1.1.1.tgz",$/;"	s	object:dependencies.buffer-indexof
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/buffer-xor\/-\/buffer-xor-1.0.3.tgz",$/;"	s	object:dependencies.buffer-xor
+resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/buffer\/-\/buffer-5.2.1.tgz",$/;"	s	object:dependencies.buffer
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/builtin-modules\/-\/builtin-modules-1.1.1.tgz",$/;"	s	object:dependencies.builtin-modules
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/builtin-status-codes\/-\/builtin-status-codes-3/;"	s	object:dependencies.builtin-status-codes
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/builtins\/-\/builtins-1.0.3.tgz",$/;"	s	object:dependencies.builtins
@@ -7775,6 +7967,7 @@ resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmj
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/multicast-dns-service-types\/-\/multicast-dns-s/;"	s	object:dependencies.multicast-dns-service-types
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/multicast-dns\/-\/multicast-dns-6.2.3.tgz",$/;"	s	object:dependencies.multicast-dns
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/nan\/-\/nan-2.11.1.tgz",$/;"	s	object:dependencies.nan
+resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/nanoassert\/-\/nanoassert-1.1.0.tgz",$/;"	s	object:dependencies.nanoassert
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/nanomatch\/-\/nanomatch-1.2.13.tgz",$/;"	s	object:dependencies.nanomatch
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/negotiator\/-\/negotiator-0.6.1.tgz",$/;"	s	object:dependencies.negotiator
 resolved	frontend/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/neo-async\/-\/neo-async-2.6.0.tgz",$/;"	s	object:dependencies.neo-async
@@ -8334,6 +8527,8 @@ retry	frontend/package-lock.json	/^        "retry": "^0.10.0",$/;"	s	object:depe
 retry	frontend/package-lock.json	/^    "retry": {$/;"	o	object:dependencies
 retry	package-lock.json	/^        "retry": "^0.10.0",$/;"	s	object:dependencies.npm-registry-client.requires
 retry	package-lock.json	/^    "retry": {$/;"	o	object:dependencies
+revision	migrations/versions/23386b2b8429_add_filepath_table_to_song_remove_.py	/^revision = '23386b2b8429'$/;"	v
+revision	migrations/versions/3d7db9e741ca_add_album_to_song.py	/^revision = '3d7db9e741ca'$/;"	v
 revision	migrations/versions/65f518f5eea2_inital_setup_admin_user_and_song.py	/^revision = '65f518f5eea2'$/;"	v
 rfdc	frontend/package-lock.json	/^        "rfdc": "^1.1.2",$/;"	s	object:dependencies.log4js.requires
 rfdc	frontend/package-lock.json	/^    "rfdc": {$/;"	o	object:dependencies
@@ -8359,6 +8554,7 @@ ripemd160	frontend/package-lock.json	/^        "ripemd160": "^2.0.1",$/;"	s	obje
 ripemd160	frontend/package-lock.json	/^    "ripemd160": {$/;"	o	object:dependencies
 root	frontend/angular.json	/^      "root": "",$/;"	s	object:projects.frontend
 root	frontend/angular.json	/^      "root": "e2e\/",$/;"	s	object:projects.frontend-e2e
+root	logger.ini	/^[logger_root]$/;"	L
 root	migrations/alembic.ini	/^[logger_root]$/;"	L
 rules	frontend/src/tslint.json	/^    "rules": {$/;"	o
 rules	frontend/tslint.json	/^  "rules": {$/;"	o
@@ -8384,6 +8580,8 @@ rxjs	package-lock.json	/^        "rxjs": "~6.2.0",$/;"	s	object:dependencies.@an
 rxjs	package-lock.json	/^        "rxjs": "~6.2.0",$/;"	s	object:dependencies.@angular/cli.requires
 rxjs	package-lock.json	/^        "rxjs": "~6.2.0",$/;"	s	object:dependencies.@schematics/update.requires
 rxjs	package-lock.json	/^    "rxjs": {$/;"	o	object:dependencies
+sa	migrations/versions/23386b2b8429_add_filepath_table_to_song_remove_.py	/^import sqlalchemy as sa$/;"	I
+sa	migrations/versions/3d7db9e741ca_add_album_to_song.py	/^import sqlalchemy as sa$/;"	I
 sa	migrations/versions/65f518f5eea2_inital_setup_admin_user_and_song.py	/^import sqlalchemy as sa$/;"	I
 safe-buffer	frontend/package-lock.json	/^            "safe-buffer": "^5.1.1",$/;"	s	object:dependencies.fsevents.dependencies.minipass.requires
 safe-buffer	frontend/package-lock.json	/^            "safe-buffer": "^5.1.1",$/;"	s	object:dependencies.fsevents.dependencies.tar.requires
@@ -8483,6 +8681,7 @@ scripts	frontend/package.json	/^  "scripts": {$/;"	o
 scss-tokenizer	frontend/package-lock.json	/^        "scss-tokenizer": "^0.2.3",$/;"	s	object:dependencies.sass-graph.requires
 scss-tokenizer	frontend/package-lock.json	/^    "scss-tokenizer": {$/;"	o	object:dependencies
 search	app/search/file_search.py	/^    def search(self, path, *args):$/;"	m	class:FileSearch
+search	backend/search/file_search.py	/^    def search(self, path, *args):$/;"	m	class:FileSearch
 select-hose	frontend/package-lock.json	/^        "select-hose": "^2.0.0",$/;"	s	object:dependencies.spdy.requires
 select-hose	frontend/package-lock.json	/^    "select-hose": {$/;"	o	object:dependencies
 selenium-webdriver	frontend/package-lock.json	/^        "selenium-webdriver": "3.6.0",$/;"	s	object:dependencies.protractor.requires
@@ -8571,6 +8770,8 @@ shebang-command	frontend/package-lock.json	/^    "shebang-command": {$/;"	o	obje
 shebang-regex	frontend/package-lock.json	/^        "shebang-regex": "^1.0.0"$/;"	s	object:dependencies.shebang-command.requires
 shebang-regex	frontend/package-lock.json	/^    "shebang-regex": {$/;"	o	object:dependencies
 showColors	frontend/e2e/protractor.conf.js	/^    showColors: true,$/;"	p	class:exports.config.jasmineNodeOpts
+shutdown_session	backend/routes.py	/^def shutdown_session(exception=None):$/;"	f
+sid	backend/database/models.py	/^    sid = db.Column(db.Integer, primary_key=True)$/;"	v	class:Song
 signal-exit	frontend/package-lock.json	/^            "signal-exit": "^3.0.0",$/;"	s	object:dependencies.fsevents.dependencies.gauge.requires
 signal-exit	frontend/package-lock.json	/^        "signal-exit": "^3.0.0"$/;"	s	object:dependencies.loud-rejection.requires
 signal-exit	frontend/package-lock.json	/^        "signal-exit": "^3.0.0",$/;"	s	object:dependencies.execa.requires
@@ -8620,6 +8821,9 @@ sockjs	frontend/package-lock.json	/^        "sockjs": "0.3.19",$/;"	s	object:dep
 sockjs	frontend/package-lock.json	/^    "sockjs": {$/;"	o	object:dependencies
 sockjs-client	frontend/package-lock.json	/^        "sockjs-client": "1.1.5",$/;"	s	object:dependencies.webpack-dev-server.requires
 sockjs-client	frontend/package-lock.json	/^    "sockjs-client": {$/;"	o	object:dependencies
+song	backend/database/models.py	/^    song = db.relationship("Song", uselist=False, back_populates="filepath")$/;"	v	class:Filepath
+song_playlist_association	backend/database/models.py	/^song_playlist_association = db.Table('song_playlist',$/;"	v
+songs	backend/database/models.py	/^    songs = db.relationship("Song",$/;"	v	class:Playlist
 source-list-map	frontend/package-lock.json	/^        "source-list-map": "^2.0.0",$/;"	s	object:dependencies.webpack-sources.requires
 source-list-map	frontend/package-lock.json	/^    "source-list-map": {$/;"	o	object:dependencies
 source-map	frontend/package-lock.json	/^            "source-map": "^0.5.6"$/;"	s	object:dependencies.protractor.dependencies.source-map-support.requires
@@ -8734,6 +8938,8 @@ static-extend	package-lock.json	/^        "static-extend": "^0.1.1"$/;"	s	object
 static-extend	package-lock.json	/^    "static-extend": {$/;"	o	object:dependencies
 stats-webpack-plugin	frontend/package-lock.json	/^        "stats-webpack-plugin": "^0.6.2",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
 stats-webpack-plugin	frontend/package-lock.json	/^    "stats-webpack-plugin": {$/;"	o	object:dependencies
+status_code	backend/api/routes/exceptions.py	/^    status_code = 400$/;"	v	class:BadRequest
+status_code	backend/api/routes/exceptions.py	/^    status_code = 409$/;"	v	class:Conflict
 statuses	frontend/package-lock.json	/^            "statuses": "~1.3.1",$/;"	s	object:dependencies.connect.dependencies.finalhandler.requires
 statuses	frontend/package-lock.json	/^        "statuses": ">= 1.4.0 < 2"$/;"	s	object:dependencies.http-errors.requires
 statuses	frontend/package-lock.json	/^        "statuses": "~1.4.0"$/;"	s	object:dependencies.send.requires
@@ -8744,6 +8950,7 @@ statuses	frontend/package-lock.json	/^    "statuses": {$/;"	o	object:dependencie
 stdout-stream	frontend/package-lock.json	/^        "stdout-stream": "^1.4.0",$/;"	s	object:dependencies.node-sass.requires
 stdout-stream	frontend/package-lock.json	/^    "stdout-stream": {$/;"	o	object:dependencies
 stop	app/player/player.py	/^    def stop(self):$/;"	m	class:Player
+stop	backend/player/player.py	/^    def stop(self):$/;"	m	class:Player
 stream-browserify	frontend/package-lock.json	/^        "stream-browserify": "^2.0.1",$/;"	s	object:dependencies.node-libs-browser.requires
 stream-browserify	frontend/package-lock.json	/^    "stream-browserify": {$/;"	o	object:dependencies
 stream-each	frontend/package-lock.json	/^        "stream-each": "^1.1.0",$/;"	s	object:dependencies.mississippi.requires
@@ -8842,6 +9049,7 @@ supports-color	frontend/package-lock.json	/^        "supports-color": {$/;"	o	ob
 supports-color	frontend/package-lock.json	/^        "supports-color": {$/;"	o	object:dependencies.node-sass.dependencies
 supports-color	frontend/package-lock.json	/^        "supports-color": {$/;"	o	object:dependencies.protractor.dependencies
 supports-color	frontend/package-lock.json	/^    "supports-color": {$/;"	o	object:dependencies
+swagger	backend/__init__.py	/^swagger = Swagger(app, template_file=os.path.join(Config.SWAGGER['doc_dir'], 'template.yml'))$/;"	v
 symbol-observable	frontend/package-lock.json	/^        "symbol-observable": "^1.2.0",$/;"	s	object:dependencies.@angular/cli.requires
 symbol-observable	frontend/package-lock.json	/^    "symbol-observable": {$/;"	o	object:dependencies
 symbol-observable	package-lock.json	/^        "symbol-observable": "^1.2.0",$/;"	s	object:dependencies.@angular/cli.requires
@@ -8869,8 +9077,7 @@ thunky	frontend/package-lock.json	/^        "thunky": "^1.0.2"$/;"	s	object:depe
 thunky	frontend/package-lock.json	/^    "thunky": {$/;"	o	object:dependencies
 timers-browserify	frontend/package-lock.json	/^        "timers-browserify": "^2.0.4",$/;"	s	object:dependencies.node-libs-browser.requires
 timers-browserify	frontend/package-lock.json	/^    "timers-browserify": {$/;"	o	object:dependencies
-title	app/database/models.py	/^    title = db.Column(db.String(64))$/;"	v	class:Song
-title	app/templates/scan.json	/^    "title": "<song title>",$/;"	s	object:meta
+title	backend/database/models.py	/^    title = db.Column(db.String(64))$/;"	v	class:Song
 tmp	frontend/package-lock.json	/^        "tmp": "0.0.30",$/;"	s	object:dependencies.selenium-webdriver.requires
 tmp	frontend/package-lock.json	/^        "tmp": "0.0.33",$/;"	s	object:dependencies.karma.requires
 tmp	frontend/package-lock.json	/^        "tmp": "0.0.x"$/;"	s	object:dependencies.useragent.requires
@@ -8906,6 +9113,10 @@ to-regex-range	frontend/package-lock.json	/^        "to-regex-range": "^2.1.0"$/
 to-regex-range	frontend/package-lock.json	/^    "to-regex-range": {$/;"	o	object:dependencies
 to-regex-range	package-lock.json	/^        "to-regex-range": "^2.1.0"$/;"	s	object:dependencies.fill-range.requires
 to-regex-range	package-lock.json	/^    "to-regex-range": {$/;"	o	object:dependencies
+to_dict	backend/api/routes/exceptions.py	/^    def to_dict(self):$/;"	m	class:BadRequest
+to_dict	backend/api/routes/exceptions.py	/^    def to_dict(self):$/;"	m	class:Conflict
+to_dict	backend/database/models.py	/^    def to_dict(self) -> Dict:$/;"	m	class:Song
+to_dict	backend/database/models.py	/^    def to_dict(self) -> Dict:$/;"	m	class:User
 toposort	frontend/package-lock.json	/^        "toposort": "^1.0.0",$/;"	s	object:dependencies.html-webpack-plugin.requires
 toposort	frontend/package-lock.json	/^    "toposort": {$/;"	o	object:dependencies
 tough-cookie	frontend/package-lock.json	/^        "tough-cookie": "~2.4.3",$/;"	s	object:dependencies.request.requires
@@ -8931,6 +9142,9 @@ tsConfig	frontend/angular.json	/^            "tsConfig": "src\/tsconfig.spec.jso
 tsConfig	frontend/angular.json	/^            "tsConfig": [$/;"	a	object:projects.frontend.architect.lint.options
 tsickle	frontend/package-lock.json	/^        "tsickle": "^0.32.1"$/;"	s	object:dependencies.@angular/compiler-cli.requires
 tsickle	frontend/package-lock.json	/^    "tsickle": {$/;"	o	object:dependencies
+tslib	frontend/package-lock.json	/^        "tslib": "^1.7.1"$/;"	s	object:dependencies.@angular/cdk.requires
+tslib	frontend/package-lock.json	/^        "tslib": "^1.7.1"$/;"	s	object:dependencies.@angular/flex-layout.requires
+tslib	frontend/package-lock.json	/^        "tslib": "^1.7.1"$/;"	s	object:dependencies.@angular/material.requires
 tslib	frontend/package-lock.json	/^        "tslib": "^1.8.0",$/;"	s	object:dependencies.tslint.requires
 tslib	frontend/package-lock.json	/^        "tslib": "^1.8.1"$/;"	s	object:dependencies.tsutils.requires
 tslib	frontend/package-lock.json	/^        "tslib": "^1.9.0"$/;"	s	object:dependencies.@angular/animations.requires
@@ -8977,6 +9191,7 @@ typedarray	package-lock.json	/^    "typedarray": {$/;"	o	object:dependencies
 typedef-whitespace	frontend/tslint.json	/^    "typedef-whitespace": [$/;"	a	object:rules
 types	frontend/e2e/tsconfig.e2e.json	/^    "types": [$/;"	a	object:compilerOptions
 types	frontend/src/tsconfig.app.json	/^    "types": []$/;"	a	object:compilerOptions
+types	frontend/src/tsconfig.app.json	/^  "types": ["node"]$/;"	a
 types	frontend/src/tsconfig.spec.json	/^    "types": [$/;"	a	object:compilerOptions
 typescript	frontend/package-lock.json	/^        "typescript": ">=2.6.2 <2.10"$/;"	s	object:dependencies.@schematics/angular.requires
 typescript	frontend/package-lock.json	/^        "typescript": "~2.9.2",$/;"	s	object:dependencies.@angular-devkit/build-optimizer.requires
@@ -8992,6 +9207,8 @@ uglify-js	frontend/package-lock.json	/^    "uglify-js": {$/;"	o	object:dependenc
 uglifyjs-webpack-plugin	frontend/package-lock.json	/^        "uglifyjs-webpack-plugin": "^1.2.4",$/;"	s	object:dependencies.webpack.requires
 uglifyjs-webpack-plugin	frontend/package-lock.json	/^        "uglifyjs-webpack-plugin": "^1.2.5",$/;"	s	object:dependencies.@angular-devkit/build-angular.requires
 uglifyjs-webpack-plugin	frontend/package-lock.json	/^    "uglifyjs-webpack-plugin": {$/;"	o	object:dependencies
+uid	backend/database/models.py	/^    uid = db.Column(db.Integer, primary_key=True)$/;"	v	class:User
+ul	frontend/src/app/sidebar-content-playlists/sidebar-content-playlists.component.css	/^ul {$/;"	s
 ultron	frontend/package-lock.json	/^        "ultron": "~1.1.0"$/;"	s	object:dependencies.ws.requires
 ultron	frontend/package-lock.json	/^    "ultron": {$/;"	o	object:dependencies
 unified-signatures	frontend/tslint.json	/^    "unified-signatures": true,$/;"	b	object:rules
@@ -9015,6 +9232,8 @@ upath	frontend/package-lock.json	/^        "upath": "^1.0.5"$/;"	s	object:depend
 upath	frontend/package-lock.json	/^    "upath": {$/;"	o	object:dependencies
 upath	package-lock.json	/^        "upath": "^1.0.5"$/;"	s	object:dependencies.chokidar.requires
 upath	package-lock.json	/^    "upath": {$/;"	o	object:dependencies
+upgrade	migrations/versions/23386b2b8429_add_filepath_table_to_song_remove_.py	/^def upgrade():$/;"	f
+upgrade	migrations/versions/3d7db9e741ca_add_album_to_song.py	/^def upgrade():$/;"	f
 upgrade	migrations/versions/65f518f5eea2_inital_setup_admin_user_and_song.py	/^def upgrade():$/;"	f
 upper-case	frontend/package-lock.json	/^        "upper-case": "^1.1.1"$/;"	s	object:dependencies.camel-case.requires
 upper-case	frontend/package-lock.json	/^    "upper-case": {$/;"	o	object:dependencies
@@ -9042,10 +9261,11 @@ use-input-property-decorator	frontend/tslint.json	/^    "use-input-property-deco
 use-life-cycle-interface	frontend/tslint.json	/^    "use-life-cycle-interface": true,$/;"	b	object:rules
 use-output-property-decorator	frontend/tslint.json	/^    "use-output-property-decorator": true,$/;"	b	object:rules
 use-pipe-transform-interface	frontend/tslint.json	/^    "use-pipe-transform-interface": true,$/;"	b	object:rules
+user_sec	backend/database/user_utils.py	/^from backend.security import user as user_sec$/;"	x
 useragent	frontend/package-lock.json	/^        "useragent": "2.2.1"$/;"	s	object:dependencies.karma.requires
 useragent	frontend/package-lock.json	/^    "useragent": {$/;"	o	object:dependencies
-username	app/database/models.py	/^    username = db.Column(db.String(64), index=True, unique=True)$/;"	v	class:User
-username	app/database/models.py	/^    username = db.Column(db.String(64), index=True, unique=True, default='admin')$/;"	v	class:Admin
+username	backend/database/models.py	/^    username = db.Column(db.String(64), index=True, unique=True)$/;"	v	class:User
+username	backend/database/models.py	/^    username = db.Column(db.String(64), index=True, unique=True, default='admin')$/;"	v	class:Admin
 util	frontend/package-lock.json	/^        "util": "0.10.3"$/;"	s	object:dependencies.assert.requires
 util	frontend/package-lock.json	/^        "util": "^0.10.3",$/;"	s	object:dependencies.node-libs-browser.requires
 util	frontend/package-lock.json	/^        "util": {$/;"	o	object:dependencies.assert.dependencies
@@ -9082,6 +9302,7 @@ validate-npm-package-name	frontend/package-lock.json	/^        "validate-npm-pac
 validate-npm-package-name	frontend/package-lock.json	/^    "validate-npm-package-name": {$/;"	o	object:dependencies
 validate-npm-package-name	package-lock.json	/^        "validate-npm-package-name": "^3.0.0"$/;"	s	object:dependencies.npm-package-arg.requires
 validate-npm-package-name	package-lock.json	/^    "validate-npm-package-name": {$/;"	o	object:dependencies
+validate_token	backend/security/user.py	/^def validate_token(token: str) -> bool:$/;"	f
 variable-declaration	frontend/tslint.json	/^        "variable-declaration": "nospace"$/;"	s	object:rules.typedef-whitespace.1
 variable-name	frontend/tslint.json	/^    "variable-name": false,$/;"	b	object:rules
 vary	frontend/package-lock.json	/^        "vary": "~1.1.2"$/;"	s	object:dependencies.compression.requires
@@ -9373,8 +9594,10 @@ version	frontend/package-lock.json	/^          "version": "4.1.2",$/;"	s	object:
 version	frontend/package-lock.json	/^          "version": "4.2.0",$/;"	s	object:dependencies.eslint-scope.dependencies.estraverse
 version	frontend/package-lock.json	/^          "version": "4.2.0",$/;"	s	object:dependencies.esrecurse.dependencies.estraverse
 version	frontend/package-lock.json	/^          "version": "4.4.1",$/;"	s	object:dependencies.fsevents.dependencies.tar
+version	frontend/package-lock.json	/^          "version": "4.9.1",$/;"	s	object:dependencies.node-libs-browser.dependencies.buffer
 version	frontend/package-lock.json	/^          "version": "5.0.0",$/;"	s	object:dependencies.protractor.dependencies.globby
 version	frontend/package-lock.json	/^          "version": "5.0.15",$/;"	s	object:dependencies.istanbul.dependencies.glob
+version	frontend/package-lock.json	/^          "version": "5.1.0",$/;"	s	object:dependencies.@angular/material.dependencies.parse5
 version	frontend/package-lock.json	/^          "version": "5.1.0",$/;"	s	object:dependencies.is-descriptor.dependencies.kind-of
 version	frontend/package-lock.json	/^          "version": "5.1.0",$/;"	s	object:dependencies.shallow-clone.dependencies.kind-of
 version	frontend/package-lock.json	/^          "version": "5.1.1",$/;"	s	object:dependencies.fsevents.dependencies.safe-buffer
@@ -9705,6 +9928,7 @@ version	frontend/package-lock.json	/^      "version": "1.1.0",$/;"	s	object:depe
 version	frontend/package-lock.json	/^      "version": "1.1.0",$/;"	s	object:dependencies.load-json-file
 version	frontend/package-lock.json	/^      "version": "1.1.0",$/;"	s	object:dependencies.loader-utils
 version	frontend/package-lock.json	/^      "version": "1.1.0",$/;"	s	object:dependencies.multicast-dns-service-types
+version	frontend/package-lock.json	/^      "version": "1.1.0",$/;"	s	object:dependencies.nanoassert
 version	frontend/package-lock.json	/^      "version": "1.1.0",$/;"	s	object:dependencies.p-is-promise
 version	frontend/package-lock.json	/^      "version": "1.1.0",$/;"	s	object:dependencies.parallel-transform
 version	frontend/package-lock.json	/^      "version": "1.1.0",$/;"	s	object:dependencies.read-pkg
@@ -9755,6 +9979,7 @@ version	frontend/package-lock.json	/^      "version": "1.1.5",$/;"	s	object:depe
 version	frontend/package-lock.json	/^      "version": "1.1.5",$/;"	s	object:dependencies.sockjs-client
 version	frontend/package-lock.json	/^      "version": "1.1.6",$/;"	s	object:dependencies.is-buffer
 version	frontend/package-lock.json	/^      "version": "1.1.6",$/;"	s	object:dependencies.slide
+version	frontend/package-lock.json	/^      "version": "1.1.7",$/;"	s	object:dependencies.blake2b-wasm
 version	frontend/package-lock.json	/^      "version": "1.1.7",$/;"	s	object:dependencies.create-hmac
 version	frontend/package-lock.json	/^      "version": "1.1.7",$/;"	s	object:dependencies.resolve
 version	frontend/package-lock.json	/^      "version": "1.10.0",$/;"	s	object:dependencies.verror
@@ -9984,6 +10209,7 @@ version	frontend/package-lock.json	/^      "version": "2.1.2",$/;"	s	object:depe
 version	frontend/package-lock.json	/^      "version": "2.1.2",$/;"	s	object:dependencies.safer-buffer
 version	frontend/package-lock.json	/^      "version": "2.1.2",$/;"	s	object:dependencies.yallist
 version	frontend/package-lock.json	/^      "version": "2.1.20",$/;"	s	object:dependencies.mime-types
+version	frontend/package-lock.json	/^      "version": "2.1.3",$/;"	s	object:dependencies.blake2b
 version	frontend/package-lock.json	/^      "version": "2.1.4",$/;"	s	object:dependencies.expand-brackets
 version	frontend/package-lock.json	/^      "version": "2.1.6",$/;"	s	object:dependencies.hpack.js
 version	frontend/package-lock.json	/^      "version": "2.1.6",$/;"	s	object:dependencies.postcss-loader
@@ -10158,7 +10384,6 @@ version	frontend/package-lock.json	/^      "version": "4.5.0",$/;"	s	object:depe
 version	frontend/package-lock.json	/^      "version": "4.5.3",$/;"	s	object:dependencies.copy-webpack-plugin
 version	frontend/package-lock.json	/^      "version": "4.6.0",$/;"	s	object:dependencies.co
 version	frontend/package-lock.json	/^      "version": "4.6.1",$/;"	s	object:dependencies.lodash.mergewith
-version	frontend/package-lock.json	/^      "version": "4.9.1",$/;"	s	object:dependencies.buffer
 version	frontend/package-lock.json	/^      "version": "4.9.4",$/;"	s	object:dependencies.node-sass
 version	frontend/package-lock.json	/^      "version": "5.0.0",$/;"	s	object:dependencies.es6-promisify
 version	frontend/package-lock.json	/^      "version": "5.0.0",$/;"	s	object:dependencies.yargs-parser
@@ -10169,6 +10394,7 @@ version	frontend/package-lock.json	/^      "version": "5.1.0",$/;"	s	object:depe
 version	frontend/package-lock.json	/^      "version": "5.1.1",$/;"	s	object:dependencies.parse-asn1
 version	frontend/package-lock.json	/^      "version": "5.1.2",$/;"	s	object:dependencies.safe-buffer
 version	frontend/package-lock.json	/^      "version": "5.11.0",$/;"	s	object:dependencies.tslint
+version	frontend/package-lock.json	/^      "version": "5.2.1",$/;"	s	object:dependencies.buffer
 version	frontend/package-lock.json	/^      "version": "5.3.0",$/;"	s	object:dependencies.ssri
 version	frontend/package-lock.json	/^      "version": "5.4.0",$/;"	s	object:dependencies.opn
 version	frontend/package-lock.json	/^      "version": "5.4.1",$/;"	s	object:dependencies.protractor
@@ -10203,11 +10429,14 @@ version	frontend/package-lock.json	/^      "version": "6.26.0",$/;"	s	object:dep
 version	frontend/package-lock.json	/^      "version": "6.26.1",$/;"	s	object:dependencies.babel-generator
 version	frontend/package-lock.json	/^      "version": "6.4.0",$/;"	s	object:dependencies.ajv
 version	frontend/package-lock.json	/^      "version": "6.4.1",$/;"	s	object:dependencies.elliptic
+version	frontend/package-lock.json	/^      "version": "6.4.7",$/;"	s	object:dependencies.@angular/cdk
+version	frontend/package-lock.json	/^      "version": "6.4.7",$/;"	s	object:dependencies.@angular/material
 version	frontend/package-lock.json	/^      "version": "6.5.2",$/;"	s	object:dependencies.qs
 version	frontend/package-lock.json	/^      "version": "7.0.0",$/;"	s	object:dependencies.@babel/code-frame
 version	frontend/package-lock.json	/^      "version": "7.0.0",$/;"	s	object:dependencies.@babel/helper-get-function-arity
 version	frontend/package-lock.json	/^      "version": "7.0.0",$/;"	s	object:dependencies.@babel/helper-split-export-declaration
 version	frontend/package-lock.json	/^      "version": "7.0.0",$/;"	s	object:dependencies.@babel/highlight
+version	frontend/package-lock.json	/^      "version": "7.0.0-beta.19",$/;"	s	object:dependencies.@angular/flex-layout
 version	frontend/package-lock.json	/^      "version": "7.0.1",$/;"	s	object:dependencies.ts-node
 version	frontend/package-lock.json	/^      "version": "7.1.0",$/;"	s	object:dependencies.@babel/helper-function-name
 version	frontend/package-lock.json	/^      "version": "7.1.0",$/;"	s	object:dependencies.sass-loader
@@ -10221,9 +10450,9 @@ version	frontend/package-lock.json	/^      "version": "7.1.3",$/;"	s	object:depe
 version	frontend/package-lock.json	/^      "version": "7.1.4",$/;"	s	object:dependencies.@babel/traverse
 version	frontend/package-lock.json	/^      "version": "7.3.1",$/;"	s	object:dependencies.promise
 version	frontend/package-lock.json	/^      "version": "7.3.2",$/;"	s	object:dependencies.postcss-url
+version	frontend/package-lock.json	/^      "version": "8.10.36",$/;"	s	object:dependencies.@types/node
 version	frontend/package-lock.json	/^      "version": "8.6.0",$/;"	s	object:dependencies.npm-registry-client
 version	frontend/package-lock.json	/^      "version": "8.6.5",$/;"	s	object:dependencies.autoprefixer
-version	frontend/package-lock.json	/^      "version": "8.9.5",$/;"	s	object:dependencies.@types/node
 version	frontend/package-lock.json	/^      "version": "9.0.7",$/;"	s	object:dependencies.xmlbuilder
 version	frontend/package-lock.json	/^      "version": "9.18.0",$/;"	s	object:dependencies.globals
 version	frontend/package-lock.json	/^  "version": "0.0.0",$/;"	s
@@ -10667,5 +10896,6 @@ yeast	frontend/package-lock.json	/^        "yeast": "0.1.2"$/;"	s	object:depende
 yeast	frontend/package-lock.json	/^    "yeast": {$/;"	o	object:dependencies
 yn	frontend/package-lock.json	/^        "yn": "^2.0.0"$/;"	s	object:dependencies.ts-node.requires
 yn	frontend/package-lock.json	/^    "yn": {$/;"	o	object:dependencies
+youtube_media	app/player/media.py	/^class youtube_media(media):$/;"	c
 zone.js	frontend/package-lock.json	/^    "zone.js": {$/;"	o	object:dependencies
 zone.js	frontend/package.json	/^    "zone.js": "~0.8.26"$/;"	s	object:dependencies

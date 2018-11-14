@@ -25,6 +25,7 @@ class Player():
         """
         self.player = vlc.MediaPlayer()
         self.playing = False
+        logging.info("Initialise Player()")
 
     def load(self, filepath):
         """
@@ -34,6 +35,7 @@ class Player():
             filepath (string): Path to the file to play.
         """
         self.player.set_mrl(filepath)
+        logging.info("Loading Mediafile: " + str(filepath))
 
     def play(self):
         """
@@ -44,6 +46,7 @@ class Player():
         """
         self.player.play()
         self.playing = True
+        logging.info("Starting media play")
 
     def stop(self):
         """
@@ -52,6 +55,7 @@ class Player():
         """
         self.player.stop()
         self.playing = False
+        logging.info("Stoping media play")
 
     def pause(self):
         """
@@ -60,6 +64,7 @@ class Player():
         """
         self.player.pause()
         self.plaing = False
+        logging.info("Pausing media play")
 
     def load_youtube(self, url):
         """
@@ -71,4 +76,5 @@ class Player():
         video = pafy.new(url)
         bestaudio = video.getbestaudio()
         self.player.set_mrl(bestaudio.url)
+        logging.info("Loading Mediafile from youtube url:  " + str(url))
 
