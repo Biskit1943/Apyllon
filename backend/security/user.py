@@ -42,7 +42,6 @@ Error: If the private key was not found
             - If the function call didn't contain uid or username
         ValueError: If the password for the user is not correct
     """
-    logger.debug(f'gen_jwt({password}, {uid}, {username})')
     if not os.path.exists(Config.SECRET_KEY):
         raise FileNotFoundError("Secret key was not found")
 
@@ -87,7 +86,6 @@ def validate_token(token: str) -> bool:
     Raises:
         FileNotFoundError: If the public  key was not found
     """
-    logger.debug(f'validate_token({token})')
     if not os.path.exists(Config.PUBLIC_KEY):
         logger.error('Config.PUBLIC_KEY was not found')
         raise FileNotFoundError("Public key was not found")
