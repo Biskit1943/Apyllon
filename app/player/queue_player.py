@@ -1,8 +1,7 @@
 import vlc
 import pafy
 import time
-import spotipy
-
+from abc import ABC
 """
 TODO: 
     * Exceptions []
@@ -20,6 +19,8 @@ class Player():
             player: holding the vlc.Mediaplayer object
         """
         self.player = vlc.MediaPlayer()
+        self.queue = []
+        self.playing = False
 
     def load(self, filepath):
         """
@@ -53,17 +54,6 @@ class Player():
         """
         self.player.pause()
 
-class YoutubePlayer(Player):
-    """
-    Modified Player to play youtube videos as Audio.
-    """
-
-    def __init__(self):
-        """
-        Call parent constructor.
-        """
-        Player.__init__(self)
-
     def load(self, url):
         """
         Overides the default load method of Player object.
@@ -74,3 +64,31 @@ class YoutubePlayer(Player):
         video = pafy.new(url)
         bestaudio = video.getbestaudio()
         self.player.set_mrl(bestaudio.url)
+
+    def media_fatory(media_resource_locator, source, meta=None):
+
+        class media(ABC):
+
+            @abstractmethod
+            def __init__(self, media_resource_locator, meta):
+                pass
+
+            @abstractmethod
+            def get_media_resource_locator(self):
+                pass
+
+            @abstractmethod
+            def get_meta(self):
+                pass
+
+        class youtube_audio(media):
+
+            def __init__(self, media_resource_locator, meta):
+                self.me
+
+        if source is "local":
+            pass
+        elif source is "youtube":
+            pass
+        else:
+            pass
