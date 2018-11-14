@@ -1,18 +1,57 @@
 version: '3'
 services:
-    frontend:
-      build: ./frontend
-      image: apyllon-frontend:latest
-      ports:
-          - 3000:80
-      networks:
-        apyllon-network:
-      container_name: "apyllon-frontend"
-      volumes:
-          - ./frontend/dist:/usr/share/nginx/html
-      restart:
-          always
+  frontend:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.frontend.dev
+    expose:
+      - 4200
+    ports:
+      - 80:4200
+    networks:
+      - apyllon-network
+    container_name: apyllon-frontend
+    volumes:
+      - ./frontend:/home/frontend/frontend
+      - certificates:/home/frontend/certificates:ro
+    restart: always
+
+  backend:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.backend.dev
+    expose:
+      - 5000
+    ports:
+      - 8080:5000
+    networks:
+      - apyllon-network
+    container_name: apyllon-backend
+    volumes:
+        - ./backend:/home/backend/backend:ro
+    restart: always
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=postgresql://root:insecure@database:5432/backend
+    entrypoint: ["sh", "boot_backend.sh"]
+
+  database:
+    image: postgres:alpine
+    expose:
+      - 5432
+    networks:
+      - apyllon-network
+    container_name: apyllon-database
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=insecure
+      - POSTGRES_DB=backend
 
 networks:
-    apyllon-network:
-        driver: bridge
+  apyllon-network:
+    driver: bridge
+
+volumes:
+  certificates:

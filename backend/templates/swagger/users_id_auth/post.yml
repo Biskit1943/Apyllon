@@ -1,0 +1,26 @@
+Authentificates a user and returns a JWT for the Session
+---
+tags:
+  - User
+  - UID
+  - Auth
+parameters:
+  - in: path
+    name: uid
+    description: ID of the user which is requested
+    type: integer
+    required: true
+    example: 1
+  - in: formData
+    name: password
+    description: The password of the user as blake2b hash
+    type: string
+    required: true
+    example: 5bb55...faac2
+responses:
+  200:
+    description: The requested user
+    schema:
+      $ref: '#/definitions/User'
+  404:
+    description: User with the given id not found

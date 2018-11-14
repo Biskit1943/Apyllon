@@ -1,0 +1,17 @@
+Deletes a user
+---
+tags:
+  - User
+  - Username
+parameters:
+  - in: path
+    name: username
+    description: Username of the user which will be updated
+    type: string
+    required: true
+    example: Biskit1943
+responses:
+  200:
+    description: Deleted user
+  404:
+    description: User with the given username not found

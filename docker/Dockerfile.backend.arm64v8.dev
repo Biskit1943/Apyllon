@@ -1,0 +1,48 @@
+# Context must be `Apyllon/`
+FROM arm64v8/python:3.7-alpine
+
+LABEL Description="Apyllon arm - dev edition"
+LABEL Version="0.0.1"
+
+WORKDIR /home/backend
+
+COPY requirements.txt requirements.txt
+COPY qemu-aarch64-static /usr/local/bin/qemu-aarch64-static
+
+RUN apk add --update && \
+    apk add --no-cache \
+    gcc \
+    g++ \
+    musl-dev \
+    linux-headers \
+    postgresql-dev \
+    openssl \
+    taglib-dev && \
+    python3 -m venv venv && \
+    venv/bin/pip3 install --upgrade pip && \
+    venv/bin/pip3 install -r requirements.txt
+
+COPY \
+    "apyllon.py" \
+    "config.py" \
+    "docker/boot_backend.sh" \
+    "./"
+COPY backend backend
+COPY migrations migrations
+
+RUN adduser -D backend && \
+    mkdir -p /certificates && \
+    chown -R backend: /home/backend && \
+    chown -R backend: /certificates && \
+    chmod +x boot_backend.sh
+
+RUN rm -f /usr/local/lib/qemu-aarch64-static
+
+USER backend
+
+VOLUME [ "/certificates" ]
+
+ENV FLASK_APP apyllon.py
+
+EXPOSE 5000
+ENTRYPOINT [ "./boot_backend.sh" ]
