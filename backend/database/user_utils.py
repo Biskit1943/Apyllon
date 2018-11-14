@@ -4,7 +4,11 @@ ones which deal with security. The security related functions can be found in
 `backend/security/user.py`.
 """
 import json
+import logging
 import sys
+
+logger = logging.getLogger('__main__')
+
 from typing import (
     Dict,
     List,
@@ -32,21 +36,25 @@ def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:
         A tuple containing the new created User object and a dict containing the
         user information with the generated JWT
     """
+    logger.debug(f'add_user({data})')
     if type(data) is str or bytes:
+        logger.debug('parsing JSON')
         data = json.loads(data, strict=False)  # strict enables bytes
 
     try:
         username = data['username']
         password = data['password']
     except KeyError as e:
-        print(e, file=sys.stderr)
+        logger.error(f'Error while adding user ==> {e}')
         raise
 
     if len(password) != 88:  # Blake2b.hexdigest() -> 128 chars
-        raise ValueError(f"Password has {len(password)} characters but must be 128 characters long")
+        logger.error(f'password length does not match')
+        raise ValueError(f'password has {len(password)} characters but must be 128 characters long')
 
     if len(User.query.filter_by(username=username).all()) > 0:
-        raise Exists(f'User with username <{username}> already exist')
+        logger.error(f'user already exist')
+        raise Exists(f'pser with username <{username}> already exist')
 
     user = User(username=username, password_hash=password)
     db.session.add(user)
@@ -69,6 +77,7 @@ def list_users() -> List:
     for user in users:
         users_list.append(user.to_dict())
 
+    logger.debug(f'returning {len(users_list)} users')
     return users_list
 
 
@@ -85,14 +94,17 @@ def get_user(uid: int = None, username: str = None) -> Union[User, None]:
     Raises:
         KeyError: If uid and username was set or none of them
     """
+    logger.debug(f'get_user({uid}, {username})')
     try:
         data = _filter_dict(uid=uid, username=username)
-    except KeyError:
+    except KeyError as e:
+        logger.error(f'Error while getting the data ==> {e}')
         raise
 
     try:
         user = User.query.filter_by(**data).first()
-    except NameError:
+    except NameError as e:
+        logger.warning(f'Error while getting the user ==> {e}')
         return
     else:
         return user
@@ -108,15 +120,18 @@ def delete_user(uid: int = None, username: str = None):
     Raises:
         KeyError: If uid and username was set or none of them
     """
+    logger.debug(f'delete_user({uid}, {username})')
     try:
         data = _filter_dict(uid=uid, username=username)
-    except KeyError:
+    except KeyError as e:
+        logger.error(f'Error while getting the data ==> {e}')
         raise
 
     try:
         user = User.query.filter_by(**data).first()
         db.session.delete(user)
-    except NameError:
+    except NameError as e:
+        logger.error(f'Error while getting the user ==> {e}')
         raise
 
 
@@ -143,13 +158,16 @@ def auth_user(password: str, uid: int = None, username: str = None) -> Dict:
         RuntimeError: If the created JWT fails the validation
         ValueError: If the password for the user is not correct
     """
+    logger.debug(f'auth_user({password}, {uid}, {username})')
     try:
         data = _filter_dict(uid=uid, username=username)
-    except KeyError:
+    except KeyError as e:
+        logger.error(f'Error while getting the data ==> {e}')
         raise
 
     if not get_user(**data):
-        raise DoesNotExist(f'The user <{data}>')
+        logger.error(f'The user <{data}> does not exit')
+        raise DoesNotExist(f'The user <{data}> does not exit')
 
     try:
         answer = user_sec.gen_jwt(password, **data)
@@ -179,14 +197,17 @@ def _filter_dict(**kwargs) -> Dict:
     Raises:
         KeyError: If either more than one value was set or zero values were set
     """
+    logger.debug(f'_filter_dict({kwargs})')
     data = {}
     for key, value in kwargs.items():
         if value:
             data[key] = value
 
     if len(data) > 1:
+        logger.debug(f'len(data) == {len(data)}')
         raise KeyError('More than one value was not None')
     elif len(data) == 0:
+        logger.debug(f'len(data) == {len(data)}')
         raise KeyError('No value was given')
     else:
         return data
