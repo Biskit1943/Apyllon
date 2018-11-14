@@ -2,7 +2,7 @@
 import logging
 import os
 
-logger = logging.getLogger('__main__')
+logger = logging.getLogger(__name__)
 
 from backend import (
     app,
@@ -32,7 +32,7 @@ def ls():
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
-    logger.info('Shutting server down...')
+    logger.debug('disconnect from db session')
     db.session.remove()
 
 

@@ -13,7 +13,7 @@ from backend.database.exceptions import (
     DoesNotExist,
 )
 
-logger = logging.getLogger('__main__')
+logger = logging.getLogger(__name__)
 
 
 class UsersIdView(MethodView):

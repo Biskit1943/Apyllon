@@ -2,7 +2,7 @@
 import logging
 import sys
 
-logger = logging.getLogger('__main__')
+logger = logging.getLogger(__name__)
 
 from typing import Dict
 

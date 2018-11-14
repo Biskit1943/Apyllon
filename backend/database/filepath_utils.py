@@ -1,7 +1,7 @@
 """This module provides utilities for the filepath table in the database"""
 import logging
 
-logger = logging.getLogger('__main__')
+logger = logging.getLogger(__name__)
 
 from backend import db
 from backend.database.models import (
