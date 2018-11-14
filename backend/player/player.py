@@ -4,7 +4,7 @@ import time
 import spotipy
 
 """
-TODO: 
+TODO:
     * Exceptions []
     * Playlists? []
     * Test []
@@ -16,7 +16,7 @@ class Player():
     """
     def __init__(self):
         """
-        Attributes: 
+        Attributes:
             player: holding the vlc.Mediaplayer object
         """
         self.player = vlc.MediaPlayer()
@@ -24,7 +24,7 @@ class Player():
     def load(self, filepath):
         """
         Load a file to and set as vlc mediafile.
-        
+
         Args:
             filepath (string): Path to the file to play.
         """
