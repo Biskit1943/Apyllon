@@ -42,7 +42,7 @@ Error: If the private key was not found
         raise FileNotFoundError("Secret key was not found")
 
     if uid:
-        user = User.query.filter_by(id=uid).first()
+        user = User.query.filter_by(uid=uid).first()
     elif username:
         user = User.query.filter_by(username=username).first()
     else:
@@ -57,12 +57,12 @@ Error: If the private key was not found
     token = jwt.encode({
         'username': username,
         'password': password
-    }, secret, algorithm='HS256')
+    }, secret, algorithm='RS256')
     if not validate_token(token):
         raise RuntimeError('Failed to verify created JWT')
 
     answer = user.to_dict()
-    answer['token'] = token
+    answer['token'] = str(token)
 
     return answer
 
@@ -86,7 +86,7 @@ def validate_token(token: str) -> bool:
         public = key.read()
 
     try:
-        payload = jwt.decode(token, public, algorithms=['HS256'])
+        payload = jwt.decode(token, public, algorithms=['RS256'])
         username = payload['username']
         password = payload['password']
     except ValueError:

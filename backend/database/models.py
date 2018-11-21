@@ -4,7 +4,7 @@ from typing import Dict
 from backend import db
 
 song_playlist_association = db.Table('song_playlist',
-                                     db.Column('song_id', db.Integer, db.ForeignKey('song.id')),
+                                     db.Column('song_id', db.Integer, db.ForeignKey('song.sid')),
                                      db.Column('playlist_id', db.Integer, db.ForeignKey('playlist.id'))
                                      )
 
@@ -123,8 +123,8 @@ class Playlist(db.Model):
         songs: The songs of which this playlist consists
     """
     id = db.Column(db.Integer, primary_key=True)
-    # owner = db.relationship("User", back_populates="playlists")
-    owner = db.Column("User", db.Integer, db.ForeignKey("User.uid"), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey("user.uid"))
+    owner = db.relationship("User", back_populates="playlists")
     songs = db.relationship("Song",
                             secondary=song_playlist_association,
                             backref="playlists")

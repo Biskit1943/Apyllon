@@ -1,12 +1,13 @@
 # Context must be `Apyllon/`
-FROM python:3.7-alpine
+FROM arm64v8/python:3.7-alpine
 
-LABEL Description="Apyllon - dev edition"
+LABEL Description="Apyllon arm - dev edition"
 LABEL Version="0.0.1"
 
 WORKDIR /home/backend
 
 COPY requirements.txt requirements.txt
+COPY qemu-aarch64-static /usr/local/bin/qemu-aarch64-static
 
 RUN apk add --update && \
     apk add --no-cache \
@@ -16,14 +17,12 @@ RUN apk add --update && \
     linux-headers \
     postgresql-dev \
     openssl \
-    libffi-dev \
     taglib-dev && \
     python3 -m venv venv && \
     venv/bin/pip3 install --upgrade pip && \
     venv/bin/pip3 install -r requirements.txt
 
 COPY \
-    "logger.ini" \
     "apyllon.py" \
     "config.py" \
     "docker/boot_backend.sh" \
@@ -37,9 +36,13 @@ RUN adduser -D backend && \
     chown -R backend: /certificates && \
     chmod +x boot_backend.sh
 
+RUN rm -f /usr/local/lib/qemu-aarch64-static
+
 USER backend
+
+VOLUME [ "/certificates" ]
 
 ENV FLASK_APP apyllon.py
 
 EXPOSE 5000
-#ENTRYPOINT [ "./boot_backend.sh" ]
+ENTRYPOINT [ "./boot_backend.sh" ]

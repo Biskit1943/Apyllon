@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
-import { Buffer } from 'buffer';
+import {Buffer} from 'buffer';
 import * as blake2b from 'blake2b';
 
 @Injectable()
@@ -12,7 +12,15 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, {username: username, password: hashPwd(password)})
+    const data = new FormData();
+    data.append('password', hashPwd(password));
+    const header = {
+      headers: new HttpHeaders({
+        'enctype': 'multipart/form-data'
+      })
+    };
+
+    return this.http.post<any>(`${environment.apiUrl}/users/${username}/authenticate`, data, header)
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {

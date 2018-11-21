@@ -10,3 +10,4 @@ venv
 
 # Project related
 /app.db
+**/.logs

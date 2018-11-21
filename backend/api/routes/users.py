@@ -1,13 +1,18 @@
 """Provide the routes for users interaction"""
+import logging
 from flask import (
     request,
     jsonify)
 from flask.views import MethodView
-import logging as log
 
 from backend.api.routes import exceptions
 from backend.database import user_utils
-from backend.database.exceptions import Exists
+from backend.database.exceptions import (
+    Exists,
+    DoesNotExist,
+)
+
+logger = logging.getLogger('__main__')
 
 
 class UsersIdView(MethodView):
@@ -107,12 +112,26 @@ class UserView(MethodView):
 class UsersIdAuthView(MethodView):
     """Provides the HTTP methods for user authentication with the user ID"""
 
-    def post(self, uid, password):
-        return jsonify(user_utils.auth_user(password=password, uid=uid))
+    def post(self, uid: int):
+        password = request.form['password']
+
+        try:
+            answer = user_utils.auth_user(password=password, uid=uid)
+        except DoesNotExist as e:
+            return str(e), 404
+
+        return jsonify(answer)
 
 
 class UsersNameAuthView(MethodView):
     """Provides the HTTP methods for user authentication with the username"""
 
-    def post(self, username, password):
-        return jsonify(user_utils.auth_user(password=password, username=username))
+    def post(self, username: str):
+        password = request.form['password']
+
+        try:
+            answer = user_utils.auth_user(password=password, username=username)
+        except DoesNotExist as e:
+            return str(e), 404
+
+        return jsonify(answer)

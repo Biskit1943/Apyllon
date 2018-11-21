@@ -15,6 +15,7 @@ from typing import (
 from backend import db
 from backend.database.exceptions import (
     Exists,
+    DoesNotExist,
 )
 from backend.database.models import User
 from backend.security import user as user_sec
@@ -51,7 +52,7 @@ def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:
     db.session.add(user)
     db.session.commit()
 
-    token = user_sec.gen_jwt(username, password)
+    token = user_sec.gen_jwt(password=password, username=username)
 
     return user, token
 
@@ -146,6 +147,9 @@ def auth_user(password: str, uid: int = None, username: str = None) -> Dict:
         data = _filter_dict(uid=uid, username=username)
     except KeyError:
         raise
+
+    if not get_user(**data):
+        raise DoesNotExist(f'The user <{data}>')
 
     try:
         answer = user_sec.gen_jwt(password, **data)
