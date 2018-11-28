@@ -62,21 +62,21 @@ app.add_url_rule('/users/<string:username>/authenticate',
 # Player related endpoints
 app.add_url_rule('/player/play_pause',
                  view_func=player.PlayerPlayPause.as_view(name='player_play_pause'),
-                 methods=['GET', 'POST', ]
+                 methods=['GET', 'PUT', ]
                  )
 app.add_url_rule('/player/next',
                  view_func=player.PlayerNext.as_view(name='player_next'),
-                 methods=['GET', 'POST', ]
+                 methods=['GET', 'PUT', ]
                  )
 app.add_url_rule('/player/previous',
                  view_func=player.PlayerPrevious.as_view(name='player_previous'),
-                 methods=['GET', 'POST', ]
+                 methods=['GET', 'PUT', ]
                  )
 app.add_url_rule('/player/shuffle',
                  view_func=player.PlayerShuffle.as_view(name='player_shuffle'),
-                 methods=['GET', 'POST', ]
+                 methods=['GET', 'PUT', ]
                  )
 app.add_url_rule('/player/repeat',
                  view_func=player.PlayerRepeat.as_view(name='player_repeat'),
-                 methods=['GET', 'POST', ]
+                 methods=['GET', 'PUT', ]
                  )

@@ -1,12 +1,12 @@
-set repeat
+Set shuffle
 ---
 tags:
-  - player
+  - Player
 responses:
   200:
     type: object
     properties:
       state:
         type: boolean
-        description: true for shuffle on and false for off
+        description: True for shuffle on and false for off
         example: false
