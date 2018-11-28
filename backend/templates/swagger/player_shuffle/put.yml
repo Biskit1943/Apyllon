@@ -1,0 +1,12 @@
+set repeat
+---
+tags:
+  - player
+responses:
+  200:
+    type: object
+    properties:
+      state:
+        type: boolean
+        description: true for shuffle on and false for off
+        example: false

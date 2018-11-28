@@ -1,0 +1,10 @@
+Starts playing the previous Song (if available)
+---
+tags:
+  - Player
+responses:
+  200:
+    description: The previous song
+      $ref: "#/definitions/Song"
+  404:
+    description: No previous song

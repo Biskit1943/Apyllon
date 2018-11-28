@@ -1,0 +1,13 @@
+Returns the state of the player (play/pause)
+---
+tags:
+  - Player
+responses:
+  200:
+    description: The state of the player
+    type: object
+    properties:
+      state:
+        type: string
+        description: "Possible Values: [play, pause, stop]"
+        example: play

@@ -1,0 +1,13 @@
+Sets the state of the player. If play -> pause and vice versa
+---
+tags:
+  - Player
+responses:
+  200:
+    description: The new state of the player
+    type: object
+    properties:
+      state:
+        type: string
+        description: "Possible Values: [play, pause]"
+        example: play

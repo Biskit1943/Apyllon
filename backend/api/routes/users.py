@@ -3,7 +3,8 @@ import logging
 
 from flask import (
     request,
-    jsonify)
+    jsonify
+)
 from flask.views import MethodView
 
 from backend.api.routes import exceptions

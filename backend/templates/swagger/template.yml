@@ -14,6 +14,8 @@ tags:
   description: "User related requests by id"
 - name: "Auth"
   description: "Authentication related requests"
+- name: "Player"
+  description: "Player access and control"
 
 definitions:
   # User
@@ -52,6 +54,51 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/User'
+
+  # Songs
+  Song:
+    type: object
+    properties:
+      sid:
+        type: integer
+        description: The id of the song
+        example: 1
+      filename:
+        type: string
+        description: The name of the file (Not the path)
+        example: rockstar.mp3
+      path:
+        type: string
+        description: The path to the file (Not the name)
+        example: /home/user/Music/Post\ Malone/beerbongs\ &\ bentleys/
+      length:
+        type: integer
+        description: The length of the song in seconds
+        example: 230
+      meta:
+        type: object
+        description: The meta information of a song
+        properties:
+          artist:
+            type: string
+            description: The artist of the song (Comma separated if more than one)
+            example: Post Malone, 21 Savage
+          title:
+            type: string
+            description: The title of the song
+            example: rockstar
+          album:
+            type: string
+            description: The name of the album
+            example: beerbongs & bentleys
+          genre:
+            type: string
+            description: The genre what else (Comma separated if more than one)
+            example: R&B, Hip-Hop/Rap
+  Songs:
+    type: array
+    items:
+      $ref: "#/definitions/Song"
 
   # Errors
   BadRequest:
