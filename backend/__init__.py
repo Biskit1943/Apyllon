@@ -29,6 +29,7 @@ def get_version():
 
 __version__ = get_version()
 
-
-from backend import routes
+# Prevent circular imports
 from backend.database import models
+from backend.security import jwt, validation
+from backend import routes

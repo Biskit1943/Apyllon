@@ -9,5 +9,5 @@ responses:
     properties:
       state:
         type: string
-        description: "Possible Values: [play, pause]"
+        description: "Possible Values: [play, pause, stop]"
         example: play

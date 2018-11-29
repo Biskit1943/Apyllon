@@ -2,8 +2,6 @@
 import logging
 import os
 
-logger = logging.getLogger(__name__)
-
 from backend import (
     app,
     db,
@@ -16,6 +14,8 @@ from backend.api.routes import (
     player,
 )
 from backend.database.song_utils import list_songs
+
+logger = logging.getLogger(__name__)
 
 
 @app.route('/')

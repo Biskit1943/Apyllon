@@ -1,12 +1,12 @@
 """This module provides utilities for the filepath table in the database"""
 import logging
 
-logger = logging.getLogger(__name__)
-
 from backend import db
 from backend.database.models import (
     Filepath,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def is_unique(filename: str, directory: str) -> bool:

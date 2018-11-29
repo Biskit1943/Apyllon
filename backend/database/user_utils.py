@@ -5,10 +5,6 @@ ones which deal with security. The security related functions can be found in
 """
 import json
 import logging
-import sys
-
-logger = logging.getLogger(__name__)
-
 from typing import (
     Dict,
     List,
@@ -22,7 +18,9 @@ from backend.database.exceptions import (
     DoesNotExist,
 )
 from backend.database.models import User
-from backend.security import user as user_sec
+from backend.security import jwt
+
+logger = logging.getLogger(__name__)
 
 
 def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:
@@ -34,7 +32,17 @@ def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:
 
     Returns:
         A tuple containing the new created User object and a dict containing the
-        user information with the generated JWT
+        user information as dict and the generated JWT
+        ex.:
+        (
+            <user at 0x13984>,
+            {
+                username: str,
+                password: str,
+                token: str,
+            }
+        )
+
     """
     logger.debug(f'add_user({data})')
     if type(data) is str or bytes:
@@ -48,7 +56,7 @@ def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:
         logger.error(f'Error while adding user ==> {e}')
         raise
 
-    if len(password) != 88:  # Blake2b.hexdigest() -> 128 chars
+    if len(password) != 88:  # Blake2b.hexdigest() -> 128 chars for some reason Angular returns 88 TODO check this
         logger.error(f'password length does not match')
         raise ValueError(f'password has {len(password)} characters but must be 128 characters long')
 
@@ -60,7 +68,7 @@ def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:
     db.session.add(user)
     db.session.commit()
 
-    token = user_sec.gen_jwt(password=password, username=username)
+    token = jwt.gen_jwt(password=password, username=username)
 
     return user, token
 
@@ -136,7 +144,10 @@ def delete_user(uid: int = None, username: str = None):
 
 
 def auth_user(password: str, uid: int = None, username: str = None) -> Dict:
-    """Authenticates a user and returns it's token for further validation
+    """Authenticates a user and returns it's token for further validation.
+    This will not check the JWT instead it will generate a JWT from a request.
+
+    For validation see the security module.
 
     Args:
         password: The password of the user (blake2b hashed)
@@ -170,7 +181,7 @@ def auth_user(password: str, uid: int = None, username: str = None) -> Dict:
         raise DoesNotExist(f'The user <{data}> does not exit')
 
     try:
-        answer = user_sec.gen_jwt(password, **data)
+        answer = jwt.gen_jwt(password, **data)
     except FileNotFoundError:
         raise
     except RuntimeError:
@@ -179,6 +190,44 @@ def auth_user(password: str, uid: int = None, username: str = None) -> Dict:
         raise
     else:
         return answer
+
+
+def change_password(password: str, uid: int = None, username: str = None):
+    """Changes the password of the given user
+
+    Args:
+        password: The new password
+        uid: The id of the user who want to change the PW (Do not user both uid
+            and username)
+        username: The name fo the user who want to change the PW (Do not user
+            both uid and username)
+
+    Raises:
+        KeyError: When both uid and username were given
+        DoesNotExist: When the user does not exist
+        ValueError: If the Password does not meet the Blake2b length
+    """
+    logger.debug(f'change_password({password}, {uid}, {username})')
+    try:
+        data = _filter_dict(uid=uid, username=username)
+    except KeyError as e:
+        logger.debug(f'Error while getting the data ==> {e}')
+        raise
+
+    user = get_user(**data)
+    if not user:
+        logger.error(f'The user <{data}> does not exit')
+        raise DoesNotExist(f'The user <{data}> does not exit')
+
+    if len(password) != 88:
+        logger.error(f'password length does not match')
+        raise ValueError(f'password has {len(password)} characters but must be 128 characters long')
+
+    user.password_hash = password
+    if not user.password:
+        user.password = True
+    db.session.commit()
+    logger.info("Changed password of admin")
 
 
 def _filter_dict(**kwargs) -> Dict:
