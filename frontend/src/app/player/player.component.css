@@ -1,0 +1,25 @@
+#player-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#div-song-title {
+  margin: auto;
+}
+
+#div-controls {
+  margin: auto;
+}
+
+#div-cover-img {
+  margin: auto;
+  max-height: 50%;
+
+}
+
+#div-cover-img #cover-img {
+  height: 100%
+}
