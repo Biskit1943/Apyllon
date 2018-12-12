@@ -1,5 +1,5 @@
 """This module provides utilities for the song table in the database"""
-import sys
+import logging
 from typing import Dict
 
 from backend import db
@@ -9,6 +9,8 @@ from backend.database.models import (
     Song,
     Filepath,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def add_song(data: Dict):
@@ -22,6 +24,7 @@ def add_song(data: Dict):
         AssertionError: When the type of the casted YAML string is not dict
         KeyError: When the YAML string is missing a value
     """
+    logger.debug(f'add_song({data}')
     try:
         filename = data['filename']
         path = data['path']
@@ -34,10 +37,11 @@ def add_song(data: Dict):
         genre = meta_data['genre']
 
     except KeyError as e:
-        print(e, file=sys.stderr)
+        logger.critical(f'Error while getting object data ==> {e}')
         raise
 
     if not is_unique(filename, path):
+        logger.error(f'{filename} in {path} does already exist')
         raise Exists(f'{filename} in {path} does already exist')
 
     filepath = Filepath(filename=filename, directory=path)
@@ -53,6 +57,8 @@ def add_song(data: Dict):
     db.session.add(filepath)
     db.session.add(song)
     db.session.commit()
+    logger.debug(f'added {filepath} to database')
+    logger.debug(f'added {song} to database')
 
 
 def list_songs() -> Dict:
@@ -62,9 +68,11 @@ def list_songs() -> Dict:
         A list containing song dicts from the database. See
         `backend/templates#definitions/Songs` for a reference
     """
+    logger.debug('list_songs()')
     songs = Song.query.all()
     songs_list = []
     for song in songs:
         songs_list.append(song.to_dict())
 
+    logger.debug(f'returning a list with len = {len(songs_list)}')
     return songs_list

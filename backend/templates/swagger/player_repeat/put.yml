@@ -1,0 +1,12 @@
+Set repeat
+---
+tags:
+  - Player
+responses:
+  200:
+    type: object
+    properties:
+      state:
+        type: boolean
+        description: True for repeat on and false for off
+        example: false

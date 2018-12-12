@@ -13,3 +13,4 @@ psycopg2==2.7.5
 pyjwt==1.6.4
 flask-cors==3.0.6
 cryptography==2.3.1
+decorator==4.3.0

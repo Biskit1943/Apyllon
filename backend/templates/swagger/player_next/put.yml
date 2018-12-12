@@ -1,0 +1,11 @@
+Starts playing the next Song (if available)
+---
+tags:
+  - Player
+responses:
+  200:
+    description: The next song
+    schema:
+      $ref: "#/definitions/Song"
+  404:
+    description: No previous song

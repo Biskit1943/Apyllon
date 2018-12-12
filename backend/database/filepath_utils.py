@@ -1,8 +1,12 @@
 """This module provides utilities for the filepath table in the database"""
+import logging
+
 from backend import db
 from backend.database.models import (
     Filepath,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def is_unique(filename: str, directory: str) -> bool:
@@ -12,8 +16,11 @@ def is_unique(filename: str, directory: str) -> bool:
         filename: The filename
         directory: The path to the file
     """
+    logger.debug(f'is_unique({filename}, {directory})')
     if len(Filepath.query.filter(db.and_(
             Filepath.filename == filename,
             Filepath.directory == directory)).all()) > 0:
+        logger.debug(f'{directory}/{filename} is not unique')
         return False
+    logger.debug(f'{directory}/{filename} is unique')
     return True

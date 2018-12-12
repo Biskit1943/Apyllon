@@ -9,17 +9,18 @@ song_playlist_association = db.Table('song_playlist',
                                      )
 
 
-class Admin(db.Model):
-    """Describes the admin
-
-    Attributes:
-        id: The id of this object (managed by the database)
-        username: The username which was chosen, defaults to `admin`
-        password_hash:  The password hash from the admin
-    """
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True, default='admin')
-    password_hash = db.Column(db.String(88))
+# class Admin(db.Model):
+#     """Describes the admin
+#
+#     Attributes:
+#         id: The id of this object (managed by the database)
+#         username: The username which was chosen, defaults to `admin`
+#         password_hash:  The password hash from the admin
+#     """
+#     uid = db.Column(db.Integer, primary_key=True)
+#     username = db.Column(db.String(64), index=True, unique=True, default='admin')
+#     password_hash = db.Column(db.String(88))
+#     password = db.Column(db.Boolean, default=False)
 
 
 class User(db.Model):
@@ -29,10 +30,13 @@ class User(db.Model):
         uid: The id of this object (managed by the database)
         username: The username which was chosen by the user
         password_hash:  The password hash from the user
+        password: True if the password was set by the user
+        playlists: The playlists from the user
     """
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(88))
+    password = db.Column(db.Boolean, default=False)
     playlists = db.relationship("Playlist", back_populates="owner", uselist=False)
 
     def __repr__(self):
