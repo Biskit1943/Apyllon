@@ -1,40 +1,16 @@
-from player import Player
-import multiprocessing
-import time
+import vlc
+import pafy
 
-
-class queue():
+class Queue():
     def __init__(self, identifier):
-        identifier = identifier
-        player = Player()
-        queue = []
-        postion = 0
+        self.identifier = identifier
+        self.media_list = vlc.MediaList()
 
-    def add_media(media, pos=None):
-        pass
+    def add_local(self, filepath):
+        print("test")
+        self.media_list.add_media(filepath)
 
-    def remove_media(pos):
-        pass
-
-    def play_current_position():
-        pass
-
-    def next_track():
-        pass
-
-    def last_track():
-        pass
-
-    def play_position(pos):
-        pass
-
-    def get_player_state():
-        state = player.get_state()
-        return state
-
-    def watch_for_song_end():
-        pass
-
-
-
-
+    def add_youtube(self, url):
+        video = pafy.new(url)
+        bestaudio = video.getbestaudio()
+        self.media_list.add_media(bestaudio.url)
