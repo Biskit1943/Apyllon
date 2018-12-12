@@ -4,6 +4,13 @@ from flask.views import MethodView
 
 from backend.security.validation import user
 
+from backend.player.import player
+
+player = Player()
+#TODO:  This is just done for mocking
+player.add_youtube("https://www.youtube.com/watch?v=LBZ-3Ugj1AQ")
+player.add_youtube("https://www.youtube.com/watch?v=U5u9glfqDsc")
+
 logger = logging.getLogger(__name__)
 
 
@@ -26,7 +33,14 @@ class PlayerPlayPause(MethodView):
             state: The state which the player should take [play, pause, stop]
             username: This is just for logging purposes
         """
-        return "No!"
+        if state == "play":
+            player.play()
+        elif state == "pause":
+            player.pause()
+        elif state == "stop":
+            player.stop()
+
+        return f'PUT /player/play_pause{state}'
 
 
 class PlayerNext(MethodView):
@@ -47,7 +61,9 @@ class PlayerNext(MethodView):
         Args:
             username: This is just for logging purposes
         """
-        return "No!"
+
+        player.next()
+        return 'PUT /player/next'
 
 
 class PlayerPrevious(MethodView):
@@ -68,7 +84,8 @@ class PlayerPrevious(MethodView):
         Args:
             username: This is just for logging purposes
         """
-        return "No!"
+        player.previous()
+        return 'PUT /player/previous'
 
 
 class PlayerShuffle(MethodView):

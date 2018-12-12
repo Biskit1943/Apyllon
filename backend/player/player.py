@@ -62,6 +62,12 @@ class Player():
         self.player.pause()
         self.plaing = False
 
+    def play_pause(self):
+        if self.plaing is True:
+            self.pause()
+        else:
+            self.play()
+
     def next(self):
         self.player.next()
 
