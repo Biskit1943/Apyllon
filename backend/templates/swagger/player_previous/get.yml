@@ -1,0 +1,11 @@
+Returns the previous item in the playlist (if available)
+---
+tags:
+  - Player
+responses:
+  200:
+    description: The previous playlist item
+    schema:
+      $ref: "#/definitions/Song"
+  404:
+    description: No previous song

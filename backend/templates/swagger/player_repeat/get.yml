@@ -1,0 +1,12 @@
+Returns if repeat is on
+---
+tags:
+  - Player
+responses:
+  200:
+    type: object
+    properties:
+      state:
+        type: boolean
+        description: True if repeat is on and false if off
+        example: false

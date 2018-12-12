@@ -1,8 +1,12 @@
 """This module provides the functionality for any security related actions in
 combination with a user
 """
-import jwt
+import logging
 import os
+
+import jwt
+
+logger = logging.getLogger(__name__)
 
 from typing import Dict
 
@@ -46,10 +50,12 @@ Error: If the private key was not found
     elif username:
         user = User.query.filter_by(username=username).first()
     else:
+        logger.critical('This function needs to be called with uid OR username(at least one of them)')
         raise RuntimeError("Neither uid nor username was given")
 
     if user.password_hash != password:
-        raise ValueError("Password did not match")
+        logger.error('Passwords did not match')
+        raise ValueError("Passwords did not match")
 
     with open(Config.SECRET_KEY) as key:
         secret = key.read()
@@ -59,6 +65,7 @@ Error: If the private key was not found
         'password': password
     }, secret, algorithm='RS256')
     if not validate_token(token):
+        logger.critical('Failed to validate token')
         raise RuntimeError('Failed to verify created JWT')
 
     answer = user.to_dict()
@@ -80,6 +87,7 @@ def validate_token(token: str) -> bool:
         FileNotFoundError: If the public  key was not found
     """
     if not os.path.exists(Config.PUBLIC_KEY):
+        logger.error('Config.PUBLIC_KEY was not found')
         raise FileNotFoundError("Public key was not found")
 
     with open(Config.PUBLIC_KEY) as key:
@@ -90,10 +98,13 @@ def validate_token(token: str) -> bool:
         username = payload['username']
         password = payload['password']
     except ValueError:
+        logger.debug('validate_token({token}) ==> ValueError ==> return False')
         return False
     except KeyError:
+        logger.debug('validate_token({token}) ==> KeyError ==> return False')
         return False
     except Exception as e:
+        logger.critical(f'raising Error ==> {e}')
         raise e
     else:
         return True

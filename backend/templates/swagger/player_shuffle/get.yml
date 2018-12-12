@@ -1,0 +1,13 @@
+Returns if shuffle is on
+---
+tags:
+  - Player
+responses:
+  200:
+    type: object
+    properties:
+      state:
+        type: boolean
+        description: True if shuffle is on and false if off
+        example: false
+

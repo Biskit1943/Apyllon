@@ -1,10 +1,14 @@
 import vlc
 import pafy
 import time
-import spotipy
+from abc import ABC
+
+import logging 
+import os
+logging = logging.getLogger("__main__")
 
 """
-TODO:
+TODO: 
     * Exceptions []
     * Playlists? []
     * Test []
@@ -16,15 +20,16 @@ class Player():
     """
     def __init__(self):
         """
-        Attributes:
+        Attributes: 
             player: holding the vlc.Mediaplayer object
         """
         self.player = vlc.MediaPlayer()
+        self.playing = False
 
     def load(self, filepath):
         """
         Load a file to and set as vlc mediafile.
-
+        
         Args:
             filepath (string): Path to the file to play.
         """
@@ -38,6 +43,7 @@ class Player():
             * Check if File is already loaded.
         """
         self.player.play()
+        self.playing = True
 
     def stop(self):
         """
@@ -45,6 +51,7 @@ class Player():
 
         """
         self.player.stop()
+        self.playing = False
 
     def pause(self):
         """
@@ -52,19 +59,9 @@ class Player():
 
         """
         self.player.pause()
+        self.plaing = False
 
-class YoutubePlayer(Player):
-    """
-    Modified Player to play youtube videos as Audio.
-    """
-
-    def __init__(self):
-        """
-        Call parent constructor.
-        """
-        Player.__init__(self)
-
-    def load(self, url):
+    def load_youtube(self, url):
         """
         Overides the default load method of Player object.
         Uses pafy to get the url for the best availible audiostream.
@@ -74,3 +71,4 @@ class YoutubePlayer(Player):
         video = pafy.new(url)
         bestaudio = video.getbestaudio()
         self.player.set_mrl(bestaudio.url)
+

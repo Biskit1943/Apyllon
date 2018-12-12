@@ -1,0 +1,11 @@
+Returns the next item in the playlist
+---
+tags:
+  - Player
+responses:
+  200:
+    description: The next playlist item
+    schema:
+      $ref: "#/definitions/Song"
+  404:
+    description: No previous song
