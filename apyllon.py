@@ -11,10 +11,14 @@ monkey.patch_all()
 from gevent import pywsgi
 
 from backend import app
+from backend.database.admin_utils import create_admin
 
 
 def main():
     """Creates and runs the WSGI-Server"""
+    logger.info("Check if admin exists")
+    admin, token = create_admin()
+    logger.info(f"TOKEN: {token}")
 
     logger.info("Starting server...")
     http_server = pywsgi.WSGIServer(('0.0.0.0', 5000), app, log=logger)

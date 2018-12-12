@@ -14,7 +14,8 @@ TODO:
     * Test []
 """
 
-class Player():
+
+class Player:
     """
     Base player class, playing audio and video using libvlc
     """
@@ -59,7 +60,7 @@ class Player():
 
         """
         self.player.pause()
-        self.plaing = False
+        self.playing = False
 
     def load_youtube(self, url):
         """

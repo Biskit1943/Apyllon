@@ -1,9 +1,5 @@
 """This module provides utilities for the song table in the database"""
 import logging
-import sys
-
-logger = logging.getLogger(__name__)
-
 from typing import Dict
 
 from backend import db
@@ -13,6 +9,8 @@ from backend.database.models import (
     Song,
     Filepath,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def add_song(data: Dict):

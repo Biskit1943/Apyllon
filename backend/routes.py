@@ -2,8 +2,7 @@
 import logging
 import os
 
-logger = logging.getLogger(__name__)
-
+from backend.api.routes import admin
 from backend import (
     app,
     db,
@@ -16,6 +15,8 @@ from backend.api.routes import (
     player,
 )
 from backend.database.song_utils import list_songs
+
+logger = logging.getLogger(__name__)
 
 
 @app.route('/')
@@ -78,5 +79,11 @@ app.add_url_rule('/player/shuffle',
                  )
 app.add_url_rule('/player/repeat',
                  view_func=player.PlayerRepeat.as_view(name='player_repeat'),
+                 methods=['GET', 'PUT', ]
+                 )
+
+# Admin related endpoints
+app.add_url_rule('/admin',
+                 view_func=admin.Default.as_view(name='admin'),
                  methods=['GET', 'PUT', ]
                  )

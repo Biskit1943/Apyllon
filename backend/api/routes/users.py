@@ -1,18 +1,26 @@
-"""Provide the routes for users interaction"""
+"""Provide the routes for users interaction
+NOTE: If there is a wrapper needed for the route you have to put the function
+      into an extra file with a wrapper around it an call it here. Flasgger
+      can't handle @wrapper on routes.
+      The functions for this module are in backend/security/users.py
+"""
 import logging
 
-from flask import (
-    request,
-    jsonify
-)
+from flask import request, jsonify
 from flask.views import MethodView
 
-from backend.api.routes import exceptions
-from backend.database import user_utils
-from backend.database.exceptions import (
-    Exists,
-    DoesNotExist,
+from backend.security.users import (
+    u_i_v_get,
+    u_i_v_put,
+    u_i_v_delete,
+    u_n_v_get,
+    u_n_v_put,
+    u_n_v_delete,
+    u_v_get,
+    u_v_post,
 )
+from backend.database import user_utils
+from backend.database.exceptions import DoesNotExist
 
 logger = logging.getLogger(__name__)
 
@@ -23,38 +31,34 @@ class UsersIdView(MethodView):
     """
 
     def get(self, uid: int):
-        try:
-            user = user_utils.get_user(uid=uid)
-        except KeyError as e:
-            logger.error(f'Error while getting user ==> {e}')
-            raise
+        """Returns the user with the given id
 
-        if not user:
-            logger.warning(f'User <{uid}> not found')
-            return f'User <{uid}> not found', 404
+        Args:
+            uid: The id of the requested user
 
-        return jsonify(user.to_dict())
+        Returns:
+            The user JSON
+        """
+        return u_i_v_get(uid)
 
     def put(self, uid: int):
-        if not request.is_json:
-            raise exceptions.BadRequest('Missing user json', {
-                'username': 'Biskit1943',
-                'password': 'blake2 hash',
-            })
-        return f'PUT /users/{uid} + json'
+        """Creates a user with the given id
+
+        Args:
+            uid: The id which the user should have
+
+        Returns:
+            The new user as JSON
+        """
+        return u_i_v_put(uid)
 
     def delete(self, uid: int):
-        try:
-            user_utils.delete_user(uid=uid)
-        except KeyError as e:
-            logger.error(f'Error while deleting user ==> {e}')
-            raise
-        except NameError as e:
-            logger.error(f'Error while deleting user ==> {e}')
-            return f'User <{uid}> not found', 404
+        """Deletes the user with a given id
 
-        logger.info(f'Deleted user <{uid}>')
-        return f'Deleted user <{uid}>', 200
+        Args:
+            uid: The uid of the user which should be deleted
+        """
+        return u_i_v_delete(uid)
 
 
 class UsersNameView(MethodView):
@@ -63,38 +67,34 @@ class UsersNameView(MethodView):
     """
 
     def get(self, username: str):
-        try:
-            user = user_utils.get_user(username=username)
-        except KeyError as e:
-            logger.error(f'Error while getting user ==> {e}')
-            raise
+        """Returns the user with the given username
 
-        if not user:
-            logger.warning(f'User <{username}> not found')
-            return f'User <{username}> not found', 404
+        Args:
+            username: The username of the requested user
 
-        return jsonify(user.to_dict())
+        Returns:
+            The user JSON
+        """
+        return u_n_v_get(username)
 
     def put(self, username: str):
-        if not request.is_json:
-            raise exceptions.BadRequest('Missing user json', {
-                'username': 'Biskit1943',
-                'password': 'blake2 hash',
-            })
-        return f'PUT /users/{username} + json'
+        """Creates a user with the given name
+
+        Args:
+            username: The name which the user should have
+
+        Returns:
+            The new created user as JSON
+        """
+        return u_n_v_put(username)
 
     def delete(self, username: str):
-        try:
-            user_utils.delete_user(username=username)
-        except KeyError as e:
-            logger.error(f'Error while deleting user ==> {e}')
-            raise
-        except NameError as e:
-            logger.warning(f'Error while deleting user ==> {e}')
-            return f'User <{username}> not found', 404
+        """Deletes the user with the given name
 
-        logger.info(f'Deleted user <{username}>')
-        return f'Deleted user <{username}>', 200
+        Args:
+            username: The name of the user which should be deleted
+        """
+        return u_n_v_delete(username)
 
 
 class UserView(MethodView):
@@ -103,28 +103,26 @@ class UserView(MethodView):
     """
 
     def get(self):
-        return jsonify(user_utils.list_users())
+        """Returns all users"""
+        return u_v_get()
 
     def post(self):
-        if not request.is_json:
-            logger.error('The request needs a valid JSON')
-            raise exceptions.BadRequest('Missing user json', {
-                'username': 'Biskit1943',
-                'password': 'blake2 hash',
-            })
-
-        try:
-            _, answer = user_utils.add_user(request.data)
-        except Exists as e:
-            logger.error(f'Error while creating user ==> {e}')
-            raise exceptions.Conflict(str(e))
-        return jsonify(answer)
+        """Register a new user"""
+        return u_v_post()
 
 
 class UsersIdAuthView(MethodView):
-    """Provides the HTTP methods for user authentication with the user ID"""
+    """Provides the HTTP methods for user authentication with the user ID
+    Because there are no wrapper needed yet, we don't need to put them into an
+    extra file :)
+    """
 
     def post(self, uid: int):
+        """Checks if the user with the id has a valid login (JWT)
+
+        Args:
+            uid: The id of the user which made the request
+        """
         password = request.form['password']
 
         try:
@@ -140,6 +138,11 @@ class UsersNameAuthView(MethodView):
     """Provides the HTTP methods for user authentication with the username"""
 
     def post(self, username: str):
+        """Checks if the user with the name has a valid login (JWT)
+
+        Args:
+            username: The name of the user which made the request
+        """
         password = request.form['password']
 
         try:
