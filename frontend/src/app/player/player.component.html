@@ -10,8 +10,8 @@
     <div><mat-progress-bar mode="determinate" value="40" style="margin-bottom: 10px;"></mat-progress-bar></div>
     <div class="buttons">
       <button mat-raised-button mat-icon-button class=".btn" (click)="previous($event)"><mat-icon>skip_previous</mat-icon></button>
-      <button mat-raised-button mat-icon-button class=".btn"><mat-icon>play_arrow</mat-icon></button>
-      <button mat-raised-button mat-icon-button class=".btn"><mat-icon>skip_next</mat-icon></button>
+      <button mat-raised-button mat-icon-button class=".btn" (click)="playPause($event)"><mat-icon>play_arrow</mat-icon></button>
+      <button mat-raised-button mat-icon-button class=".btn" (click)="next($event)"><mat-icon>skip_next</mat-icon></button>
     </div>
   </div>
 </div>

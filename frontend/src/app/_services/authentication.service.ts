@@ -42,6 +42,5 @@ function hashPwd(pwd) {
   const input = Buffer.from(pwd);
   const proto = blake2b(64);
   proto.update(input);
-  const h = proto.digest('hex');
-  return h;
+  return proto.digest('hex');
 }

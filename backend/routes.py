@@ -60,23 +60,54 @@ app.add_url_rule('/users/<string:username>/authenticate',
                  )
 
 # Player related endpoints
+app.add_url_rule('/player/play_pause/<string:username>/<string:state>',
+                 view_func=player.PlayerPlayPause.as_view(name='player_play_pause'),
+                 methods=['PUT'],
+                 endpoint='play_pause_username_state'
+                 )
+app.add_url_rule('/player/next/<string:username>',
+                 view_func=player.PlayerNext.as_view(name='player_next'),
+                 methods=['PUT'],
+                 endpoint='next_username'
+                 )
+app.add_url_rule('/player/previous/<string:username>',
+                 view_func=player.PlayerPrevious.as_view(name='player_previous'),
+                 methods=['PUT'],
+                 endpoint='prev_username'
+                 )
+app.add_url_rule('/player/shuffle/<string:username>',
+                 view_func=player.PlayerShuffle.as_view(name='player_shuffle'),
+                 methods=['PUT'],
+                 endpoint='shuffle_username'
+                 )
+app.add_url_rule('/player/repeat/<string:username>',
+                 view_func=player.PlayerRepeat.as_view(name='player_repeat'),
+                 methods=['PUT'],
+                 endpoint='repeat_username'
+                 )
 app.add_url_rule('/player/play_pause',
                  view_func=player.PlayerPlayPause.as_view(name='player_play_pause'),
-                 methods=['GET', 'PUT', ]
+                 methods=['GET'],
+                 endpoint='play_pause'
                  )
 app.add_url_rule('/player/next',
                  view_func=player.PlayerNext.as_view(name='player_next'),
-                 methods=['GET', 'PUT', ]
+                 methods=['GET'],
+                 endpoint='next'
                  )
 app.add_url_rule('/player/previous',
                  view_func=player.PlayerPrevious.as_view(name='player_previous'),
-                 methods=['GET', 'PUT', ]
+                 methods=['GET'],
+                 endpoint='prev'
                  )
 app.add_url_rule('/player/shuffle',
                  view_func=player.PlayerShuffle.as_view(name='player_shuffle'),
-                 methods=['GET', 'PUT', ]
+                 methods=['GET'],
+                 endpoint='shuffle'
                  )
 app.add_url_rule('/player/repeat',
                  view_func=player.PlayerRepeat.as_view(name='player_repeat'),
-                 methods=['GET', 'PUT', ]
+                 methods=['GET'],
+                 endpoint='repeat'
                  )
+

@@ -33,7 +33,6 @@ function hashPwd(user: User) {
   const input = Buffer.from(user.password);
   const proto = blake2b(64);
   proto.update(input);
-  const h = proto.digest('hex');
-  user.password = h;
+  user.password = proto.digest('hex');
   return user;
 }

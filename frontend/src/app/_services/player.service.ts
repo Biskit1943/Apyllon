@@ -14,39 +14,39 @@ export class PlayerService {
     return this.http.get(`${environment.apiUrl}/player/play_pause`);
   }
 
-  play() {
-    return this.http.put(`${environment.apiUrl}/player/play_pause`, null);
+  play(username, state) {
+    return this.http.put(`${environment.apiUrl}/player/play_pause/${username}/${state}`, null);
   }
 
   getNext() {
     return this.http.get(`${environment.apiUrl}/player/next`);
   }
 
-  next() {
-    return this.http.put(`${environment.apiUrl}/player/next`, null);
+  next(username) {
+    return this.http.put(`${environment.apiUrl}/player/next/${username}`, null);
   }
 
   getPrev() {
     return this.http.get(`${environment.apiUrl}/player/previous`);
   }
 
-  prev() {
-    return this.http.put(`${environment.apiUrl}/player/previous`, null);
+  prev(username) {
+    return this.http.put(`${environment.apiUrl}/player/previous/${username}`, null);
   }
 
   isShuffle() {
     return this.http.get(`${environment.apiUrl}/player/shuffle`);
   }
 
-  shuffle() {
-    return this.http.put(`${environment.apiUrl}/player/play_pause`, null);
+  shuffle(username) {
+    return this.http.put(`${environment.apiUrl}/player/play_pause/${username}`, null);
   }
 
   isRepeat() {
     return this.http.get(`${environment.apiUrl}/player/repeat`);
   }
 
-  repeat() {
-    return this.http.put(`${environment.apiUrl}/player/play_pause`, null);
+  repeat(username) {
+    return this.http.put(`${environment.apiUrl}/player/play_pause/${username}`, null);
   }
 }
