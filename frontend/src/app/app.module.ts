@@ -15,13 +15,14 @@ import {routing} from './app.routing';
 
 import {AlertComponent} from './_directives';
 import {AuthGuard} from './_guards';
-import {AlertService, AuthenticationService, UserService} from './_services';
+import {AlertService, AuthenticationService, UserService, PlayerService} from './_services';
 import {HomeComponent} from './home';
 import {LoginComponent} from './login';
 import {RegisterComponent} from './register';
 import {LayoutModule} from '@angular/cdk/layout';
-import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatProgressBar} from '@angular/material';
 import {MainSidebarComponent} from './main-sidebar/main-sidebar.component';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import {MainSidebarComponent} from './main-sidebar/main-sidebar.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    MainSidebarComponent
+    MainSidebarComponent,
+    PlayerComponent,
+    MatProgressBar
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import {MainSidebarComponent} from './main-sidebar/main-sidebar.component';
     AlertService,
     AuthenticationService,
     UserService,
+    PlayerService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 
