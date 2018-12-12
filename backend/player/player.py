@@ -3,7 +3,6 @@ import pafy
 import time
 from queue import Queue
 from abc import ABC
-
 import logging 
 import os
 logging = logging.getLogger("__main__")
@@ -85,3 +84,21 @@ class Player():
 
     def add_youtube(self, url):
         self.queue.add_youtube(url)
+
+    def stop(self):
+        self.player.stop()
+
+    def set_playback_mode(self, mode):
+        if mode == "loop":
+            self.player.set_playback_mode(vlc.PlaybackMode.loop)
+        elif mode == "repeat":
+            self.player.set_playback_mode(vlc.PlaybackMode.repeat)
+        elif mode == "default":
+            self.player.set_playback_mode(vlc.PlaybackMode.default)
+        else:
+            raise NoPlaybackMode(f'{mode} is not a playbackmode)
+
+
+class NoPlaybackMode(Exception):
+    def __init__(self, *args, **kwargs):
+        Exception.__init__(self, *args, **kwargs)
