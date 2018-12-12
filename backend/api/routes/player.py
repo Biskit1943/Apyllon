@@ -127,4 +127,5 @@ class PlayerRepeat(MethodView):
         Args:
             username: This is just for logging purposes
         """
-        return "No!"
+        player.set_playback_mode("repeat")
+        return 'PUT /player/repeat'
