@@ -2,14 +2,11 @@ import logging
 
 from flask.views import MethodView
 
-from backend.security.validation import user
-
 logger = logging.getLogger(__name__)
 
 
 class PlayerPlayPause(MethodView):
 
-    @user
     def get(self, username: str):
         """Returns the state of the player.
 
@@ -18,7 +15,6 @@ class PlayerPlayPause(MethodView):
         """
         return "No!"
 
-    @user
     def put(self, state: str, username: str):
         """Sets the state of the player
 
@@ -31,7 +27,6 @@ class PlayerPlayPause(MethodView):
 
 class PlayerNext(MethodView):
 
-    @user
     def get(self, username: str):
         """Returns the next song
 
@@ -40,7 +35,6 @@ class PlayerNext(MethodView):
         """
         return "No!"
 
-    @user
     def put(self, username: str):
         """Plays the next song
 
@@ -52,7 +46,6 @@ class PlayerNext(MethodView):
 
 class PlayerPrevious(MethodView):
 
-    @user
     def get(self, username: str):
         """Returns the previous song
 
@@ -61,7 +54,6 @@ class PlayerPrevious(MethodView):
         """
         return "No!"
 
-    @user
     def put(self, username: str):
         """Plays the previous song
 
@@ -73,7 +65,6 @@ class PlayerPrevious(MethodView):
 
 class PlayerShuffle(MethodView):
 
-    @user
     def get(self, username: str):
         """Returns whether shuffle is on or off
 
@@ -82,7 +73,6 @@ class PlayerShuffle(MethodView):
         """
         return "No!"
 
-    @user
     def put(self, username: str):
         """Sets shuffle to the opposite value
 
@@ -94,7 +84,6 @@ class PlayerShuffle(MethodView):
 
 class PlayerRepeat(MethodView):
 
-    @user
     def get(self, username: str):
         """Returns whether repeat is on or off
 
@@ -103,7 +92,6 @@ class PlayerRepeat(MethodView):
         """
         return "No!"
 
-    @user
     def put(self, username: str):
         """Sets repeat to the opposite value
 

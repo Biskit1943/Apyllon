@@ -1,22 +1,26 @@
-"""Provide the routes for users interaction"""
+"""Provide the routes for users interaction
+NOTE: If there is a wrapper needed for the route you have to put the function
+      into an extra file with a wrapper around it an call it here. Flasgger
+      can't handle @wrapper on routes.
+      The functions for this module are in backend/security/users.py
+"""
 import logging
 
-from flask import (
-    request,
-    jsonify
-)
+from flask import request, jsonify
 from flask.views import MethodView
 
-from backend.api.routes import exceptions
+from backend.security.users import (
+    u_i_v_get,
+    u_i_v_put,
+    u_i_v_delete,
+    u_n_v_get,
+    u_n_v_put,
+    u_n_v_delete,
+    u_v_get,
+    u_v_post,
+)
 from backend.database import user_utils
-from backend.database.exceptions import (
-    Exists,
-    DoesNotExist,
-)
-from backend.security.validation import (
-    admin,
-    validate_admin
-)
+from backend.database.exceptions import DoesNotExist
 
 logger = logging.getLogger(__name__)
 
@@ -26,8 +30,6 @@ class UsersIdView(MethodView):
     identification
     """
 
-    @validate_admin
-    @admin
     def get(self, uid: int):
         """Returns the user with the given id
 
@@ -37,20 +39,8 @@ class UsersIdView(MethodView):
         Returns:
             The user JSON
         """
-        try:
-            user = user_utils.get_user(uid=uid)
-        except KeyError as e:
-            logger.debug(f'Raising error ==> {e}')
-            raise
+        return u_i_v_get(uid)
 
-        if not user:
-            logger.warning(f'User <{uid}> not found')
-            return f'User <{uid}> not found', 404
-
-        return jsonify(user.to_dict())
-
-    @validate_admin
-    @admin
     def put(self, uid: int):
         """Creates a user with the given id
 
@@ -60,33 +50,15 @@ class UsersIdView(MethodView):
         Returns:
             The new user as JSON
         """
-        if not request.is_json:
-            logger.error("Missing user JSON or JSON not valid")
-            raise exceptions.BadRequest('Missing user JSON', {
-                'username': 'Biskit1943',
-                'password': 'blake2 hash',
-            })
-        return f'PUT /users/{uid} + json'
+        return u_i_v_put(uid)
 
-    @validate_admin
-    @admin
     def delete(self, uid: int):
         """Deletes the user with a given id
 
         Args:
             uid: The uid of the user which should be deleted
         """
-        try:
-            user_utils.delete_user(uid=uid)
-        except KeyError as e:
-            logger.debug(f'Raising error ==> {e}')
-            raise
-        except NameError as e:
-            logger.debug(f'Raising error ==> {e}')
-            return f'User <{uid}> not found', 404
-
-        logger.info(f'Deleted user <{uid}>')
-        return f'Deleted user <{uid}>', 200
+        return u_i_v_delete(uid)
 
 
 class UsersNameView(MethodView):
@@ -94,8 +66,6 @@ class UsersNameView(MethodView):
     identification
     """
 
-    @validate_admin
-    @admin
     def get(self, username: str):
         """Returns the user with the given username
 
@@ -105,20 +75,8 @@ class UsersNameView(MethodView):
         Returns:
             The user JSON
         """
-        try:
-            user = user_utils.get_user(username=username)
-        except KeyError as e:
-            logger.debug(f'Raising error ==> {e}')
-            raise
+        return u_n_v_get(username)
 
-        if not user:
-            logger.warning(f'User <{username}> not found')
-            return f'User <{username}> not found', 404
-
-        return jsonify(user.to_dict())
-
-    @validate_admin
-    @admin
     def put(self, username: str):
         """Creates a user with the given name
 
@@ -128,33 +86,15 @@ class UsersNameView(MethodView):
         Returns:
             The new created user as JSON
         """
-        if not request.is_json:
-            logger.error("Missing user JSON or JSON not valid")
-            raise exceptions.BadRequest('Missing user JSON', {
-                'username': 'Biskit1943',
-                'password': 'blake2 hash',
-            })
-        return f'PUT /users/{username} + json'
+        return u_n_v_put(username)
 
-    @validate_admin
-    @admin
     def delete(self, username: str):
         """Deletes the user with the given name
 
         Args:
             username: The name of the user which should be deleted
         """
-        try:
-            user_utils.delete_user(username=username)
-        except KeyError as e:
-            logger.debug(f'Raising error ==> {e}')
-            raise
-        except NameError as e:
-            logger.warning(f'Error while deleting user ==> {e}')
-            return f'User <{username}> not found', 404
-
-        logger.info(f'Deleted user <{username}>')
-        return f'Deleted user <{username}>', 200
+        return u_n_v_delete(username)
 
 
 class UserView(MethodView):
@@ -162,32 +102,20 @@ class UserView(MethodView):
     registration or listing all users
     """
 
-    @validate_admin
-    @admin
     def get(self):
         """Returns all users"""
-        return jsonify(user_utils.list_users())
+        return u_v_get()
 
-    @validate_admin  # Only allow registration if the admin login was changed
     def post(self):
         """Register a new user"""
-        if not request.is_json:
-            logger.error('The request needs a valid JSON')
-            raise exceptions.BadRequest('Missing user json', {
-                'username': 'Biskit1943',
-                'password': 'blake2 hash',
-            })
-
-        try:
-            _, answer = user_utils.add_user(request.data)
-        except Exists as e:
-            logger.error(f'Error while creating user ==> {e}')
-            raise exceptions.Conflict(str(e))
-        return jsonify(answer)
+        return u_v_post()
 
 
 class UsersIdAuthView(MethodView):
-    """Provides the HTTP methods for user authentication with the user ID"""
+    """Provides the HTTP methods for user authentication with the user ID
+    Because there are no wrapper needed yet, we don't need to put them into an
+    extra file :)
+    """
 
     def post(self, uid: int):
         """Checks if the user with the id has a valid login (JWT)

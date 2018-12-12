@@ -42,15 +42,15 @@ def validate_admin(func: Callable, *args, **kwargs):
     if login.admin:
         return func(*args, **kwargs)
 
-    u = User.query.filter_by(uid=1).first()
-    if u:
-        if not u.password:
-            return "Admin password is still default!", 401
-        else:
-            login.admin = True
-            return func(*args, **kwargs)
-    else:
-        return "Admin account does not exist", 500
+    # u = User.query.filter_by(uid=1).first()
+    # if u:
+    #     if not u.password:
+    #         return "Admin password is still default!", 401
+    #     else:
+    #         login.admin = True
+    #         return func(*args, **kwargs)
+    # else:
+    #     return "Admin account does not exist", 500
 
 
 @validate_admin
