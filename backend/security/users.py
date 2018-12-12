@@ -4,6 +4,7 @@ as a second wrapper around the called route itself
 For the documentation of the functions see the File where they are called:
 backend/api/routes/users.py
 """
+import base64
 import logging
 
 from flask import (
@@ -13,7 +14,10 @@ from flask import (
 
 from backend.api.routes import exceptions
 from backend.database import user_utils
-from backend.database.exceptions import Exists
+from backend.database.exceptions import (
+    Exists,
+    DoesNotExist,
+)
 from backend.security.validation import (
     admin,
     validate_admin,
@@ -183,4 +187,44 @@ def u_v_post():
     except Exists as e:
         logger.error(f'Error while creating user ==> {e}')
         raise exceptions.Conflict(str(e))
+    return jsonify(answer)
+
+
+#
+# UsersIdAuthView
+#
+def u_i_a_v_post(uid: int):
+    """Checks if the user with the id has a valid login (JWT)
+
+    Args:
+        uid: The id of the user which made the request
+    """
+    password = request.form['password']
+
+    try:
+        answer = user_utils.auth_user(password=password, uid=uid)
+    except DoesNotExist as e:
+        logger.warning(f'Error while logging in ==> {e}')
+        return str(e), 404
+
+    return jsonify(answer)
+
+
+#
+# UsersNameAuthView
+#
+def u_n_a_v_post(username: str):
+    """Checks if the user with the name has a valid login (JWT)
+
+    Args:
+        username: The name of the user which made the request
+    """
+    password = request.form['password']
+
+    try:
+        answer = user_utils.auth_user(password=password, username=username)
+    except DoesNotExist as e:
+        logger.warning(f'Error while logging in ==> {e}')
+        return str(e), 404
+
     return jsonify(answer)

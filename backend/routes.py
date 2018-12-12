@@ -2,7 +2,6 @@
 import logging
 import os
 
-from backend.api.routes import admin
 from backend import (
     app,
     db,
@@ -79,11 +78,5 @@ app.add_url_rule('/player/shuffle',
                  )
 app.add_url_rule('/player/repeat',
                  view_func=player.PlayerRepeat.as_view(name='player_repeat'),
-                 methods=['GET', 'PUT', ]
-                 )
-
-# Admin related endpoints
-app.add_url_rule('/admin',
-                 view_func=admin.Default.as_view(name='admin'),
                  methods=['GET', 'PUT', ]
                  )

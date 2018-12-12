@@ -16,6 +16,8 @@ tags:
   description: "Authentication related requests"
 - name: "Player"
   description: "Player access and control"
+- name: "Admin"
+  description: "Admin stuff, only needed at first start"
 
 definitions:
   # User

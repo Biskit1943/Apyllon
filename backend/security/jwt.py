@@ -57,7 +57,7 @@ def gen_jwt(password: str, uid: int = None, username: str = None) -> Dict:
     NOTE: The user MUST be present in the database
 
     Args:
-        password: The 128 character blake2b hash
+        password: The 64 character blake2b hash
         uid: The uid of the user for which the jwt is
         username: The username of the user for which the jwt is
 

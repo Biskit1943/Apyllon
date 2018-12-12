@@ -33,7 +33,7 @@ function hashPwd(user: User) {
   const input = Buffer.from(user.password);
   const proto = blake2b(64);
   proto.update(input);
-  const h = proto.digest();
-  user.password = btoa(String.fromCharCode.apply(null, new Uint8Array(h)));
+  const h = proto.digest('hex');
+  user.password = h;
   return user;
 }
