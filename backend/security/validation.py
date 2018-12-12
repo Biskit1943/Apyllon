@@ -5,7 +5,6 @@ from typing import Callable
 from decorator import decorator
 from flask import request
 
-from backend.database.models import User
 from backend.security.jwt import validate_token
 
 logger = logging.getLogger(__name__)
