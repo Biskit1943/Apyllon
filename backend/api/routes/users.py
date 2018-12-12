@@ -18,6 +18,8 @@ from backend.security.users import (
     u_n_v_delete,
     u_v_get,
     u_v_post,
+    u_i_a_v_post,
+    u_n_a_v_post,
 )
 from backend.database import user_utils
 from backend.database.exceptions import DoesNotExist
@@ -112,10 +114,7 @@ class UserView(MethodView):
 
 
 class UsersIdAuthView(MethodView):
-    """Provides the HTTP methods for user authentication with the user ID
-    Because there are no wrapper needed yet, we don't need to put them into an
-    extra file :)
-    """
+    """Provides the HTTP methods for user authentication with the user ID"""
 
     def post(self, uid: int):
         """Checks if the user with the id has a valid login (JWT)
@@ -123,15 +122,7 @@ class UsersIdAuthView(MethodView):
         Args:
             uid: The id of the user which made the request
         """
-        password = request.form['password']
-
-        try:
-            answer = user_utils.auth_user(password=password, uid=uid)
-        except DoesNotExist as e:
-            logger.warning(f'Error while logging in ==> {e}')
-            return str(e), 404
-
-        return jsonify(answer)
+        return u_i_a_v_post(uid)
 
 
 class UsersNameAuthView(MethodView):
@@ -143,12 +134,4 @@ class UsersNameAuthView(MethodView):
         Args:
             username: The name of the user which made the request
         """
-        password = request.form['password']
-
-        try:
-            answer = user_utils.auth_user(password=password, username=username)
-        except DoesNotExist as e:
-            logger.warning(f'Error while logging in ==> {e}')
-            return str(e), 404
-
-        return jsonify(answer)
+        return u_n_a_v_post(username)

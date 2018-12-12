@@ -34,5 +34,4 @@ __version__ = get_version()
 
 # Prevent circular imports
 from backend.database import models
-#db.create_all()
 from backend import routes

@@ -7,11 +7,8 @@ logger = logging.getLogger(__name__)
 
 class PlayerPlayPause(MethodView):
 
-    def get(self, username: str):
+    def get(self):
         """Returns the state of the player.
-
-        Args:
-            username: This is just for logging purposes
         """
         return "No!"
 
@@ -27,11 +24,8 @@ class PlayerPlayPause(MethodView):
 
 class PlayerNext(MethodView):
 
-    def get(self, username: str):
+    def get(self):
         """Returns the next song
-
-        Args:
-            username: This is just for logging purposes
         """
         return "No!"
 
@@ -46,11 +40,8 @@ class PlayerNext(MethodView):
 
 class PlayerPrevious(MethodView):
 
-    def get(self, username: str):
+    def get(self):
         """Returns the previous song
-
-        Args:
-            username: This is just for logging purposes
         """
         return "No!"
 
@@ -65,11 +56,8 @@ class PlayerPrevious(MethodView):
 
 class PlayerShuffle(MethodView):
 
-    def get(self, username: str):
+    def get(self):
         """Returns whether shuffle is on or off
-
-        Args:
-            username: This is just for logging purposes
         """
         return "No!"
 
@@ -84,11 +72,8 @@ class PlayerShuffle(MethodView):
 
 class PlayerRepeat(MethodView):
 
-    def get(self, username: str):
+    def get(self):
         """Returns whether repeat is on or off
-
-        Args:
-            username: This is just for logging purposes
         """
         return "No!"
 
