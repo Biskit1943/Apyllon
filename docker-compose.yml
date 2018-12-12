@@ -23,13 +23,13 @@ services:
     expose:
       - 5000
     ports:
-      - 8080:5000
+      - 5000:5000
     networks:
       - apyllon-network
     container_name: apyllon-backend
     volumes:
         - ./backend:/home/backend/backend:ro
-    restart: always
+    restart: "no"
     depends_on:
       - database
     environment:

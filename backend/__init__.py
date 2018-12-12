@@ -10,9 +10,12 @@ from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+
 CORS(app)
+
+db = SQLAlchemy(app, session_options={"autoflush": True})
+migrate = Migrate(app, db)
+
 swagger = Swagger(app, template_file=os.path.join(Config.SWAGGER['doc_dir'], 'template.yml'))
 
 
@@ -31,5 +34,5 @@ __version__ = get_version()
 
 # Prevent circular imports
 from backend.database import models
-from backend.security import jwt, validation
+#db.create_all()
 from backend import routes

@@ -35,7 +35,7 @@ class User(db.Model):
     """
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
-    password_hash = db.Column(db.String(88))
+    password_hash = db.Column(db.String(128))
     password = db.Column(db.Boolean, default=False)
     playlists = db.relationship("Playlist", back_populates="owner", uselist=False)
 

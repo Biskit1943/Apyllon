@@ -32,7 +32,7 @@ def create_admin() -> Tuple[User, Dict]:
     logger.debug(f'Creating admin')
 
     admin = User.query.filter_by(uid=1).first()
-    if admin.username != "admin":
+    if admin and admin.username != "admin":
         logger.critical("Raising error")
         raise RuntimeError("The user with the id 1 exists but the name is not admin")
 
@@ -47,10 +47,9 @@ def create_admin() -> Tuple[User, Dict]:
 #                    Copy this Password and login as admin.                    #
 #                  After that immediately change the password!                 #
 #                                                                              #
-#                        {password}                        #
+#                             {password}                             #
 #                                                                              #
-################################################################################
-''')
+################################################################################''')
     password_hash = blake2b(password.encode()).hexdigest()
 
     if admin:
@@ -62,6 +61,6 @@ def create_admin() -> Tuple[User, Dict]:
     db.session.commit()
     logger.info("Created admin")
 
-    token = jwt.gen_jwt(password=password, username="admin")
+    token = jwt.gen_jwt(password=password_hash, username="admin")
 
     return admin, token
