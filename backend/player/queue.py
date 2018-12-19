@@ -3,6 +3,7 @@ import pafy
 
 class Queue():
     def __init__(self, identifier):
+        print("test")
         self.identifier = identifier
         self.media_list = vlc.MediaList()
 

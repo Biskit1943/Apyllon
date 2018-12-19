@@ -29,12 +29,11 @@ services:
     container_name: apyllon-backend
     volumes:
         - ./backend:/home/backend/backend:ro
-    restart: always
     depends_on:
       - database
     environment:
       - DATABASE_URL=postgresql://root:insecure@database:5432/backend
-    entrypoint: ["sh", "boot_backend.sh"]
+    entrypoint: ["bash", "boot_backend.sh"]
 
   database:
     image: postgres:alpine

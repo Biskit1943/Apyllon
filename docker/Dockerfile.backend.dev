@@ -1,5 +1,5 @@
 # Context must be `Apyllon/`
-FROM python:3.7-alpine
+FROM python:3.7-stretch
 
 LABEL Description="Apyllon - dev edition"
 LABEL Version="0.0.1"
@@ -8,17 +8,16 @@ WORKDIR /home/backend
 
 COPY requirements.txt requirements.txt
 
-RUN apk add --update && \
-    apk add --no-cache \
-    gcc \
-    g++ \
-    musl-dev \
-    linux-headers \
-    postgresql-dev \
+RUN apt-get update && \
+    apt-get --yes  install  \
+    postgresql \
+    postgresql-client \
     openssl \
-    libffi-dev \
-    taglib-dev && \
-    python3 -m venv venv && \
+    vlc-nox \
+    libtag1-dev 
+
+
+RUN python -m venv venv && \
     venv/bin/pip3 install --upgrade pip && \
     venv/bin/pip3 install -r requirements.txt
 
@@ -28,16 +27,17 @@ COPY \
     "config.py" \
     "docker/boot_backend.sh" \
     "./"
+
 COPY backend backend
+
 COPY migrations migrations
 
-RUN adduser -D backend && \
-    mkdir -p /certificates && \
-    chown -R backend: /home/backend && \
-    chown -R backend: /certificates && \
-    chmod +x boot_backend.sh
+RUN useradd -ms /bin/bash backend
 
-USER backend
+RUN mkdir -p /certificates && \
+    chown -R  backend: /home/backend && \
+    chown -R  backend: /certificates && \
+    chmod +x  boot_backend.sh
 
 ENV FLASK_APP apyllon.py
 
