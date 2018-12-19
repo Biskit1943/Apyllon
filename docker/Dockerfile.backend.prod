@@ -16,6 +16,7 @@ RUN apk add --update && \
     linux-headers \
     postgresql-dev \
     openssl \
+	vlc \
     libffi-dev \
     taglib-dev && \
     python3 -m venv venv && \

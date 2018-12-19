@@ -4,9 +4,9 @@ from flask.views import MethodView
 
 from backend.security.validation import user
 
-from backend.player.import player
+from backend.player import player
 
-player = Player()
+player = player.Player()
 #TODO:  This is just done for mocking
 player.add_youtube("https://www.youtube.com/watch?v=LBZ-3Ugj1AQ")
 player.add_youtube("https://www.youtube.com/watch?v=U5u9glfqDsc")

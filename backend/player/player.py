@@ -1,7 +1,7 @@
 import vlc
 import pafy
 import time
-from queue import Queue
+from backend.player.queue import Queue
 from abc import ABC
 import logging 
 import os
@@ -25,16 +25,13 @@ class Player():
         """
         self.player = vlc.MediaListPlayer()
 
-        if(not queue):
-            self.queue=Queue('default')
-        else:
-            self.queue=queue
+        #TODO: Add playlist suppoert
+        self.queue=Queue('default')
 
         self.player.set_media_list(self.queue.media_list)
 
         self.playing = False
     
-
     def play(self):
         """
         Play the set mediafile.
@@ -85,9 +82,6 @@ class Player():
     def add_youtube(self, url):
         self.queue.add_youtube(url)
 
-    def stop(self):
-        self.player.stop()
-
     def set_playback_mode(self, mode):
         if mode == "loop":
             self.player.set_playback_mode(vlc.PlaybackMode.loop)
@@ -96,7 +90,7 @@ class Player():
         elif mode == "default":
             self.player.set_playback_mode(vlc.PlaybackMode.default)
         else:
-            raise NoPlaybackMode(f'{mode} is not a playbackmode)
+            raise NoPlaybackMode(f'{mode} is not a playbackmode')
 
 
 class NoPlaybackMode(Exception):
