@@ -3,6 +3,7 @@ import pafy
 import time
 from backend.player.queue import Queue
 from abc import ABC
+
 import logging 
 import os
 logging = logging.getLogger("__main__")
@@ -41,7 +42,6 @@ class Player():
         """
         self.player.play()
         self.playing = True
-        logging.info("Starting media play")
 
     def stop(self):
         """
@@ -50,7 +50,6 @@ class Player():
         """
         self.player.stop()
         self.playing = False
-        logging.info("Stoping media play")
 
     def pause(self):
         """
@@ -59,19 +58,15 @@ class Player():
         """
         self.player.pause()
         self.plaing = False
-        logging.info("Pausing media play")
 
-    def load_youtube(self, url):
-        """
-        Overides the default load method of Player object.
-        Uses pafy to get the url for the best availible audiostream.
-        Args:
-            url (string): the url for the youtube video to play
-        """
-        video = pafy.new(url)
-        bestaudio = video.getbestaudio()
-        self.player.set_mrl(bestaudio.url)
-        logging.info("Loading Mediafile from youtube url:  " + str(url))
+    def play_pause(self):
+        if self.plaing is True:
+            self.pause()
+        else:
+            self.play()
+
+    def next(self):
+        self.player.next()
 
     def previous(self):
         self.player.previous()

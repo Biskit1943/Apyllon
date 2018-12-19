@@ -13,6 +13,7 @@ services:
     container_name: apyllon-frontend
     volumes:
       - ./frontend:/home/frontend/frontend
+      - certificates:/home/frontend/certificates:ro
     restart: always
 
   backend:
@@ -22,16 +23,13 @@ services:
     expose:
       - 5000
     ports:
-      - 5000:5000
+      - 8080:5000
     networks:
       - apyllon-network
     container_name: apyllon-backend
     volumes:
         - ./backend:/home/backend/backend:ro
-<<<<<<< HEAD
-    restart: "no"
-=======
->>>>>>> Change Dockerfile for backend for vlc-nox
+    restart: always
     depends_on:
       - database
     environment:
@@ -54,3 +52,6 @@ services:
 networks:
   apyllon-network:
     driver: bridge
+
+volumes:
+  certificates:
