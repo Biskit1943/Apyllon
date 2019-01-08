@@ -58,6 +58,9 @@ app.add_url_rule('/users/<string:username>/authenticate',
                  view_func=users.UsersNameAuthView.as_view(name='users_name_auth'),
                  methods=['POST', ]
                  )
+app.add_url_rule('/users/<string:username>/authenticate',
+                 view_func=users.UsersNameChangePassword.as_view(name='users_change_password'),
+                 methods=['POST', ])
 
 # Player related endpoints
 app.add_url_rule('/player/play_pause/<string:username>/<string:state>',
@@ -110,4 +113,3 @@ app.add_url_rule('/player/repeat',
                  methods=['GET'],
                  endpoint='repeat'
                  )
-
