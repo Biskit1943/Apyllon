@@ -51,7 +51,7 @@ export class PasswordComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.changePassword(this.user.username, this.f.currentPassword, this.f.password.value)
+    this.authenticationService.changePassword('admin', this.f.currentPassword, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {

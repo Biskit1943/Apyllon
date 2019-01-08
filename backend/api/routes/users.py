@@ -20,6 +20,7 @@ from backend.security.users import (
     u_v_post,
     u_i_a_v_post,
     u_n_a_v_post,
+    u_n_c_p_post
 )
 from backend.database import user_utils
 from backend.database.exceptions import DoesNotExist
@@ -135,3 +136,9 @@ class UsersNameAuthView(MethodView):
             username: The name of the user which made the request
         """
         return u_n_a_v_post(username)
+
+
+class UsersNameChangePassword(MethodView):
+
+    def post(self, username: str):
+        return u_n_c_p_post(username)
