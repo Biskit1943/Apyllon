@@ -236,11 +236,9 @@ def u_n_a_v_post(username: str):
 def u_n_c_p_post(username: str):
     """
     Change Password of User specified by name
-    :return:
     """
     password = request.form['password']
     new_password = request.form['newPassword']
-    logger.debug(username, new_password)
     try:
         answer = user_utils.change_password(new_password, username=username)
     except DoesNotExist as e:
