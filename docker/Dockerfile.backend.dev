@@ -42,4 +42,3 @@ RUN mkdir -p /certificates && \
 ENV FLASK_APP apyllon.py
 
 EXPOSE 5000
-ENTRYPOINT [ "./boot_backend.sh" ]

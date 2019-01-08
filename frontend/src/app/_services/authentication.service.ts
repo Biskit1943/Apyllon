@@ -36,6 +36,11 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
   }
+
+  changePassword(username, password, newPassword) {
+    const data = {username: username, password: hashPwd(password), newPassword: hashPwd(newPassword)};
+    return this.http.post<any>(`${environment.apiUrl}/changePassword`, data);
+  }
 }
 
 function hashPwd(pwd) {

@@ -23,6 +23,7 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatProgressBar} from '@angular/material';
 import {MainSidebarComponent} from './main-sidebar/main-sidebar.component';
 import { PlayerComponent } from './player/player.component';
+import { PasswordComponent } from './password';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PlayerComponent } from './player/player.component';
     RegisterComponent,
     MainSidebarComponent,
     PlayerComponent,
-    MatProgressBar
+    MatProgressBar,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,

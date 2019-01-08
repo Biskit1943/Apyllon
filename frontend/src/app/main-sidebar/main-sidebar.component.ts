@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {User} from "../_models";
+import {User} from '../_models';
 
 @Component({
   selector: 'app-main-sidebar',
