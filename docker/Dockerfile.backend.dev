@@ -48,4 +48,3 @@ RUN adduser backend audio
 USER backend
 
 EXPOSE 5000
-ENTRYPOINT [ "./boot_backend.sh" ]
