@@ -1,0 +1,38 @@
+Change User Password
+---
+tags:
+  - User
+parameters:
+  - in: body
+    name: username
+    description: username of the user which ist requested
+    type: FormData
+    required: false
+    example: Biskit1943
+  - in: body
+    name: password
+    description: The password of the user as blake2b hash
+    type: string
+    required: true
+    example: 5bb55...faac2
+  - in: body
+    name: newPassword
+    description: The new password of the user as blake2b hash
+    type: string
+    required: body
+    example: 5bb55...faac2
+responses:
+  200:
+    description: The updated user
+    schema:
+      $ref: '#/definitions/UserJWT'
+  400:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/BadRequest'
+  404:
+    description: User with the given id not found
+  409:
+    description: Conflict in request
+    schema:
+      $ref: '#/definitions/Conflict'
