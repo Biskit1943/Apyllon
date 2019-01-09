@@ -25,6 +25,8 @@ class Player():
             player: holding the vlc.Mediaplayer object
         """
         self.player = vlc.MediaListPlayer()
+        self.playbackMode = "default"
+        self.set_playback_mode(self.playbackMode)
 
         #TODO: Add playlist suppoert
         self.queue=Queue('default')
@@ -80,12 +82,18 @@ class Player():
     def set_playback_mode(self, mode):
         if mode == "loop":
             self.player.set_playback_mode(vlc.PlaybackMode.loop)
+            self.playbackMode = mode
         elif mode == "repeat":
             self.player.set_playback_mode(vlc.PlaybackMode.repeat)
+            self.playbackMode = mode
         elif mode == "default":
             self.player.set_playback_mode(vlc.PlaybackMode.default)
+            self.playbackMode = mode
         else:
             raise NoPlaybackMode(f'{mode} is not a playbackmode')
+
+    def get_playback_mode(self):
+        return self.playbackMode
 
 
 class NoPlaybackMode(Exception):
