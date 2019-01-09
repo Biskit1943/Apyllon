@@ -37,8 +37,9 @@ def create_admin() -> Tuple[User, Dict]:
         raise RuntimeError("The user with the id 1 exists but the name is not admin")
 
     if admin and admin.password:
-        logger.error(f'Admin already exist')
-        raise Exists(f'Admin already exist')
+        logger.debug(f'Admin already exist and password already changed')
+        token = jwt.gen_jwt(password=admin.password_hash, username="admin")
+        return admin, token
 
     alphabet = string.ascii_letters + string.digits
     password = ''.join(secrets.choice(alphabet) for _ in range(20))

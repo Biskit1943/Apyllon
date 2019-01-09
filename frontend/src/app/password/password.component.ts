@@ -16,7 +16,7 @@ export class PasswordComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  @Input() user: User = null;
+  user: String = '';
 
 
   constructor(
@@ -24,10 +24,14 @@ export class PasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private activatedRoute: ActivatedRoute,
     private alertService: AlertService) {
   }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.user = params['user'];
+    });
     this.passwordForm = this.formBuilder.group({
       currentPassword: ['', Validators.required],
       password: ['', Validators.required],
@@ -39,7 +43,7 @@ export class PasswordComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
-    return this.passwordForm.controls;
+    return this.passwordForm.value;
   }
 
   onSubmit() {
@@ -51,7 +55,7 @@ export class PasswordComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.changePassword('admin', this.f.currentPassword, this.f.password.value)
+    this.authenticationService.changePassword(this.user, this.f.currentPassword, this.f.password)
       .pipe(first())
       .subscribe(
         data => {

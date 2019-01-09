@@ -38,13 +38,12 @@ export class AuthenticationService {
   }
 
   changePassword(username, password, newPassword) {
-    const data = {username: username, password: hashPwd('passwort123'), newPassword: hashPwd('passwort123')};
-    return this.http.post<any>(`${environment.apiUrl}/users/${username}/changePassword`, data);
+    const data = {'username': username, 'password': hashPwd(password), 'newPassword': hashPwd(newPassword)};
+    return this.http.put<any>(`${environment.apiUrl}/users/changepw`, JSON.stringify(data));
   }
 }
 
 function hashPwd(pwd) {
-  console.log('!!!1', pwd);
   const input = Buffer.from(pwd);
   const proto = blake2b(64);
   proto.update(input);

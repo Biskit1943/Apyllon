@@ -27,7 +27,7 @@
       </button>
       <div class="toolbar-buttons">
         <div class="logout-button">
-          <p><a [routerLink]="['/password']">Change Password</a></p>
+          <p><a [routerLink]="['/password']" [queryParams]="{'user': currentUser.username}">Change Password</a></p>
         </div>
         <div class="logout-button">
           <p><a [routerLink]="['/login']">Logout</a></p>
