@@ -102,6 +102,26 @@ definitions:
     items:
       $ref: "#/definitions/Song"
 
+  Username:
+    type: object
+    properties:
+      username:
+        type: string
+        description: The name of a user
+        example: Biskit1943
+
+  PlayPause:
+    type: object
+    properties:
+      username:
+        type: string
+        description: The name of a user
+        example: Biskit1943
+      state:
+        type: string
+        description: The state the player will be set. Possible values are play, pause and stop
+
+
   # Errors
   BadRequest:
     type: object

@@ -141,4 +141,7 @@ class UsersNameAuthView(MethodView):
 class UsersNameChangePassword(MethodView):
 
     def put(self):
+        """
+        Changes the current password of a specified user
+        """
         return u_n_c_p_put()

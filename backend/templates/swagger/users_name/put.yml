@@ -11,7 +11,7 @@ parameters:
     required: true
     example: Biskit1943
   - in: body
-    name: user
+    name: body
     description: The new user information
     required: true
     schema:
