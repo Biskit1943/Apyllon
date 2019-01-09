@@ -2,6 +2,12 @@ Set shuffle
 ---
 tags:
   - Player
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: "#/definitions/username"
 responses:
   200:
     type: object

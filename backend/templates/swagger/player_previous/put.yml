@@ -2,6 +2,12 @@ Starts playing the previous Song (if available)
 ---
 tags:
   - Player
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: "#/definitions/username"
 responses:
   200:
     description: The previous song

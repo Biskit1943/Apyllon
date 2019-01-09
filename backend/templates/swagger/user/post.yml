@@ -4,7 +4,7 @@ tags:
   - User
 parameters:
   - in: body
-    name: user
+    name: body
     description: The user information
     required: true
     schema:

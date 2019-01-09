@@ -2,6 +2,12 @@ Starts playing the next Song (if available)
 ---
 tags:
   - Player
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: "#/definitions/Username"
 responses:
   200:
     description: The next song

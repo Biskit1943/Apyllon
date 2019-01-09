@@ -8,7 +8,8 @@ WORKDIR /home/backend
 
 COPY requirements.txt requirements.txt
 
-RUN apt-get update && \
+RUN dpkg --configure -a && \
+    apt-get update && \
     apt-get --yes  install  \
     postgresql \
     postgresql-client \
@@ -40,6 +41,8 @@ RUN mkdir -p /certificates && \
     chmod +x  boot_backend.sh
 
 ENV FLASK_APP apyllon.py
+
+USER backend
 
 EXPOSE 5000
 ENTRYPOINT [ "./boot_backend.sh" ]

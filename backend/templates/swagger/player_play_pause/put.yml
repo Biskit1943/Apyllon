@@ -2,6 +2,12 @@ Sets the state of the player. If play -> pause and vice versa
 ---
 tags:
   - Player
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: "#/definitions/PlayPause"
 responses:
   200:
     description: The new state of the player
