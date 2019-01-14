@@ -34,7 +34,6 @@ services:
       - database
     environment:
       - DATABASE_URL=postgresql://root:insecure@database:5432/backend
-    entrypoint: ["bash", "boot_backend.sh"]
 
   database:
     image: postgres:alpine
