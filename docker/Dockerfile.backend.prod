@@ -16,7 +16,7 @@ RUN apk add --update && \
     linux-headers \
     postgresql-dev \
     openssl \
-	vlc \
+    vlc \
     libffi-dev \
     taglib-dev && \
     python3 -m venv venv && \
@@ -24,7 +24,7 @@ RUN apk add --update && \
     venv/bin/pip3 install -r requirements.txt
 
 COPY \
-    "logger.ini" \
+    "logger.py" \
     "apyllon.py" \
     "config.py" \
     "docker/boot_backend.sh" \
