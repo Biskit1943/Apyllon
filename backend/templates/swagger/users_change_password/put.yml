@@ -19,7 +19,7 @@ parameters:
     name: newPassword
     description: The new password of the user as blake2b hash
     type: string
-    required: body
+    required: true
     example: 5bb55...faac2
 responses:
   200:
