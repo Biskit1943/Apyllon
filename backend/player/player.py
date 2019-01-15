@@ -42,6 +42,7 @@ class Player():
         TODO:
             * Check if File is already loaded.
         """
+        print("Now playing")
         self.player.play()
         self.playing = True
 

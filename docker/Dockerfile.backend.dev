@@ -15,7 +15,8 @@ RUN dpkg --configure -a && \
     postgresql-client \
     openssl \
     vlc-nox \
-    libtag1-dev 
+    libtag1-dev \
+    alsa-utils
 
 
 RUN python -m venv venv && \
@@ -41,6 +42,8 @@ RUN mkdir -p /certificates && \
     chmod +x  boot_backend.sh
 
 ENV FLASK_APP apyllon.py
+
+RUN adduser backend audio
 
 USER backend
 
