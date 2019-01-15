@@ -63,7 +63,7 @@ class PlayerShuffle(MethodView):
         return p_s_put()
 
 
-class PlayerRepeat(MethodView):
+class PlayerLoop(MethodView):
 
     def get(self):
         """Returns whether repeat is on or off"""

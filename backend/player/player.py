@@ -1,11 +1,9 @@
-import vlc
-import pafy
-import time
-from backend.player.queue import Queue
-from abc import ABC
+import logging
 
-import logging 
-import os
+import vlc
+
+from backend.player.queue import Queue
+
 logging = logging.getLogger("__main__")
 
 """
@@ -15,10 +13,12 @@ TODO:
     * Test []
 """
 
+
 class Player():
     """
     Base player class, playing audio and video using libvlc
     """
+
     def __init__(self, queue=None):
         """
         Attributes: 
@@ -26,13 +26,14 @@ class Player():
         """
         self.player = vlc.MediaListPlayer()
 
-        #TODO: Add playlist suppoert
-        self.queue=Queue('default')
+        # TODO: Add playlist support
+        self.queue = Queue('default')
 
         self.player.set_media_list(self.queue.media_list)
 
         self.playing = False
-    
+        self.mode = "default"
+
     def play(self):
         """
         Play the set mediafile.
@@ -57,10 +58,10 @@ class Player():
 
         """
         self.player.pause()
-        self.plaing = False
+        self.playing = False
 
     def play_pause(self):
-        if self.plaing is True:
+        if self.playing is True:
             self.pause()
         else:
             self.play()
@@ -80,12 +81,18 @@ class Player():
     def set_playback_mode(self, mode):
         if mode == "loop":
             self.player.set_playback_mode(vlc.PlaybackMode.loop)
+            self.mode = mode
         elif mode == "repeat":
             self.player.set_playback_mode(vlc.PlaybackMode.repeat)
+            self.mode = mode
         elif mode == "default":
             self.player.set_playback_mode(vlc.PlaybackMode.default)
+            self.mode = mode
         else:
             raise NoPlaybackMode(f'{mode} is not a playbackmode')
+
+    def get_playback_mode(self):
+        return self.mode
 
 
 class NoPlaybackMode(Exception):
