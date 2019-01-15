@@ -18,14 +18,13 @@ player.add_youtube("https://www.youtube.com/watch?v=U5u9glfqDsc")
 #
 # PlayerPlayPause
 #
-@user
+
 def p_p_p_get():
     """Returns the state of the player"""
     return "GET /play/pause"
 
 
-@user
-def p_p_p_put(state, username):
+def p_p_p_put():
     """Sets the state of the player
 
     Args:
@@ -33,8 +32,6 @@ def p_p_p_put(state, username):
         username: This is just for logging purposes
     """
     req = request.get_json(force=True)
-    state = state
-    username = username
     try:
         username = req['username']
         state = req['state']
@@ -55,13 +52,12 @@ def p_p_p_put(state, username):
 #
 # PlayerNext
 #
-@user
+
 def p_n_get():
     """Returns the next song"""
     return 'GET /player/next'
 
 
-@user
 def p_n_put():
     """Plays the next song
 
@@ -81,13 +77,11 @@ def p_n_put():
 #
 # PlayerPrevious
 #
-@user
 def p_p_get():
     """Returns the previous song"""
     return 'GET /player/previous'
 
 
-@user
 def p_p_put():
     """Plays the previous song
 
@@ -107,13 +101,11 @@ def p_p_put():
 #
 # PlayerShuffle
 #
-@user
 def p_s_get():
     """Returns whether shuffle is on or off"""
     return 'GET /player/shuffle'
 
 
-@user
 def p_s_put():
     """Sets shuffle to the opposite value
 
@@ -132,14 +124,12 @@ def p_s_put():
 #
 # PlayerRepeat
 #
-@user
 def p_r_get():
     """Returns whether repeat is on or off"""
     state = player.get_playback_mode()
     return state, 200
 
 
-@user
 def p_r_put():
     """Sets repeat to the opposite value
 

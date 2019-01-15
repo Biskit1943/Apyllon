@@ -65,7 +65,6 @@ def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:
         raise Exists(f'pser with username <{username}> already exist')
 
     user = User(username=username, password_hash=password)
-    # print('users!!!!!!!!!!!!', User.query.all())
     db.session.add(user)
     db.session.commit()
 
