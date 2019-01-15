@@ -15,7 +15,7 @@ export class PlayerService {
   }
 
   play(username, state) {
-    return this.http.put(`${environment.apiUrl}/player/play-pause/`,
+    return this.http.put(`${environment.apiUrl}/player/play-pause`,
       JSON.stringify({'username': username, 'state': state}));
   }
 

@@ -25,7 +25,7 @@ def p_p_p_get():
 
 
 @user
-def p_p_p_put():
+def p_p_p_put(state, username):
     """Sets the state of the player
 
     Args:
@@ -33,6 +33,8 @@ def p_p_p_put():
         username: This is just for logging purposes
     """
     req = request.get_json(force=True)
+    state = state
+    username = username
     try:
         username = req['username']
         state = req['state']
