@@ -6,7 +6,7 @@ parameters:
   - in: body
     name: username
     description: username of the user which ist requested
-    type: FormData
+    type: string
     required: false
     example: Biskit1943
   - in: body

@@ -1,11 +1,9 @@
-import vlc
-import pafy
-import time
-from backend.player.queue import Queue
-from abc import ABC
+import logging
 
-import logging 
-import os
+import vlc
+
+from backend.player.queue import Queue
+
 logging = logging.getLogger("__main__")
 
 """
@@ -15,10 +13,12 @@ TODO:
     * Test []
 """
 
+
 class Player():
     """
     Base player class, playing audio and video using libvlc
     """
+
     def __init__(self, queue=None):
         """
         Attributes: 
@@ -28,13 +28,14 @@ class Player():
         self.playbackMode = "default"
         self.set_playback_mode(self.playbackMode)
 
-        #TODO: Add playlist suppoert
-        self.queue=Queue('default')
+        # TODO: Add playlist support
+        self.queue = Queue('default')
 
         self.player.set_media_list(self.queue.media_list)
 
         self.playing = False
-    
+        self.mode = "default"
+
     def play(self):
         """
         Play the set mediafile.
@@ -60,10 +61,10 @@ class Player():
 
         """
         self.player.pause()
-        self.plaing = False
+        self.playing = False
 
     def play_pause(self):
-        if self.plaing is True:
+        if self.playing is True:
             self.pause()
         else:
             self.play()

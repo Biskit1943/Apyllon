@@ -4,10 +4,13 @@ tags:
   - Player
 parameters:
   - in: body
-    name: body
+    name: username
+    type: string
     required: true
-    schema:
-      $ref: "#/definitions/PlayPause"
+  - in: body
+    name: state
+    type: string
+    required: true
 responses:
   200:
     description: The new state of the player
