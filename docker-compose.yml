@@ -29,6 +29,9 @@ services:
     container_name: apyllon-backend
     volumes:
         - ./backend:/home/backend/backend:ro
+        - /tmp/.X11-unix:/tmp/.X11-unix
+    devices:
+        - "/dev/snd:/dev/snd"
     restart: always
     depends_on:
       - database
