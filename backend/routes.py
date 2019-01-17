@@ -80,7 +80,7 @@ app.add_url_rule('/player/shuffle',
                  methods=['PUT', 'GET', ],
                  )
 app.add_url_rule('/player/repeat',
-                 view_func=player.PlayerRepeat.as_view(name='player_repeat'),
+                 view_func=player.PlayerLoop.as_view(name='player_repeat'),
                  methods=['PUT', 'GET', ],
                  )
 app.add_url_rule('/player/playlist',
