@@ -72,7 +72,10 @@ class Player():
         self.player.play()
 
     def previous(self):
-        pass
+        if self.playing:
+            self.player.pause()
+        self.player.set_mrl(self.queue.get_previous_mrl())
+        self.player.play()
 
     def add_local(self, filepath):
         self.queue.add_local(filepath)
