@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlayerService, AlertService} from '../_services';
 
 @Component({
   selector: 'app-sidebar-content-folders',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarContentFoldersComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  songs = [];
+  constructor(private player: PlayerService, private alertService: AlertService) {
   }
 
+  ngOnInit() {
+    this.player.listSongs().subscribe(songs => {
+      console.log(songs);
+    }, err => {
+      this.alertService.error(err);
+    });
+  }
 }

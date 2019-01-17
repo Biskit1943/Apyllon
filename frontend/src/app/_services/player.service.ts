@@ -32,7 +32,7 @@ export class PlayerService {
   }
 
   prev(username) {
-    return this.http.put(`${environment.apiUrl}/player/previous/${username}`,
+    return this.http.put(`${environment.apiUrl}/player/previous`,
       JSON.stringify({'username': username}));
   }
 
@@ -41,7 +41,7 @@ export class PlayerService {
   }
 
   shuffle(username) {
-    return this.http.put(`${environment.apiUrl}/player/shuffle/${username}`,
+    return this.http.put(`${environment.apiUrl}/player/shuffle`,
       JSON.stringify({'username': username}));
   }
 
@@ -50,7 +50,11 @@ export class PlayerService {
   }
 
   repeat(username) {
-    return this.http.put(`${environment.apiUrl}/player/repeat/${username}`,
+    return this.http.put(`${environment.apiUrl}/player/repeat`,
       JSON.stringify({'username': username}));
+  }
+
+  listSongs() {
+    return this.http.get(`${environment.apiUrl}/list`);
   }
 }

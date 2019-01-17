@@ -28,7 +28,7 @@ def index():
 
 @app.route('/list')
 def ls():
-    return list_songs(), 200
+    return list_songs()
 
 
 @app.teardown_appcontext
