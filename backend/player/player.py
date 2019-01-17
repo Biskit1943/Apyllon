@@ -2,7 +2,7 @@ import logging
 
 import vlc
 
-from backend.player.queue import Queue
+from queue import Queue
 
 logging = logging.getLogger("__main__")
 
@@ -43,7 +43,6 @@ class Player():
         TODO:
             * Check if File is already loaded.
         """
-        print("Now playing")
         self.player.play()
         self.playing = True
 
@@ -78,6 +77,10 @@ class Player():
     def add_local(self, filepath):
         self.queue.add_local(filepath)
 
+    def add_local_database_object(self, database_object):
+        #TODO: Return new playlist as json
+        self.queue.add_local_database_object(database_object)
+
     def add_youtube(self, url):
         self.queue.add_youtube(url)
 
@@ -97,6 +100,17 @@ class Player():
     def get_playback_mode(self):
         return self.playbackMode
 
+    def get_queue_name(self):
+        return self.queue.identifier
+
+    def get_current_meta(self):
+        #TODO: Json String
+        media = self.player.get_media_player().get_media().get_meta()
+        print(media)
+
+    def get_playlist_meta(self):
+        #TOD0: Json String
+        pass
 
 class NoPlaybackMode(Exception):
     def __init__(self, *args, **kwargs):

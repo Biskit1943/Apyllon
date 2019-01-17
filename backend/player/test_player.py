@@ -1,11 +1,23 @@
 from player import Player
 import time
 
-player = Player()
-player.add_local("glitch.m4a")
-player.add_youtube("https://www.youtube.com/watch?v=LBZ-3Ugj1AQ")
-player.play()
+class database_object():
+    def __init__(self):
+        self.artist = "Tool"
+        self.title = "Sober"
+        self.album = "Lateralus"
+        self.genre = "Rock"
+        self.filepath = "./glitch.m4a"
 
-time.sleep(10)
-player.next()
-time.sleep(10)
+
+databaseObj = database_object()
+
+
+player = Player()
+print(player.get_queue_name())
+player.add_local_database_object(databaseObj)
+player.play()
+time.sleep(2)
+player.get_current_meta()
+time.sleep(60)
+
