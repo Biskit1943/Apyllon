@@ -6,6 +6,9 @@ from flask import request, jsonify
 
 from backend.security.validation import user
 from backend.player import player
+from backend.database.song_utils import get_song
+from backend.database.exceptions import DoesNotExist
+from backend.player.exceptions import NotFound
 
 logger = logging.getLogger(__name__)
 
@@ -152,14 +155,46 @@ def p_r_put():
 #
 @user
 def p_pl_get():
-    return 'GET /plauer/playlist'
+    """Returns a list with """
+    playlist = player.get_playlist_meta()
+    return jsonify(playlist), 200
 
 
 @user
 def p_pl_put():
-    return 'GET /plauer/playlist'
+    req = request.get_json(force=True)
+    try:
+        username = req['username']
+        type_ = req['type']
+        path = req['path']
+    except ValueError as e:
+        logger.error(f'missing parameters in body: {req}')
+        return str(e), 400
+
+    if type_ == "file":
+        try:
+            song = get_song(path)
+        except DoesNotExist as e:
+            logger.debug(f'[raise] {e}')
+            return str(e), 404
+        playlist = player.add_local_databse_object(song)
+
+    elif type == "youtube":
+        playlist = player.add_youtube(path)
+
+    else:
+        logger.error(f'type {type_} unknown')
+        return f'type {type_} is not a valid type for a playable item', 400
+
+    logger.info(f'Playlist changed by {username}. Added type: {type_} with path: {path}')
+    return jsonify(playlist), 200
 
 
 @user
-def p_pl_delete():
-    return 'GET /plauer/playlist'
+def p_pl_delete(index: int, title: str):
+    try:
+        song = player.remove_from_playlist(index, title)
+    except NotFound as e:
+        return str(e), 404
+
+    return jsonify(song)

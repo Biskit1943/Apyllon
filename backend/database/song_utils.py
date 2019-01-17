@@ -3,8 +3,14 @@ import logging
 from typing import Dict
 
 from backend import db
-from backend.database.exceptions import Exists
-from backend.database.filepath_utils import is_unique
+from backend.database.exceptions import (
+    Exists,
+    DoesNotExist,
+)
+from backend.database.filepath_utils import (
+    is_unique,
+    get_filepath,
+)
 from backend.database.models import (
     Song,
     Filepath,
@@ -76,3 +82,25 @@ def list_songs() -> Dict:
 
     logger.debug(f'returning a list with len = {len(songs_list)}')
     return songs_list
+
+
+def get_song(path: str) -> Song:
+    """Returns a song object from the database with the given path
+
+    Args:
+        path: The path to the song
+
+    Returns:
+        The corresponding song obejct
+    """
+    try:
+        filepath = get_filepath(path)
+    except DoesNotExist as e:
+        logger.debug(f'[raise] {e}')
+        raise
+
+    song = Song.query.filter_by(Song.filepath is filepath).first()
+    if not song:
+        logger.error(f'Filepath was found but not the corresponding song: {path}')
+        raise DoesNotExist(f'No such song with path {path}')
+    return song

@@ -11,5 +11,7 @@ parameters:
 responses:
   200:
     description: Removed item
+    schema:
+      $ref: "#/definitions/Song"
   404:
     description: Item not found

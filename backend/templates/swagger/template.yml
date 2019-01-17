@@ -114,8 +114,8 @@ definitions:
       song:
         description: A song
         $ref: "#/definitions/Song"
-      number:
-        description: The numver in the current playlist
+      index:
+        description: The index in the current playlist
         type: integer
         example: 1
 
@@ -135,6 +135,25 @@ definitions:
         description: The path to the file or the url(-path)
         type: string
         example: https://www.youtube.com/watch?v=fVtkAGJvNu8
+      username:
+        type: string
+        description: The name of the user who called this route
+        example: Biskit1943
+
+  PlaylistRemove:
+    properties:
+      index:
+        description: The index of the song
+        type: integer
+        example: 1
+      title:
+        description: The title of the song, to make sure not the wrong item is deleted
+        type: string
+        example: rockstar
+      username:
+        type: string
+        description: The name of the user who called this route
+        example: Biskit1943
 
 # Player
   PlayPause:
