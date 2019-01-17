@@ -4,8 +4,9 @@ import time
 from backend.player.queue import Queue
 from abc import ABC
 
-import logging 
+import logging
 import os
+
 logging = logging.getLogger("__main__")
 
 """
@@ -15,10 +16,12 @@ TODO:
     * Test []
 """
 
+
 class Player():
     """
     Base player class, playing audio and video using libvlc
     """
+
     def __init__(self, queue=None):
         """
         Attributes: 
@@ -28,13 +31,13 @@ class Player():
         self.playbackMode = "default"
         self.set_playback_mode(self.playbackMode)
 
-        #TODO: Add playlist suppoert
-        self.queue=Queue('default')
+        # TODO: Add playlist suppoert
+        self.queue = Queue('default')
 
         self.player.set_media_list(self.queue.media_list)
 
         self.playing = False
-    
+
     def play(self):
         """
         Play the set mediafile.

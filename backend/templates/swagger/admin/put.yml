@@ -1,7 +1,0 @@
-Changes the password of the admin
----
-tags:
-  - Admin
-responses:
-  200:
-    description: Password changes successfully

@@ -74,9 +74,13 @@ app.add_url_rule('/player/previous',
                  )
 app.add_url_rule('/player/shuffle',
                  view_func=player.PlayerShuffle.as_view(name='player_shuffle'),
-                 methods=['PUT', 'GET'],
+                 methods=['PUT', 'GET', ],
                  )
 app.add_url_rule('/player/repeat',
                  view_func=player.PlayerRepeat.as_view(name='player_repeat'),
-                 methods=['PUT', 'GET'],
+                 methods=['PUT', 'GET', ],
+                 )
+app.add_url_rule('/player/playlist',
+                 view_func=player.PlayerRepeat.as_view(name='player_playlist'),
+                 methods=['PUT', 'GET', 'DELETE', ],
                  )

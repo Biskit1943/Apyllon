@@ -120,3 +120,21 @@ def p_r_put():
     """
     player.set_playback_mode("repeat")
     return 'PUT /player/repeat'
+
+
+#
+# PlayerPlaylist
+#
+@user
+def p_pl_get():
+    return 'GET /plauer/playlist'
+
+
+@user
+def p_pl_put():
+    return 'GET /plauer/playlist'
+
+
+@user
+def p_pl_delete():
+    return 'GET /plauer/playlist'
