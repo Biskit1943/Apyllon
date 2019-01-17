@@ -56,7 +56,7 @@ def add_user(data: Union[Dict, str]) -> Tuple[User, Dict]:
         logger.error(f'Error while adding user ==> {e}')
         raise
 
-    if len(password) != 88:  # Blake2b.hexdigest() -> 128 chars for some reason Angular returns 88 TODO check this
+    if len(password) != 128:
         logger.error(f'password length does not match')
         raise ValueError(f'password has {len(password)} characters but must be 128 characters long')
 
@@ -207,7 +207,6 @@ def change_password(password: str, uid: int = None, username: str = None):
         DoesNotExist: When the user does not exist
         ValueError: If the Password does not meet the Blake2b length
     """
-    logger.debug(f'change_password({password}, {uid}, {username})')
     try:
         data = _filter_dict(uid=uid, username=username)
     except KeyError as e:
@@ -219,7 +218,7 @@ def change_password(password: str, uid: int = None, username: str = None):
         logger.error(f'The user <{data}> does not exit')
         raise DoesNotExist(f'The user <{data}> does not exit')
 
-    if len(password) != 88:
+    if len(password) != 128:
         logger.error(f'password length does not match')
         raise ValueError(f'password has {len(password)} characters but must be 128 characters long')
 

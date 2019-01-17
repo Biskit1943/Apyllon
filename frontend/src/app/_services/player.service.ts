@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,12 @@ export class PlayerService {
   }
 
   isPlaying() {
-    return this.http.get(`${environment.apiUrl}/player/play_pause`);
+    return this.http.get(`${environment.apiUrl}/player/play-pause`);
   }
 
   play(username, state) {
-    return this.http.put(`${environment.apiUrl}/player/play_pause/${username}/${state}`, null);
+    return this.http.put(`${environment.apiUrl}/player/play-pause`,
+      JSON.stringify({'username': username, 'state': state}));
   }
 
   getNext() {
@@ -23,7 +24,7 @@ export class PlayerService {
   }
 
   next(username) {
-    return this.http.put(`${environment.apiUrl}/player/next/${username}`, null);
+    return this.http.put(`${environment.apiUrl}/player/next`, JSON.stringify({'username': username}));
   }
 
   getPrev() {
@@ -31,7 +32,8 @@ export class PlayerService {
   }
 
   prev(username) {
-    return this.http.put(`${environment.apiUrl}/player/previous/${username}`, null);
+    return this.http.put(`${environment.apiUrl}/player/previous/${username}`,
+      JSON.stringify({'username': username}));
   }
 
   isShuffle() {
@@ -39,14 +41,16 @@ export class PlayerService {
   }
 
   shuffle(username) {
-    return this.http.put(`${environment.apiUrl}/player/play_pause/${username}`, null);
+    return this.http.put(`${environment.apiUrl}/player/shuffle/${username}`,
+      JSON.stringify({'username': username}));
   }
 
   isRepeat() {
-    return this.http.get(`${environment.apiUrl}/player/repeat`);
+    return this.http.get(`${environment.apiUrl}/player/loop`);
   }
 
   repeat(username) {
-    return this.http.put(`${environment.apiUrl}/player/play_pause/${username}`, null);
+    return this.http.put(`${environment.apiUrl}/player/repeat/${username}`,
+      JSON.stringify({'username': username}));
   }
 }

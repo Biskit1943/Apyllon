@@ -54,7 +54,6 @@ def u_i_v_get(uid: int):
 
 
 @validate_admin
-@admin
 def u_i_v_put(uid: int):
     """Creates a user with the given id
 
@@ -122,7 +121,6 @@ def u_n_v_get(username: str):
 
 
 @validate_admin
-@admin
 def u_n_v_put(username: str):
     """Creates a user with the given name
 
@@ -172,7 +170,8 @@ def u_v_get():
     return jsonify(user_utils.list_users())
 
 
-@validate_admin  # Only allow registration if the admin login was changed
+@validate_admin
+# Only allow registration if the admin login was changed
 def u_v_post():
     """Register a new user"""
     if not request.is_json:
@@ -181,7 +180,6 @@ def u_v_post():
             'username': 'Biskit1943',
             'password': 'blake2 hash',
         })
-
     try:
         _, answer = user_utils.add_user(request.data)
     except Exists as e:
@@ -225,6 +223,26 @@ def u_n_a_v_post(username: str):
         answer = user_utils.auth_user(password=password, username=username)
     except DoesNotExist as e:
         logger.warning(f'Error while logging in ==> {e}')
+        return str(e), 404
+
+    return jsonify(answer)
+
+
+#
+# UserChangePassword
+#
+def u_n_c_p_put():
+    """
+    Change Password of User specified by name
+    """
+    req = request.get_json(force=True)
+    username = req['username']
+    password = req['password']
+    new_password = req['newPassword']
+    try:
+        answer = user_utils.change_password(new_password, username=username)
+    except DoesNotExist as e:
+        logger.warning(f'Error while changing Password ==> {e}')
         return str(e), 404
 
     return jsonify(answer)
