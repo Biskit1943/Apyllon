@@ -41,11 +41,9 @@ RUN mkdir -p /certificates && \
     chown -R  backend: /certificates && \
     chmod +x  boot_backend.sh
 
-USER backend
+RUN adduser backend audio
 
 ENV FLASK_APP apyllon.py
-
-RUN adduser backend audio
 
 USER backend
 
