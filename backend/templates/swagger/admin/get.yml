@@ -1,7 +1,0 @@
-Logges the admin in
----
-tags:
-  - Admin
-responses:
-  200:
-    description: If the amdin logged in successfully

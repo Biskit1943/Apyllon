@@ -16,8 +16,8 @@ tags:
   description: "Authentication related requests"
 - name: "Player"
   description: "Player access and control"
-- name: "Admin"
-  description: "Admin stuff, only needed at first start"
+- name: "Playlist"
+  description: "Playlist control"
 
 definitions:
   # User
@@ -52,10 +52,19 @@ definitions:
       username:
         type: string
         example: Biskit1943
+
   Users:
     type: array
     items:
       $ref: '#/definitions/User'
+
+  Username:
+    type: object
+    properties:
+      username:
+        type: string
+        description: The name of a user
+        example: Biskit1943
 
   # Songs
   Song:
@@ -97,19 +106,56 @@ definitions:
             type: string
             description: The genre what else (Comma separated if more than one)
             example: R&B, Hip-Hop/Rap
-  Songs:
-    type: array
-    items:
-      $ref: "#/definitions/Song"
 
-  Username:
+# Playlist
+  PlaylistItem:
     type: object
     properties:
+      song:
+        description: A song
+        $ref: "#/definitions/Song"
+      index:
+        description: The index in the current playlist
+        type: integer
+        example: 1
+
+  Playlist:
+    type: array
+    items:
+      $ref: "#/definitions/PlaylistItem"
+
+  PlaylistAdd:
+    type: object
+    properties:
+      type:
+        description: The type of the item to add. Possible values are file and youtube. More will follow soon
+        type: string
+        example: file
+      path:
+        description: The path to the file or the url(-path)
+        type: string
+        example: https://www.youtube.com/watch?v=fVtkAGJvNu8
       username:
         type: string
-        description: The name of a user
+        description: The name of the user who called this route
         example: Biskit1943
 
+  PlaylistRemove:
+    properties:
+      index:
+        description: The index of the song
+        type: integer
+        example: 1
+      title:
+        description: The title of the song, to make sure not the wrong item is deleted
+        type: string
+        example: rockstar
+      username:
+        type: string
+        description: The name of the user who called this route
+        example: Biskit1943
+
+# Player
   PlayPause:
     type: object
     properties:
@@ -120,7 +166,6 @@ definitions:
       state:
         type: string
         description: The state the player will be set. Possible values are play, pause and stop
-
 
   # Errors
   BadRequest:

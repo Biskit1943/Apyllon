@@ -29,12 +29,19 @@ services:
     container_name: apyllon-backend
     volumes:
         - ./backend:/home/backend/backend:ro
+        - /tmp/.X11-unix:/tmp/.X11-unix
+        - ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native
+        - ~/.config/pulse/cookie:/home/backend/config/pulse/cookie
+    devices:
+        - /dev/snd:/dev/snd
     restart: always
     depends_on:
       - database
     environment:
       - DATABASE_URL=postgresql://root:insecure@database:5432/backend
-    entrypoint: ["bash", "./boot_backend.sh"]
+      - PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native
+    entrypoint: ["bash", "boot_backend.sh"]
+
 
   database:
     image: postgres:alpine

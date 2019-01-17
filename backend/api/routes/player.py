@@ -13,6 +13,9 @@ from backend.security.player import (
     p_s_put,
     p_r_get,
     p_r_put,
+    p_pl_get,
+    p_pl_put,
+    p_pl_delete,
 )
 
 logger = logging.getLogger(__name__)
@@ -72,3 +75,20 @@ class PlayerLoop(MethodView):
     def put(self):
         """Sets repeat to the opposite value"""
         return p_r_put()
+
+
+class PlayerPlaylist(MethodView):
+
+    def get(self):
+        """Returns the playlist with all songs and the user who added each
+        of them
+        """
+        return p_pl_get()
+
+    def put(self):
+        """Adds a new song to the playlist. This can be local or a stream"""
+        return p_pl_put()
+
+    def delete(self):
+        """Removes an item from the playlist"""
+        return p_pl_delete()

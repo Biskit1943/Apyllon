@@ -28,7 +28,7 @@ def index():
 
 @app.route('/list')
 def ls():
-    return list_songs()
+    return list_songs(), 200
 
 
 @app.teardown_appcontext
@@ -40,23 +40,23 @@ def shutdown_session(exception=None):
 # User related endpoints
 app.add_url_rule('/users',
                  view_func=users.UserView.as_view(name='user'),
-                 methods=['GET', 'POST', ]
+                 methods=['GET', 'POST']
                  )
 app.add_url_rule('/users/<int:uid>',
                  view_func=users.UsersIdView.as_view(name='users_id'),
-                 methods=['GET', 'PUT', 'DELETE', ]
+                 methods=['GET', 'PUT', 'DELETE']
                  )
 app.add_url_rule('/users/<string:username>',
                  view_func=users.UsersNameView.as_view(name='users_name'),
-                 methods=['GET', 'PUT', 'DELETE', ]
+                 methods=['GET', 'PUT', 'DELETE']
                  )
 app.add_url_rule('/users/<int:uid>/authenticate',
                  view_func=users.UsersIdAuthView.as_view(name='users_id_auth'),
-                 methods=['POST', ]
+                 methods=['POST']
                  )
 app.add_url_rule('/users/<string:username>/authenticate',
                  view_func=users.UsersNameAuthView.as_view(name='users_name_auth'),
-                 methods=['POST', ]
+                 methods=['POST']
                  )
 app.add_url_rule('/users/changepw',
                  view_func=users.UsersNameChangePassword.as_view(name='users_change_password'),
@@ -81,5 +81,9 @@ app.add_url_rule('/player/shuffle',
                  )
 app.add_url_rule('/player/loop',
                  view_func=player.PlayerLoop.as_view(name='player_repeat'),
-                 methods=['PUT', 'GET']
+                 methods=['PUT', 'GET', ],
+                 )
+app.add_url_rule('/player/playlist',
+                 view_func=player.PlayerPlaylist.as_view(name='player_playlist'),
+                 methods=['PUT', 'GET', 'DELETE', ],
                  )

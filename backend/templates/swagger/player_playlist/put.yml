@@ -1,0 +1,17 @@
+Add a item to the playlist
+---
+tags:
+  - Player
+  - Playlist
+parameters:
+  - in: body
+    name: body
+    description: The new user information
+    required: true
+    schema:
+      $ref: "#/definitions/PlaylistAdd"
+responses:
+  200:
+    description: The Playlist
+    schema:
+      $ref: '#/definitions/Playlist'

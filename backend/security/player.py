@@ -5,11 +5,14 @@ import logging
 from flask import request, jsonify
 
 from backend.security.validation import user
-from backend.player import player
+from backend.player.player import Player
+from backend.database.song_utils import get_song
+from backend.database.exceptions import DoesNotExist
+from backend.player.exceptions import NotFound
 
 logger = logging.getLogger(__name__)
 
-player = player.Player()
+player = Player()
 # TODO:  This is just done for mocking
 player.add_youtube("https://www.youtube.com/watch?v=LBZ-3Ugj1AQ")
 player.add_youtube("https://www.youtube.com/watch?v=U5u9glfqDsc")
@@ -145,3 +148,53 @@ def p_r_put():
     state = 'default' if player.get_playback_mode() != 'default' else 'loop'
     player.set_playback_mode(state)
     return 'PUT /player/repeat'
+
+
+#
+# PlayerPlaylist
+#
+@user
+def p_pl_get():
+    """Returns a list with """
+    playlist = player.get_playlist_meta()
+    return jsonify(playlist), 200
+
+
+@user
+def p_pl_put():
+    req = request.get_json(force=True)
+    try:
+        username = req['username']
+        type_ = req['type']
+        path = req['path']
+    except ValueError as e:
+        logger.error(f'missing parameters in body: {req}')
+        return str(e), 400
+
+    if type_ == "file":
+        try:
+            song = get_song(path)
+        except DoesNotExist as e:
+            logger.debug(f'[raise] {e}')
+            return str(e), 404
+        playlist = player.add_local_databse_object(song)
+
+    elif type == "youtube":
+        playlist = player.add_youtube(path)
+
+    else:
+        logger.error(f'type {type_} unknown')
+        return f'type {type_} is not a valid type for a playable item', 400
+
+    logger.info(f'Playlist changed by {username}. Added type: {type_} with path: {path}')
+    return jsonify(playlist), 200
+
+
+@user
+def p_pl_delete(index: int, title: str):
+    try:
+        song = player.remove_from_playlist(index, title)
+    except NotFound as e:
+        return str(e), 404
+
+    return jsonify(song)

@@ -1,0 +1,17 @@
+Removes an item from the playlist
+---
+tags:
+  - Player
+  - Playlist
+parameters:
+  - in: body
+    name: body
+    schema:
+      $ref: "#/definitions/PlaylistAdd"
+responses:
+  200:
+    description: Removed item
+    schema:
+      $ref: "#/definitions/Song"
+  404:
+    description: Item not found
