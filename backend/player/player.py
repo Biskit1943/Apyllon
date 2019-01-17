@@ -2,7 +2,7 @@ import logging
 
 import vlc
 
-from queue import Queue
+from backend.player.queue import Queue
 
 logging = logging.getLogger("__main__")
 
