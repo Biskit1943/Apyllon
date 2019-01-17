@@ -162,6 +162,7 @@ def p_pl_get():
 
 @user
 def p_pl_put():
+    """"""
     req = request.get_json(force=True)
     try:
         username = req['username']
@@ -191,10 +192,20 @@ def p_pl_put():
 
 
 @user
-def p_pl_delete(index: int, title: str):
+def p_pl_delete():
+    req = request.get_json(force=True)
+    try:
+        username = req['username']
+        index = req['index']
+        title = req['title']
+    except ValueError as e:
+        logger.error(f'missing parameters in body: {req}')
+        return str(e), 400
+
     try:
         song = player.remove_from_playlist(index, title)
     except NotFound as e:
         return str(e), 404
 
+    logger.info(f'Playlist changed by {username}. Deleted song: {song} with index {index}')
     return jsonify(song)
