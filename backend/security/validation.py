@@ -54,7 +54,7 @@ def validate_admin(func: Callable, *args, **kwargs):
                 return func(*args, **kwargs)
         else:
             return "Admin account does not exist", 500
-    return wrap
+    return wrap()
 
 
 @validate_admin
@@ -89,7 +89,7 @@ def user(func: Callable, *args, **kwargs):
             return str(e), 500
 
         return func(*args, **kwargs)
-    return wrap
+    return wrap()
 
 
 @decorator
@@ -128,4 +128,4 @@ def admin(func: Callable, *args, **kwargs):
             return str(e), 500
 
         return func(*args, **kwargs)
-    return wrap
+    return wrap()
