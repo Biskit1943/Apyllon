@@ -5,14 +5,14 @@ import logging
 from flask import request, jsonify
 
 from backend.security.validation import user
-from backend.player import player
+from backend.player.player import Player
 from backend.database.song_utils import get_song
 from backend.database.exceptions import DoesNotExist
 from backend.player.exceptions import NotFound
 
 logger = logging.getLogger(__name__)
 
-player = player.Player()
+player = Player()
 # TODO:  This is just done for mocking
 player.add_youtube("https://www.youtube.com/watch?v=LBZ-3Ugj1AQ")
 player.add_youtube("https://www.youtube.com/watch?v=U5u9glfqDsc")
