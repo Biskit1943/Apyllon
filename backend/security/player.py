@@ -4,7 +4,10 @@ For the documentation on them see the origin file: backend/api/routes/player.py
 import logging
 from flask import request, jsonify
 
-from backend.security.validation import user
+from backend.security.validation import (
+    user,
+    validate_admin,
+)
 from backend.player.player import Player
 from backend.database.song_utils import get_song
 from backend.database.exceptions import DoesNotExist
@@ -27,6 +30,7 @@ def p_p_p_get():
     return "GET /play/pause"
 
 
+@user
 def p_p_p_put():
     """Sets the state of the player
 
