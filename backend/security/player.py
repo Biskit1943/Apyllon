@@ -178,7 +178,7 @@ def p_pl_put():
         except DoesNotExist as e:
             logger.debug(f'[raise] {e}')
             return str(e), 404
-        playlist = player.add_local_databse_object(song)
+        playlist = player.add_local_database_object(song)
 
     elif type == "youtube":
         playlist = player.add_youtube(path)
