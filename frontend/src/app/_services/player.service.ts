@@ -15,12 +15,7 @@ export class PlayerService {
   }
 
   playPause(username) {
-    return this.isPlaying().pipe(map(state => {
-      if (state) {
-        const newState = state === 'play' ? 'pause' : 'play';
-        return this.http.put(`${environment.apiUrl}/player/play-pause`, JSON.stringify({username, newState}));
-      }
-    }));
+      return this.http.put(`${environment.apiUrl}/player/play-pause`, JSON.stringify({'username': username}));
   }
 
   getNext() {

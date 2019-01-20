@@ -35,7 +35,6 @@ export class PlayerComponent {
     this.player.playPause(this.currentUser.username)
       .pipe(first())
       .subscribe(data => {
-        console.log(data);
       },
       err => {
       console.error(err);

@@ -7,10 +7,6 @@ parameters:
     name: username
     type: string
     required: true
-  - in: body
-    name: state
-    type: string
-    required: true
 responses:
   200:
     description: The new state of the player

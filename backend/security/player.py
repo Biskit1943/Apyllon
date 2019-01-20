@@ -30,7 +30,6 @@ def p_p_p_get():
     return 'play' if player.playing else 'pause', 200
 
 
-@user
 def p_p_p_put():
     """Sets the state of the player
 
@@ -41,7 +40,7 @@ def p_p_p_put():
     req = request.get_json(force=True)
     try:
         username = req['username']
-        state = req['state']
+        state = 'pause' if player.playing else 'play'
     except ValueError as e:
         logger.error(f'missing parameters in body: {req}')
         return str(e), 400
@@ -53,7 +52,7 @@ def p_p_p_put():
     elif state == "stop":
         player.stop()
 
-    return f'PUT /player/play_pause{state}'
+    return f'Set player State', 200
 
 
 #
