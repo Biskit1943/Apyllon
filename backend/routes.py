@@ -12,6 +12,7 @@ from backend.api import (
 from backend.api.routes import (
     users,
     player,
+    common
 )
 from backend.database.song_utils import list_songs
 
@@ -26,16 +27,17 @@ def index():
     return "Success", 200
 
 
-@app.route('/list')
-def ls():
-    return list_songs(), 200
-
-
 @app.teardown_appcontext
 def shutdown_session(exception=None):
     logger.debug('disconnect from db session')
     db.session.remove()
 
+
+# Common endpoints
+app.add_url_rule('/list',
+                 view_func=common.ListSongsView.as_view(name='list_songs'),
+                 methods=['GET']
+                 )
 
 # User related endpoints
 app.add_url_rule('/users',
@@ -60,20 +62,21 @@ app.add_url_rule('/users/<string:username>/authenticate',
                  )
 app.add_url_rule('/users/changepw',
                  view_func=users.UsersNameChangePassword.as_view(name='users_change_password'),
-                 methods=['PUT'])
+                 methods=['PUT']
+                 )
 
 # Player related endpoints
 app.add_url_rule('/player/play-pause',
                  view_func=player.PlayerPlayPause.as_view(name='player_play_pause'),
-                 methods=['PUT', 'GET', ]
+                 methods=['PUT', 'GET']
                  )
 app.add_url_rule('/player/next',
                  view_func=player.PlayerNext.as_view(name='player_next'),
-                 methods=['PUT', 'GET', ]
+                 methods=['PUT', 'GET']
                  )
 app.add_url_rule('/player/previous',
                  view_func=player.PlayerPrevious.as_view(name='player_previous'),
-                 methods=['PUT', 'GET', ]
+                 methods=['PUT', 'GET']
                  )
 app.add_url_rule('/player/shuffle',
                  view_func=player.PlayerShuffle.as_view(name='player_shuffle'),
@@ -81,9 +84,9 @@ app.add_url_rule('/player/shuffle',
                  )
 app.add_url_rule('/player/loop',
                  view_func=player.PlayerLoop.as_view(name='player_repeat'),
-                 methods=['PUT', 'GET', ],
+                 methods=['PUT', 'GET'],
                  )
 app.add_url_rule('/player/playlist',
                  view_func=player.PlayerPlaylist.as_view(name='player_playlist'),
-                 methods=['PUT', 'GET', 'DELETE', ],
+                 methods=['PUT', 'GET', 'DELETE'],
                  )

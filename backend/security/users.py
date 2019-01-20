@@ -236,9 +236,13 @@ def u_n_c_p_put():
     Change Password of User specified by name
     """
     req = request.get_json(force=True)
-    username = req['username']
-    password = req['password']
-    new_password = req['newPassword']
+    try:
+        username = req['username']
+        password = req['password']
+        new_password = req['newPassword']
+    except ValueError as e:
+        logger.error(f'missing Parameters in body: {e}')
+        return f'missing Parameter(s) in body', 400
     try:
         answer = user_utils.change_password(new_password, password, username=username)
     except DoesNotExist as e:

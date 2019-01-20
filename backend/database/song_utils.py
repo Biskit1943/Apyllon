@@ -67,8 +67,8 @@ def add_song(data: Dict):
     logger.debug(f'added {song} to database')
 
 
-def list_songs() -> tuple:
-    """Returns a list containing of all songs
+def list_songs() -> list:
+    """Returns a list containing all songs
 
     Returns:
         A list containing song dicts from the database. See
@@ -81,7 +81,9 @@ def list_songs() -> tuple:
         songs_list.append(song.to_dict())
 
     logger.debug(f'returning a list with len = {len(songs_list)}')
-    return songs_list, 200
+    # assert len(songs_list) > 0, 'No songs in database'
+
+    return songs_list
 
 
 def get_song(path: str) -> Song:

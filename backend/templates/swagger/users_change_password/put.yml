@@ -32,7 +32,5 @@ responses:
       $ref: '#/definitions/BadRequest'
   404:
     description: User with the given id not found
-  409:
-    description: Conflict in request
-    schema:
-      $ref: '#/definitions/Conflict'
+  401:
+    description: Invalid credentials

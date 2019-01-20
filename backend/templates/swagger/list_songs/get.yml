@@ -1,0 +1,9 @@
+Returns the next item in the playlist
+---
+tags:
+  - Common
+responses:
+  200:
+    description: A list of all available songs
+  404:
+    description: No songs found

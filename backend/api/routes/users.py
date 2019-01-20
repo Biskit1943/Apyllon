@@ -6,7 +6,6 @@ NOTE: If there is a wrapper needed for the route you have to put the function
 """
 import logging
 
-from flask import request, jsonify
 from flask.views import MethodView
 
 from backend.security.users import (
@@ -22,8 +21,6 @@ from backend.security.users import (
     u_n_a_v_post,
     u_n_c_p_put
 )
-from backend.database import user_utils
-from backend.database.exceptions import DoesNotExist
 
 logger = logging.getLogger(__name__)
 
@@ -139,7 +136,7 @@ class UsersNameAuthView(MethodView):
 
 
 class UsersNameChangePassword(MethodView):
-
+    """Provides the HTTP methods for changing the password of a user specified by the unique username"""
     def put(self):
         """
         Changes the current password of a specified user

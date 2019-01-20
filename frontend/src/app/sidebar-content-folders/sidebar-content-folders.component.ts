@@ -8,13 +8,14 @@ import { PlayerService, AlertService} from '../_services';
 })
 export class SidebarContentFoldersComponent implements OnInit {
 
-  songs = [];
+  songs: Array<string> = [];
   constructor(private player: PlayerService, private alertService: AlertService) {
   }
 
   ngOnInit() {
     this.player.listSongs().subscribe(songs => {
       console.log(songs);
+      this.songs = ['Creme de la Creme - Letzte Nacht', 'Prinz Pi - Elfenbeinturm', 'Papa Roach - Last Resort'];
     }, err => {
       this.alertService.error(err);
     });
