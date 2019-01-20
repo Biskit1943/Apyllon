@@ -14,10 +14,10 @@ export class SidebarContentFoldersComponent implements OnInit {
 
   ngOnInit() {
     this.player.listSongs().subscribe(songs => {
-      console.log(songs);
-      this.songs = ['Creme de la Creme - Letzte Nacht', 'Prinz Pi - Elfenbeinturm', 'Papa Roach - Last Resort'];
+      this.songs = songs;
     }, err => {
       this.alertService.error(err);
+      this.songs = ['No Songs in database'];
     });
   }
 }

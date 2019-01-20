@@ -44,12 +44,12 @@ export class PlayerService {
       JSON.stringify({'username': username}));
   }
 
-  isRepeat() {
+  isLoop() {
     return this.http.get(`${environment.apiUrl}/player/loop`);
   }
 
-  repeat(username) {
-    return this.http.put(`${environment.apiUrl}/player/repeat`,
+  loop(username) {
+    return this.http.put(`${environment.apiUrl}/player/loop`,
       JSON.stringify({'username': username}));
   }
 

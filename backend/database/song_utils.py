@@ -81,7 +81,7 @@ def list_songs() -> list:
         songs_list.append(song.to_dict())
 
     logger.debug(f'returning a list with len = {len(songs_list)}')
-    # assert len(songs_list) > 0, 'No songs in database'
+    assert len(songs_list) > 0, 'No songs in database'
 
     return songs_list
 

@@ -7,7 +7,7 @@ ul {
   list-style-type: none;
 }
 li {
-  color: #aaa;
+  color: #666;
   cursor: pointer;
   margin-left: -10px;
 }

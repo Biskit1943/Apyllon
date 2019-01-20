@@ -109,7 +109,7 @@ def p_p_put():
 #
 def p_s_get():
     """Returns whether shuffle is on or off"""
-    return 'GET /player/shuffle'
+    return jsonify('true'), 200
 
 
 def p_s_put():
@@ -122,9 +122,13 @@ def p_s_put():
     try:
         username = req['username']
     except ValueError as e:
-        return str(e), 400
+        return jsonify(str(e)), 400
     logger.info(f'User {username} requested to change the shuffle state')
-    return 'PUT /player/shuffle'
+    try:
+        player.set_playback_mode('shuffle')
+    except Exception as e:
+        return str(e), 500
+    return jsonify('Changed state of shuffle'), 200
 
 
 #
@@ -133,7 +137,7 @@ def p_s_put():
 def p_r_get():
     """Returns whether repeat is on or off"""
     state = player.get_playback_mode()
-    return state, 200
+    return jsonify('true'), 200
 
 
 def p_r_put():
@@ -146,11 +150,11 @@ def p_r_put():
     try:
         username = req['username']
     except ValueError as e:
-        return str(e), 400
+        return jsonify(str(e)), 400
     logger.info(f'User {username} requested to change the repeat state')
     state = 'default' if player.get_playback_mode() != 'default' else 'loop'
     player.set_playback_mode(state)
-    return 'PUT /player/repeat'
+    return jsonify(f'Changed State of player mode to {state}'), 200
 
 
 #
