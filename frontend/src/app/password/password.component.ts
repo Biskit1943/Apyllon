@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService, AuthenticationService } from '../_services';
 import { first } from 'rxjs/operators';
-import { User } from '../_models';
 
 @Component({
   selector: 'app-password',
@@ -34,8 +33,8 @@ export class PasswordComponent implements OnInit {
     });
     this.passwordForm = this.formBuilder.group({
       currentPassword: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -43,6 +42,9 @@ export class PasswordComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
+    return this.passwordForm.controls;
+  }
+  get v() {
     return this.passwordForm.value;
   }
 
@@ -53,16 +55,21 @@ export class PasswordComponent implements OnInit {
     if (this.passwordForm.invalid) {
       return;
     }
+    if (this.v.password !== this.v.confirmPassword) {
+      this.alertService.error('New Passwords do not match', true);
+      return;
+    }
 
     this.loading = true;
-    this.authenticationService.changePassword(this.user, this.f.currentPassword, this.f.password)
+    this.authenticationService.changePassword(this.user, this.v.currentPassword, this.v.password)
       .pipe(first())
       .subscribe(
         data => {
+          this.alertService.success('Successfully changed password');
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error, true);
           this.loading = false;
         });
   }

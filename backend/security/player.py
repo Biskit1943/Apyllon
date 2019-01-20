@@ -24,7 +24,7 @@ player.add_youtube("https://www.youtube.com/watch?v=U5u9glfqDsc")
 
 def p_p_p_get():
     """Returns the state of the player"""
-    return "GET /play/pause"
+    return 'play' if player.playing else 'pause', 200
 
 
 def p_p_p_put():

@@ -192,11 +192,11 @@ def auth_user(password: str, uid: int = None, username: str = None) -> Dict:
         return answer
 
 
-def change_password(password: str, uid: int = None, username: str = None):
+def change_password(new_password: str, password: str, uid: int = None, username: str = None):
     """Changes the password of the given user
 
     Args:
-        password: The new password
+        new_password: The new password
         uid: The id of the user who want to change the PW (Do not user both uid
             and username)
         username: The name fo the user who want to change the PW (Do not user
@@ -218,11 +218,15 @@ def change_password(password: str, uid: int = None, username: str = None):
         logger.error(f'The user <{data}> does not exit')
         raise DoesNotExist(f'The user <{data}> does not exit')
 
-    if len(password) != 128:
+    if len(new_password) != 128:
         logger.error(f'password length does not match')
-        raise ValueError(f'password has {len(password)} characters but must be 128 characters long')
+        raise ValueError(f'password has {len(new_password)} characters but must be 128 characters long')
 
-    user.password_hash = password
+    if password != user.password_hash:
+        logger.error(f'Invalid password for user {user.username}')
+        raise AssertionError(f'Invalid password')
+
+    user.password_hash = new_password
     if not user.password:
         user.password = True
     db.session.commit()

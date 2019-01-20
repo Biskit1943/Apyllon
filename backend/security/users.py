@@ -240,9 +240,13 @@ def u_n_c_p_put():
     password = req['password']
     new_password = req['newPassword']
     try:
-        answer = user_utils.change_password(new_password, username=username)
+        answer = user_utils.change_password(new_password, password, username=username)
     except DoesNotExist as e:
         logger.warning(f'Error while changing Password ==> {e}')
         return str(e), 404
+    except ValueError as e:
+        return str(e), 400
+    except AssertionError as e:
+        return str(e), 401
 
     return jsonify(answer)

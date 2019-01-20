@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
-
   constructor(private http: HttpClient) {
   }
 
@@ -14,9 +14,13 @@ export class PlayerService {
     return this.http.get(`${environment.apiUrl}/player/play-pause`);
   }
 
-  play(username, state) {
-    return this.http.put(`${environment.apiUrl}/player/play-pause`,
-      JSON.stringify({'username': username, 'state': state}));
+  playPause(username) {
+    return this.isPlaying().pipe(map(state => {
+      if (state) {
+        const newState = state === 'play' ? 'pause' : 'play';
+        return this.http.put(`${environment.apiUrl}/player/play-pause`, JSON.stringify({username, newState}));
+      }
+    }));
   }
 
   getNext() {
