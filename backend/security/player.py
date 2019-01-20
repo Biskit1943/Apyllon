@@ -4,7 +4,10 @@ For the documentation on them see the origin file: backend/api/routes/player.py
 import logging
 from flask import request, jsonify
 
-from backend.security.validation import user
+from backend.security.validation import (
+    user,
+    validate_admin,
+)
 from backend.player.player import Player
 from backend.database.song_utils import get_song
 from backend.database.exceptions import DoesNotExist
@@ -27,6 +30,7 @@ def p_p_p_get():
     return 'play' if player.playing else 'pause', 200
 
 
+@user
 def p_p_p_put():
     """Sets the state of the player
 
@@ -162,6 +166,7 @@ def p_pl_get():
 
 @user
 def p_pl_put():
+    """"""
     req = request.get_json(force=True)
     try:
         username = req['username']
@@ -177,7 +182,7 @@ def p_pl_put():
         except DoesNotExist as e:
             logger.debug(f'[raise] {e}')
             return str(e), 404
-        playlist = player.add_local_databse_object(song)
+        playlist = player.add_local_database_object(song)
 
     elif type == "youtube":
         playlist = player.add_youtube(path)
@@ -191,10 +196,20 @@ def p_pl_put():
 
 
 @user
-def p_pl_delete(index: int, title: str):
+def p_pl_delete():
+    req = request.get_json(force=True)
+    try:
+        username = req['username']
+        index = req['index']
+        title = req['title']
+    except ValueError as e:
+        logger.error(f'missing parameters in body: {req}')
+        return str(e), 400
+
     try:
         song = player.remove_from_playlist(index, title)
     except NotFound as e:
         return str(e), 404
 
+    logger.info(f'Playlist changed by {username}. Deleted song: {song} with index {index}')
     return jsonify(song)

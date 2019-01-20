@@ -1,8 +1,8 @@
 """This file contains all security related wrapper functions for the routes."""
 import logging
 from typing import Callable
+from functools import wraps
 
-from decorator import decorator
 from flask import request
 
 from backend.security.jwt import validate_token
@@ -24,8 +24,7 @@ class Login:
 login = Login()
 
 
-@decorator
-def validate_admin(func: Callable, *args, **kwargs):
+def validate_admin(func: Callable):
     """This wrapper makes sure the admin password was set by a user, append this
     to all routes which are not the admin login or admin password change and
     which require admin access. On user access this function is already in the
@@ -33,13 +32,13 @@ def validate_admin(func: Callable, *args, **kwargs):
 
     Args:
         func: The function which will be wrapped
-        args: The args of the origin function
-        kwargs: The kwargs of the origin function
 
     Returns:
         The origin function or the HTTP answer if the admin wasn't verified
     """
-    def wrap():
+
+    @wraps(func)
+    def wrap(*args, **kwargs):
         if login.admin:
             return func(*args, **kwargs)
 
@@ -54,25 +53,25 @@ def validate_admin(func: Callable, *args, **kwargs):
                 return func(*args, **kwargs)
         else:
             return "Admin account does not exist", 500
+
     return wrap
 
 
 @validate_admin
-@decorator
-def user(func: Callable, *args, **kwargs):
+def user(func: Callable):
     """This wrapper will validate the JWT. On failure it will automatically
     return the corresponding message and error-code for the API.
 
     Args:
         func: The function which will be wrapped
-        args: The args of the origin function
-        kwargs: The kwargs of the origin function
 
     Returns:
         Either the wrapped function or the answer for the request if the
         validation failed.
     """
-    def wrap():
+
+    @wraps(func)
+    def wrap(*args, **kwargs):
         token = str(request.headers['Authorization'])
         try:
             validate_token(token)
@@ -89,11 +88,11 @@ def user(func: Callable, *args, **kwargs):
             return str(e), 500
 
         return func(*args, **kwargs)
+
     return wrap
 
 
-@decorator
-def admin(func: Callable, *args, **kwargs):
+def admin(func: Callable):
     """This wrapper will validate the JWT. On failure it will automatically
     return the corresponding message and error-code for the API.
     The special thing about this is, it will check if the user has admin
@@ -101,14 +100,14 @@ def admin(func: Callable, *args, **kwargs):
 
     Args:
         func: The function which will be wrapped
-        args: The args of the origin function
-        kwargs: The kwargs of the origin function
 
     Returns:
         Either the wrapped function or the answer for the request if the
         validation failed.
     """
-    def wrap():
+
+    @wraps(func)
+    def wrap(*args, **kwargs):
         token = str(request.headers['Authorization'])
         try:
             username, _ = validate_token(token)
@@ -128,4 +127,5 @@ def admin(func: Callable, *args, **kwargs):
             return str(e), 500
 
         return func(*args, **kwargs)
+
     return wrap
