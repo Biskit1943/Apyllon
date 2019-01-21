@@ -74,6 +74,7 @@ def user(func: Callable):
     def wrap(*args, **kwargs):
         token = str(request.headers['Authorization'])
         try:
+            logger.error('TOKEN:' + token)
             validate_token(token)
         except FileNotFoundError:
             logger.warning('Public key not found')

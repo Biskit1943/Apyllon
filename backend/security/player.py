@@ -24,7 +24,6 @@ player.add_youtube("https://www.youtube.com/watch?v=U5u9glfqDsc")
 #
 # PlayerPlayPause
 #
-
 def p_p_p_get():
     """Returns the state of the player"""
     return 'play' if player.playing else 'pause', 200
@@ -160,14 +159,12 @@ def p_r_put():
 #
 # PlayerPlaylist
 #
-@user
 def p_pl_get():
     """Returns a list with """
     playlist = player.get_playlist_meta()
     return jsonify(playlist), 200
 
 
-@user
 def p_pl_put():
     """"""
     req = request.get_json(force=True)
@@ -198,7 +195,6 @@ def p_pl_put():
     return jsonify(playlist), 200
 
 
-@user
 def p_pl_delete():
     req = request.get_json(force=True)
     try:

@@ -14,7 +14,8 @@ export class SidebarContentFoldersComponent implements OnInit {
 
   ngOnInit() {
     this.player.listSongs().subscribe(songs => {
-      this.songs = songs;
+      // @ts-ignore
+      this.songs = Array.from(songs);
     }, err => {
       this.alertService.error(err);
       this.songs = ['No Songs in database'];
