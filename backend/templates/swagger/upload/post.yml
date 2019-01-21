@@ -2,14 +2,13 @@ Uploads files to the server
 ---
 tags:
   - Local
+consumes:
+  - multipart/form-data
 parameters:
-  consumes:
-    - multipart/form-data
-  parameters:
-    - in: formData
-      name: files
-      type: file
-      description: The file(s) to upload.
+  - in: formData
+    name: files
+    type: file
+    description: The file(s) to upload.
 responses:
   200:
     description: Success
