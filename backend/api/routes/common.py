@@ -9,6 +9,8 @@ import logging
 from flask.views import MethodView
 
 from backend.security.common import list_songs
+from backend.security.update import update
+from backend.security.upload import u_post
 
 logger = logging.getLogger(__name__)
 
@@ -19,3 +21,15 @@ class ListSongsView(MethodView):
     def get(self):
         """Returns a List of all Songs in the database, if there are any."""
         return list_songs()
+
+
+class UploadView(MethodView):
+
+    def post(self):
+        return u_post()
+
+
+class UpdateView(MethodView):
+
+    def put(self):
+        return update()

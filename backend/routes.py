@@ -90,3 +90,13 @@ app.add_url_rule('/player/playlist',
                  view_func=player.PlayerPlaylist.as_view(name='player_playlist'),
                  methods=['PUT', 'GET', 'DELETE'],
                  )
+
+# Local storage endpoints
+app.add_url_rule('/upload',
+                 view_func=common.UploadView.as_view(name='upload'),
+                 methods=['POST', ],
+                 )
+app.add_url_rule('/update',
+                 view_func=common.UpdateView.as_view(name='update'),
+                 methods=['PUT', ],
+                 )
