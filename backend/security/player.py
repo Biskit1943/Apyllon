@@ -4,10 +4,6 @@ For the documentation on them see the origin file: backend/api/routes/player.py
 import logging
 from flask import request, jsonify
 
-from backend.security.validation import (
-    user,
-    validate_admin,
-)
 from backend.player.player import Player
 from backend.database.song_utils import get_song
 from backend.database.exceptions import DoesNotExist
@@ -160,14 +156,12 @@ def p_r_put():
 #
 # PlayerPlaylist
 #
-@user
 def p_pl_get():
     """Returns a list with """
     playlist = player.get_playlist_meta()
     return jsonify(playlist), 200
 
 
-@user
 def p_pl_put():
     """"""
     req = request.get_json(force=True)
@@ -198,7 +192,6 @@ def p_pl_put():
     return jsonify(playlist), 200
 
 
-@user
 def p_pl_delete():
     req = request.get_json(force=True)
     try:

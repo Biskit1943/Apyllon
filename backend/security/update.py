@@ -1,13 +1,13 @@
-"""This Module contains the functions for the local filesystem"""
 import os
 
+from config import Config
 from backend.database import song_utils
 from backend.database.exceptions import Exists
 from backend.search import file_search
-from config import Config
 
 
-def add_songs(path: str):
+def update():
+    path = Config.HOME
     if not os.path.exists(path):
         raise LookupError("Directory does not exist")
 
@@ -19,3 +19,5 @@ def add_songs(path: str):
         except Exists:
             # TODO check if data changed
             pass
+
+    return 'Success', 200

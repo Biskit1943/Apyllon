@@ -1,0 +1,7 @@
+Updates the local file in the databse
+---
+tags:
+  - Local
+responses:
+  200:
+    description: Success

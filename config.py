@@ -18,6 +18,8 @@ class Config(object):
         '.wav',
     ]
 
+    HOME = os.path.join(basedir, 'Music')
+
     SWAGGER = {
         'title': 'Apyllon - A multi-user music player',
         'doc_dir': os.path.join(os.getcwd(), 'backend', 'templates', 'swagger')
