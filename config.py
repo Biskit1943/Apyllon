@@ -13,10 +13,12 @@ class Config(object):
         'genre',
     ]
     SONG_EXTENSIONS = [
-        '.mp3',
-        '.mp4',
-        '.wav',
+        'mp3',
+        'mp4',
+        'wav',
     ]
+
+    HOME = os.path.join(basedir, 'Music')
 
     SWAGGER = {
         'title': 'Apyllon - A multi-user music player',

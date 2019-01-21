@@ -100,8 +100,7 @@ def get_song(path: str) -> Song:
     except DoesNotExist as e:
         logger.debug(f'[raise] {e}')
         raise
-
-    song = Song.query.filter_by(Song.filepath is filepath).first()
+    song = Song.query.filter(Song.filepath is filepath).first()
     if not song:
         logger.error(f'Filepath was found but not the corresponding song: {path}')
         raise DoesNotExist(f'No such song with path {path}')

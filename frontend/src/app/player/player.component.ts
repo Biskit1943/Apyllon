@@ -17,10 +17,11 @@ export class PlayerComponent {
   constructor(private player: PlayerService, private alertService: AlertService) {
     this.shuffled();
     this.looped();
-    this.player.updatedb();
+    this.update();
     setInterval(() => {
       this.shuffled();
       this.looped();
+      this.update();
     }, 10000);
   }
 
@@ -99,5 +100,15 @@ export class PlayerComponent {
           console.log(err);
           this.alertService.error(err);
         });
+  }
+
+  update() {
+    this.player.updatedb()
+      .pipe(first())
+      .subscribe(data => {
+      }, err => {
+        console.log(err);
+        this.alertService.error(err);
+      });
   }
 }

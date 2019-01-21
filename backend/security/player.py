@@ -166,7 +166,7 @@ def p_pl_get():
 
 
 def p_pl_put():
-    """"""
+    """Adds a song to the current playlist"""
     req = request.get_json(force=True)
     try:
         username = req['username']
@@ -184,7 +184,7 @@ def p_pl_put():
             return str(e), 404
         playlist = player.add_local_database_object(song)
 
-    elif type == "youtube":
+    elif type_ == "youtube":
         playlist = player.add_youtube(path)
 
     else:

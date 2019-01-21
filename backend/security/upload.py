@@ -14,7 +14,7 @@ def u_post():
         logger.error('Upload with no files in body')
         return jsonify('No files were given'), 400
 
-    uploaded_files = request.files.getlist("file[]")
+    uploaded_files = [request.files["file"]]
     logger.debug(f'Received files: {uploaded_files}')
 
     for file in uploaded_files:
@@ -31,7 +31,7 @@ def u_post():
                 return jsonify(f'wrong file format {file.filename}'), 415
         except Exception as e:
             logger.critical(f'Error while uploading new files: {e}')
-            return f'Error while uploading files: {e}', 500
+            return jsonify(f'Error while uploading files: {e}'), 500
 
     return jsonify('Success'), 200
 

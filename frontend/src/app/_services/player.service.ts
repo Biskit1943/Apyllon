@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class PlayerService {
   }
 
   playPause(username) {
-      return this.http.put(`${environment.apiUrl}/player/play-pause`, JSON.stringify({'username': username}));
+    return this.http.put(`${environment.apiUrl}/player/play-pause`, JSON.stringify({'username': username}));
   }
 
   getNext() {
@@ -59,5 +58,13 @@ export class PlayerService {
 
   updatedb() {
     return this.http.put(`${environment.apiUrl}/update`, JSON.stringify({}));
+  }
+
+  addSongToPlaylist(username, path, type) {
+    return this.http.put(`${environment.apiUrl}/player/playlist`, JSON.stringify({
+      'username': username,
+      'path': path,
+      'type': type
+    }));
   }
 }

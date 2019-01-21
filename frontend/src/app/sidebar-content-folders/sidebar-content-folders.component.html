@@ -1,7 +1,7 @@
 <div>
   <ul>
-    <li *ngFor="let song of songs">
-      <p>{{song}}</p>
+    <li *ngFor="let song of songs" (click)="addSongToPlaylist(song)">
+      <div (click)="addSongToPlaylist(song)"><p>{{song.filename}}</p></div>
     </li>
   </ul>
 </div>
