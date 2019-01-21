@@ -18,6 +18,8 @@ tags:
   description: "Player access and control"
 - name: "Playlist"
   description: "Playlist control"
+- name: "Local"
+  description: "File utils"
 
 definitions:
   # User
