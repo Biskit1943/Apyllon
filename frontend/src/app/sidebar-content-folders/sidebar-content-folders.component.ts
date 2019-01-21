@@ -8,7 +8,7 @@ import { PlayerService, AlertService} from '../_services';
 })
 export class SidebarContentFoldersComponent implements OnInit {
 
-  songs: Array<string> = [];
+  songs: any = [];
   constructor(private player: PlayerService, private alertService: AlertService) {
   }
 
