@@ -69,9 +69,13 @@ class Queue():
     def get_previous_mrl(self):
         if self.repeat_song:
             return self.songList[self.position].mrl
-        elif self.position -1 < 0:
+        elif self.position - 1 < 0:
             return self.songList[self.position].mrl
         self.position -= 1
+        return self.songList[self.position].mrl
+
+    def set_mrl_postion(self, postition):
+        self.position = postition
         return self.songList[self.position].mrl
 
     def get_current_meta(self):

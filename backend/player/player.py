@@ -107,7 +107,11 @@ class Player:
             self.queue.shuffle = True
 
     def get_playback_mode(self):
-        pass
+        modes = [self.queue.repeat_queue,
+                 self.queue.repeat_song,
+                 self.queue.shuffle]
+        mode = filter(lambda x: x is True, modes)
+        return mode
 
     def get_queue_name(self):
         return self.queue.identifier
@@ -119,23 +123,27 @@ class Player:
         return self.queue.get_queue_meta()
 
     def get_current_track_lenght(self):
-        pass
+        return self.player.get_length()
 
     def get_current_track_position(self):
-        pass
+        return self.player.get_time()
 
     def get_current_track_postion_percentage(self):
-        pass
+        return self.player.get_position()
 
     def set_volume(self, volume):
-        pass
+        self.player.audio_set_volume(volume)
 
-    def get_volume(self, volume):
-        pass
+    def get_volume(self):
+        return self.player.audio_get_volume()
 
     def set_queue_track(self, track_number):
-        pass
-
-class NoPlaybackMode(Exception):
-    def __init__(self, *args, **kwargs):
-        Exception.__init__(self, *args, **kwargs)
+        if self.playing:
+            self.player.pause()
+        next_mrl = self.queue.set_mrl_postion(track_number)
+        if not next_mrl:
+            self.playing = False
+            self.player.stop()
+        else:
+            self.player.set_mrl(next_mrl)
+            self.player.play()
