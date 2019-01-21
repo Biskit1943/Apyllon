@@ -57,7 +57,6 @@ def validate_admin(func: Callable):
     return wrap
 
 
-@validate_admin
 def user(func: Callable):
     """This wrapper will validate the JWT. On failure it will automatically
     return the corresponding message and error-code for the API.
@@ -72,6 +71,9 @@ def user(func: Callable):
 
     @wraps(func)
     def wrap(*args, **kwargs):
+        if not login.admin:
+            return 'Password is still default!', 401
+
         token = str(request.headers['Authorization'])
         try:
             validate_token(token)

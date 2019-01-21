@@ -7,7 +7,7 @@ from backend.search import file_search
 
 
 def update():
-    path = Config.HOME
+    path = Config.MUSIC
     if not os.path.exists(path):
         raise LookupError("Directory does not exist")
 

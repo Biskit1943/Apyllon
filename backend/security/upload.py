@@ -24,7 +24,7 @@ def u_post():
 
         if _allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(Config.HOME, filename))
+            file.save(os.path.join(Config.MUSIC, filename))
             logger.debug(f'saved file {file} to disk')
     else:
         return 'Success', 200
