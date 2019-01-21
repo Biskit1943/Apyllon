@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "9cd0ff01-2e8b-4827-b464-ddc587df9eba",
+		"name": "apyllon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:5000/player/play-pause ",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiI2YmEzOWZhZjViNzFlODZkOGI5ZDkyMTI4MGFkYzM4YjY2YmNlODQ1NWFlZTQxMTI3NWViODM0OTg0ZTdkY2FmOWJlNjVjNGJmYTIxZjE3MzZlOWU0ZjgyZjlkYjA0NjFjYTkzYThiOTIyNWU5M2U3NjVlNzdlYjE3YWQ3NTk5MyJ9.kZO2okmsvNRr7SOm6DBRDNTGk9BcZ1pRBHUBRz25nXytaknHG4n1qdcrpnwFEnKQXMaG3bfWBDiiIqZbFdcExGBoD1ydWObKbuKvHW7znXkM0CIYbK2ZMYjfup-b363mAuUGul0goDXhssKrAP5SwYx-3MZ59z74oLBoobeyj3GXK2boqQZjIR3oZKlk1crDM_qtvGu9yXkn5TFwvfwBCcbMDIXVGtENAfFOzuDR-mmWyvg5gp91x6c-z12__w16w4EXmo3eK3zp9iYqCNADK7H_8mjWf3J6A7waR0IsJmamcSj9M-oDIEYhFtIah4ASZbDt2B7cq99sRo511FMtlf2RnCrAm9zzsMUS1hCo2rb_FtFhAokQnecGhf3g014tG1AZUWgM_m_84TFtLlC7KSomvahhRppVEteazMuollGhA_QZOxevyizXRLm7YZPeJLUr-LQ74vXAWr4OziogzfUwu0hCIvUOdQ0G0msFJe1C0e3Px7apGnO7TJGk2cncK9xJgr44cXwQWaUD1zemUVAsLAPwlUq6Mbs7AdG6bnNBUPQDuHGazdfefd53Gek2FHtzGfqJP-FwL_jL_ItMXOoGVmZaGm_2cqXZNvoB-EyDDswLqZwUEJQ5nfOHpn10e3zO7GSJ-0pUCeaJdqRd-HRXU7F3yPF9L68KZzTaOiQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"state\": \"pause\",\n\"username\": \"admin\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/player/play-pause",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"player",
+						"play-pause"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/player/play-pause ",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiI2YmEzOWZhZjViNzFlODZkOGI5ZDkyMTI4MGFkYzM4YjY2YmNlODQ1NWFlZTQxMTI3NWViODM0OTg0ZTdkY2FmOWJlNjVjNGJmYTIxZjE3MzZlOWU0ZjgyZjlkYjA0NjFjYTkzYThiOTIyNWU5M2U3NjVlNzdlYjE3YWQ3NTk5MyJ9.kZO2okmsvNRr7SOm6DBRDNTGk9BcZ1pRBHUBRz25nXytaknHG4n1qdcrpnwFEnKQXMaG3bfWBDiiIqZbFdcExGBoD1ydWObKbuKvHW7znXkM0CIYbK2ZMYjfup-b363mAuUGul0goDXhssKrAP5SwYx-3MZ59z74oLBoobeyj3GXK2boqQZjIR3oZKlk1crDM_qtvGu9yXkn5TFwvfwBCcbMDIXVGtENAfFOzuDR-mmWyvg5gp91x6c-z12__w16w4EXmo3eK3zp9iYqCNADK7H_8mjWf3J6A7waR0IsJmamcSj9M-oDIEYhFtIah4ASZbDt2B7cq99sRo511FMtlf2RnCrAm9zzsMUS1hCo2rb_FtFhAokQnecGhf3g014tG1AZUWgM_m_84TFtLlC7KSomvahhRppVEteazMuollGhA_QZOxevyizXRLm7YZPeJLUr-LQ74vXAWr4OziogzfUwu0hCIvUOdQ0G0msFJe1C0e3Px7apGnO7TJGk2cncK9xJgr44cXwQWaUD1zemUVAsLAPwlUq6Mbs7AdG6bnNBUPQDuHGazdfefd53Gek2FHtzGfqJP-FwL_jL_ItMXOoGVmZaGm_2cqXZNvoB-EyDDswLqZwUEJQ5nfOHpn10e3zO7GSJ-0pUCeaJdqRd-HRXU7F3yPF9L68KZzTaOiQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"state\": \"play\",\n\"username\": \"admin\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/player/play-pause",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"player",
+						"play-pause"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/player/next",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiI2YmEzOWZhZjViNzFlODZkOGI5ZDkyMTI4MGFkYzM4YjY2YmNlODQ1NWFlZTQxMTI3NWViODM0OTg0ZTdkY2FmOWJlNjVjNGJmYTIxZjE3MzZlOWU0ZjgyZjlkYjA0NjFjYTkzYThiOTIyNWU5M2U3NjVlNzdlYjE3YWQ3NTk5MyJ9.kZO2okmsvNRr7SOm6DBRDNTGk9BcZ1pRBHUBRz25nXytaknHG4n1qdcrpnwFEnKQXMaG3bfWBDiiIqZbFdcExGBoD1ydWObKbuKvHW7znXkM0CIYbK2ZMYjfup-b363mAuUGul0goDXhssKrAP5SwYx-3MZ59z74oLBoobeyj3GXK2boqQZjIR3oZKlk1crDM_qtvGu9yXkn5TFwvfwBCcbMDIXVGtENAfFOzuDR-mmWyvg5gp91x6c-z12__w16w4EXmo3eK3zp9iYqCNADK7H_8mjWf3J6A7waR0IsJmamcSj9M-oDIEYhFtIah4ASZbDt2B7cq99sRo511FMtlf2RnCrAm9zzsMUS1hCo2rb_FtFhAokQnecGhf3g014tG1AZUWgM_m_84TFtLlC7KSomvahhRppVEteazMuollGhA_QZOxevyizXRLm7YZPeJLUr-LQ74vXAWr4OziogzfUwu0hCIvUOdQ0G0msFJe1C0e3Px7apGnO7TJGk2cncK9xJgr44cXwQWaUD1zemUVAsLAPwlUq6Mbs7AdG6bnNBUPQDuHGazdfefd53Gek2FHtzGfqJP-FwL_jL_ItMXOoGVmZaGm_2cqXZNvoB-EyDDswLqZwUEJQ5nfOHpn10e3zO7GSJ-0pUCeaJdqRd-HRXU7F3yPF9L68KZzTaOiQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"username\": \"admin\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/player/next",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"player",
+						"next"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/player/previous",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiI2YmEzOWZhZjViNzFlODZkOGI5ZDkyMTI4MGFkYzM4YjY2YmNlODQ1NWFlZTQxMTI3NWViODM0OTg0ZTdkY2FmOWJlNjVjNGJmYTIxZjE3MzZlOWU0ZjgyZjlkYjA0NjFjYTkzYThiOTIyNWU5M2U3NjVlNzdlYjE3YWQ3NTk5MyJ9.kZO2okmsvNRr7SOm6DBRDNTGk9BcZ1pRBHUBRz25nXytaknHG4n1qdcrpnwFEnKQXMaG3bfWBDiiIqZbFdcExGBoD1ydWObKbuKvHW7znXkM0CIYbK2ZMYjfup-b363mAuUGul0goDXhssKrAP5SwYx-3MZ59z74oLBoobeyj3GXK2boqQZjIR3oZKlk1crDM_qtvGu9yXkn5TFwvfwBCcbMDIXVGtENAfFOzuDR-mmWyvg5gp91x6c-z12__w16w4EXmo3eK3zp9iYqCNADK7H_8mjWf3J6A7waR0IsJmamcSj9M-oDIEYhFtIah4ASZbDt2B7cq99sRo511FMtlf2RnCrAm9zzsMUS1hCo2rb_FtFhAokQnecGhf3g014tG1AZUWgM_m_84TFtLlC7KSomvahhRppVEteazMuollGhA_QZOxevyizXRLm7YZPeJLUr-LQ74vXAWr4OziogzfUwu0hCIvUOdQ0G0msFJe1C0e3Px7apGnO7TJGk2cncK9xJgr44cXwQWaUD1zemUVAsLAPwlUq6Mbs7AdG6bnNBUPQDuHGazdfefd53Gek2FHtzGfqJP-FwL_jL_ItMXOoGVmZaGm_2cqXZNvoB-EyDDswLqZwUEJQ5nfOHpn10e3zO7GSJ-0pUCeaJdqRd-HRXU7F3yPF9L68KZzTaOiQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"username\": \"admin\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/player/previous",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"player",
+						"previous"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
