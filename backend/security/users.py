@@ -4,7 +4,6 @@ as a second wrapper around the called route itself
 For the documentation of the functions see the File where they are called:
 backend/api/routes/users.py
 """
-import base64
 import logging
 
 from flask import (
@@ -18,10 +17,6 @@ from backend.database.exceptions import (
     Exists,
     DoesNotExist,
 )
-from backend.security.validation import (
-    admin,
-    validate_admin,
-)
 
 logger = logging.getLogger(__name__)
 
@@ -29,8 +24,6 @@ logger = logging.getLogger(__name__)
 #
 # UsersIdView
 #
-@validate_admin
-@admin
 def u_i_v_get(uid: int):
     """Returns the user with the given id
 
@@ -53,7 +46,6 @@ def u_i_v_get(uid: int):
     return jsonify(user.to_dict())
 
 
-@validate_admin
 def u_i_v_put(uid: int):
     """Creates a user with the given id
 
@@ -72,8 +64,6 @@ def u_i_v_put(uid: int):
     return f'PUT /users/{uid} + json'
 
 
-@validate_admin
-@admin
 def u_i_v_delete(uid: int):
     """Deletes the user with a given id
 
@@ -96,8 +86,6 @@ def u_i_v_delete(uid: int):
 #
 # UsersNameView
 #
-@validate_admin
-@admin
 def u_n_v_get(username: str):
     """Returns the user with the given username
 
@@ -120,7 +108,6 @@ def u_n_v_get(username: str):
     return jsonify(user.to_dict())
 
 
-@validate_admin
 def u_n_v_put(username: str):
     """Creates a user with the given name
 
@@ -139,8 +126,6 @@ def u_n_v_put(username: str):
     return f'PUT /users/{username} + json'
 
 
-@validate_admin
-@admin
 def u_n_v_delete(username: str):
     """Deletes the user with the given name
 
@@ -163,14 +148,11 @@ def u_n_v_delete(username: str):
 #
 # UserView
 #
-@validate_admin
-@admin
 def u_v_get():
     """Returns all users"""
     return jsonify(user_utils.list_users())
 
 
-@validate_admin
 # Only allow registration if the admin login was changed
 def u_v_post():
     """Register a new user"""

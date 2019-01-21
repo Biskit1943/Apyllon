@@ -1,30 +1,18 @@
 """This module contains all routes for communicating with the frontend"""
 import logging
-import os
 
 from backend import (
     app,
     db,
 )
-from backend.api import (
-    local,
-)
 from backend.api.routes import (
     users,
     player,
-    common
+    common,
+    local,
 )
-from backend.database.song_utils import list_songs
 
 logger = logging.getLogger(__name__)
-
-
-@app.route('/')
-@app.route('/index')
-def index():
-    path = os.path.join(os.path.abspath('tests/test_data'))
-    local.add_songs(path)
-    return "Success", 200
 
 
 @app.teardown_appcontext
@@ -89,4 +77,15 @@ app.add_url_rule('/player/loop',
 app.add_url_rule('/player/playlist',
                  view_func=player.PlayerPlaylist.as_view(name='player_playlist'),
                  methods=['PUT', 'GET', 'DELETE'],
+                 )
+
+# Local storage endpoints
+
+app.add_url_rule('/upload',
+                 view_func=local.UploadView.as_view(name='upload'),
+                 methods=['POST', ],
+                 )
+app.add_url_rule('/update',
+                 view_func=local.UpdateView.as_view(name='update'),
+                 methods=['PUT', ],
                  )
