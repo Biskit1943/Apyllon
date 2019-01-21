@@ -17,6 +17,7 @@ export class PlayerComponent {
   constructor(private player: PlayerService, private alertService: AlertService) {
     this.shuffled();
     this.looped();
+    this.player.updatedb();
     setInterval(() => {
       this.shuffled();
       this.looped();

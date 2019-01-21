@@ -56,4 +56,8 @@ export class PlayerService {
   listSongs() {
     return this.http.get(`${environment.apiUrl}/list`);
   }
+
+  updatedb() {
+    return this.http.put(`${environment.apiUrl}/update`, JSON.stringify({}));
+  }
 }

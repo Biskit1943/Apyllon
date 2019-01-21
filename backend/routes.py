@@ -94,9 +94,9 @@ app.add_url_rule('/player/playlist',
 # Local storage endpoints
 app.add_url_rule('/upload',
                  view_func=common.UploadView.as_view(name='upload'),
-                 methods=['POST', ],
+                 methods=['POST']
                  )
 app.add_url_rule('/update',
                  view_func=common.UpdateView.as_view(name='update'),
-                 methods=['PUT', ],
+                 methods=['PUT']
                  )
