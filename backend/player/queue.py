@@ -56,10 +56,21 @@ class Queue():
         return mrl, meta
 
     def get_next_mrl(self):
+        if self.repeat_song:
+            return self.songList[self.position].mrl
         self.position += 1
+        if len(self.songList) - 1 < self.position:
+            if self.repeat_queue:
+                self.position = 0
+            else:
+                return False
         return self.songList[self.position].mrl
 
     def get_previous_mrl(self):
+        if self.repeat_song:
+            return self.songList[self.position].mrl
+        elif self.position -1 < 0:
+            return self.songList[self.position].mrl
         self.position -= 1
         return self.songList[self.position].mrl
 
@@ -71,6 +82,7 @@ class Queue():
         for s in self.songList:
             meta.append(s.meta.__dict__)
         return json.dumps(meta)
+
 
 class Song():
     def __init__(self, media_resource_location, meta):
