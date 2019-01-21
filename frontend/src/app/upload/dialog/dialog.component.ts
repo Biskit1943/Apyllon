@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { UploadService } from '../../_services';
+import { PlayerService, UploadService } from '../../_services';
 import { forkJoin } from 'rxjs';
 
 @Component({
@@ -17,7 +17,8 @@ export class DialogComponent {
   primaryButtonText = 'Upload';
   showCancelButton = true;
   uploading = false;
-  uploadSuccessful = false;
+  uploadSuccessful = true;
+  youtubeUrl = '';
 
   addFiles() {
     this.file.nativeElement.click();
@@ -32,7 +33,8 @@ export class DialogComponent {
     }
   }
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>, public uploadService: UploadService) {
+  constructor(public dialogRef: MatDialogRef<DialogComponent>, public uploadService: UploadService,
+              public player: PlayerService) {
   }
 
   closeDialog() {
@@ -59,7 +61,7 @@ export class DialogComponent {
     this.primaryButtonText = 'Finish';
 
     // The dialog should not be closed while uploading
-    this.canBeClosed = false;
+    this.canBeClosed = true;
     this.dialogRef.disableClose = true;
 
     // Hide the cancel-button
@@ -77,5 +79,20 @@ export class DialogComponent {
       // ... and the component is no longer uploading
       this.uploading = false;
     });
+  }
+
+  updateUrl(event) {
+    this.youtubeUrl = event.target.value;
+  }
+
+  uploadYoutube(event) {
+    if (this.youtubeUrl !== '') {
+      const url = this.youtubeUrl;
+      this.player.addSongToPlaylist('admin', url, 'youtube').subscribe(data => {
+        this.closeDialog();
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 }

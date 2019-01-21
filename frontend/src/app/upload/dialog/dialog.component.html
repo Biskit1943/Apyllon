@@ -9,6 +9,9 @@
 
   <!-- This is the content of the dialog, containing a list of the files to upload -->
   <mat-dialog-content fxFlex>
+    <label for="youtube_url">Youtube Url: </label>
+    <input id="youtube_url" type="url" (keyup)="updateUrl($event)">
+    <button mat-raised-button mat-icon-button (click)="uploadYoutube($event)"><mat-icon>cloud_upload</mat-icon></button>
     <mat-list>
       <mat-list-item *ngFor="let file of files">
         <h4 mat-line>{{file.name}}</h4>
@@ -22,4 +25,6 @@
     <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancel</button>
     <button mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="closeDialog()">{{primaryButtonText}}</button>
   </mat-dialog-actions>
+
+
 </div>
