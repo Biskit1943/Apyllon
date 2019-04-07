@@ -10,18 +10,21 @@ from backend_database.security import get_password_hash
 @app.on_event("startup")
 async def startup():
     from sqlalchemy import exists
-    if not session.query(exists().where(Users.username == 'max')).scalar():
+    db = Session()
+    if not db.query(exists().where(Users.username == 'max')).scalar():
         user = Users(username='max')
         user.password = get_password_hash('pw')
+        user.admin = True
         filepath = FilePaths(filename='test.mp3', directory='/root')
         song = Songs(filepath=filepath, artist='artist',
                      title='title', album='album', genre='genre', length=42)
         playlist = Playlists(name='p1', user=user, songs=[song])
-        session.add_all([user, filepath, song, playlist])
-        session.commit()
+        db.add_all([user, filepath, song, playlist])
+        db.commit()
 
     for model in [Users, FilePaths, Songs, Playlists]:
-        print(session.query(model).all())
+        print(db.query(model).all())
+    db.close()
 
 
 @app.on_event("shutdown")
