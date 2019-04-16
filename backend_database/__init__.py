@@ -5,7 +5,7 @@ from starlette.requests import Request
 
 DATABASE_URL = "sqlite:///app.sqlite"
 engine = sqlalchemy.create_engine(DATABASE_URL)
-Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Session = sessionmaker(autocommit=False, autoflush=False, bind=engine, expire_on_commit=False)
 Base = declarative_base()
 
 
@@ -13,22 +13,56 @@ def get_db(request: Request) -> Session:
     return request.state.db
 
 
-# import Models
-from .models import (
-    FilePaths,
-    Playlists,
-    Songs,
-    Users,
-)
+# import modules
+from backend_database.fastapi_models import *
+from backend_database.security import *
+from backend_database.models import *
+from backend_database.user_utils import *
 
-# from backend_database import *
+'''
+from backend_database import *
+or
+from . import ...
+
+This makes the other modules available to each other without having to import
+them from each module. This also makes everything importable from the top level
+module (backend_database)
+
+e.g.:
+from .modules import Users
+vs.
+from . import Users
+'''
 __all__ = [
+    'Admin',
+    'AdminIn',
+    'authenticate_user',
+    'Base',
+    'create_access_token',
+    'create_first_user',
+    'create_user',
+    'get_current_active_superuser',
+    'get_current_active_user',
+    'get_current_user',
     'get_db',
-    'Session',
-    'FilePaths',
+    'get_password_hash',
+    'get_user',
+    'PlayerState',
+    'Playlist',
     'Playlists',
+    'Session',
+    'Song',
+    'SongIndexed',
+    'SongMeta',
     'Songs',
+    'Token',
+    'TokenPayload',
+    'update_user',
+    'User',
+    'UserIn',
+    'UserInDB',
     'Users',
+    'verify_password',
 ]
 
 # create tables if not existing

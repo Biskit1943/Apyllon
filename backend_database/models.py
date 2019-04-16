@@ -7,14 +7,16 @@ from sqlalchemy import (
     Integer,
     String,
     Table,
-    Text,
 )
-from sqlalchemy.orm import (
-    backref,
-    relationship,
-)
+from sqlalchemy.orm import relationship
 
 from . import Base
+
+__all__ = [
+    'Users',
+    'Playlists',
+    'Songs',
+]
 
 
 class Users(Base):
@@ -38,32 +40,10 @@ class Users(Base):
         }
 
 
-class FilePaths(Base):
-    __tablename__ = 'FilePaths'
-    id_ = Column('id', Integer, primary_key=True)
-    filename = Column(String(64), nullable=False)
-    directory = Column(Text, nullable=False)
-
-    def __repr__(self):
-        return f'<FilePath for {self.song.id_}>'
-
-    def __str__(self):
-        return dumps(self.to_json())
-
-    def to_json(self):
-        return {
-            'id': self.id_,
-            'filename': self.filename,
-            'directory': self.directory,
-            'song': self.song.to_json(),
-        }
-
-
 class Songs(Base):
     __tablename__ = 'Songs'
     id_ = Column('id', Integer, primary_key=True)
-    filepath_id = Column(Integer, ForeignKey('FilePaths.id'))
-    filepath = relationship('FilePaths', backref=backref('song', lazy=True, uselist=False))
+    filepath = Column(String)
     artist = Column(String(32))
     title = Column(String(64))
     album = Column(String(32))
@@ -79,8 +59,7 @@ class Songs(Base):
     def to_json(self):
         return {
             'id': self.id_,
-            'filepath_id': self.filepath_id,
-            'filepath': self.filepath.to_json(),
+            'filepath': self.filepath,
             'artist': self.artist,
             'title': self.title,
             'album': self.album,
