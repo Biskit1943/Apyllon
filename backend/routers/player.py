@@ -17,7 +17,7 @@ async def get_player_state(db: Session = Depends(get_db)):
 @router.put('/play', response_model=PlayerState)
 async def play(db: Session = Depends(get_db), _: Users = Depends(get_current_active_user)):
     try:
-        await player_.play()
+        player_.play()
     except:
         raise
     return PlayerState(**{'loop': False, 'state': 'play', 'shuffle': False})
@@ -26,7 +26,7 @@ async def play(db: Session = Depends(get_db), _: Users = Depends(get_current_act
 @router.put('/pause', response_model=PlayerState)
 async def pause(db: Session = Depends(get_db), _: Users = Depends(get_current_active_user)):
     try:
-        await player_.pause()
+        player_.pause()
     except:
         raise
     return PlayerState(**{'loop': False, 'state': 'pause', 'shuffle': False})

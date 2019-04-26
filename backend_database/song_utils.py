@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from .models import Songs
 
 
-async def create(
+def create(
         *,
         filepath: str,
         artist: str = None,

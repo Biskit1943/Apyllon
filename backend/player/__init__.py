@@ -1,3 +1,3 @@
-from .player import AsyncPlayer
+from .player import Player
 
-player_ = AsyncPlayer()
+player_ = Player()

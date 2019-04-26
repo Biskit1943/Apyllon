@@ -13,7 +13,7 @@ from backend_database.song_utils import create as create_song
 from .exceptions import Duplicated, EOQError
 
 
-class AsyncQue:
+class Queue:
     def __init__(self, identifier: int, songs: List[Songs] = None, title: str = '', pos: int = 0):
         self.id_ = identifier
         self.title = title
@@ -26,12 +26,12 @@ class AsyncQue:
 
     @staticmethod
     def from_playlist(playlist: Playlists):
-        return AsyncQue(playlist.id_, songs=playlist.songs, title=playlist.name)
+        return Queue(playlist.id_, songs=playlist.songs, title=playlist.name)
 
     def __len__(self):
         return len(self.songs)
 
-    async def to_json(self):
+    def to_json(self):
         return {
             'id_': self.id_,
             'title': self.title,
@@ -42,7 +42,7 @@ class AsyncQue:
             'next': self.next,
         }
 
-    async def _add(self, song: Songs):
+    def _add(self, song: Songs):
         """Adds a song to the database.
 
         If the ids are not in range from 1 to len(self.songs) the missing ids
@@ -51,7 +51,7 @@ class AsyncQue:
         Args:
             song: The song which will be added
         """
-        if not await self.check_song_in_list(song.id_):
+        if not self.check_song_in_list(song.id_):
             if self.songs == {}:
                 self.songs[1] = song
                 self.song_ids.append(song.id_)
@@ -74,10 +74,10 @@ class AsyncQue:
         else:
             raise Duplicated(f'{song} is already in this Queue')
 
-    async def check_song_in_list(self, song: int):
+    def check_song_in_list(self, song: int):
         return song in self.song_ids
 
-    async def add_file(
+    def add_file(
             self,
             *,
             filepath: str,
@@ -111,7 +111,7 @@ class AsyncQue:
             If ret is True `func`:self.to_json: which returns a dict
             representing this object
         """
-        song = await create_song(
+        song = create_song(
             filepath=filepath,
             artist=artist,
             title=title,
@@ -122,14 +122,14 @@ class AsyncQue:
         )
 
         try:
-            await self._add(song)
+            self._add(song)
         except Duplicated:
             raise
 
         if ret:
-            return await self.to_json()
+            return self.to_json()
 
-    async def add_db(self, song: Songs, ret: bool = False):
+    def add_db(self, song: Songs, ret: bool = False):
         """Adds a song from the database to this queue.
 
         Args:
@@ -144,14 +144,14 @@ class AsyncQue:
             representing this object
         """
         try:
-            await self._add(song)
+            self._add(song)
         except Duplicated:
             raise
 
         if ret:
-            return await self.to_json()
+            return self.to_json()
 
-    async def add_youtube(self, url: str, ret: bool = False, db: Session = None):
+    def add_youtube(self, url: str, ret: bool = False, db: Session = None):
         """Adds a YouTube song to the Queue, which may or may not already exist
         in the database.
 
@@ -169,10 +169,10 @@ class AsyncQue:
         yt_song = yt.streams.filter(only_audio=True).first()
         best_url = yt_song.url
         title = yt.title
-        song = await create_song(filepath=best_url, title=title, length=int(yt.length), db=db)
+        song = create_song(filepath=best_url, title=title, length=int(yt.length), db=db)
 
         try:
-            await self._add(song)
+            self._add(song)
         except Duplicated:
             raise
 
@@ -196,20 +196,23 @@ class AsyncQue:
         if self.next is None and self.pos is not 0:
             raise EOQError('No next item available')
         elif self.pos is not 0:
-            logger.info(f'self.pos is not 0, current = {self.next}')
+            logger.debug(f'self.pos is not 0, current = {self.next}')
+            logger.info('getting next song from Playlist')
             current = self.next  # next song is already defined
         else:
             try:
-                self.pos = 1
+                self.pos = 1  # first index is 1
                 current = self.songs[self.pos]
-                logger.info(f'self.pos is 0, current = {self.songs[self.pos]}')
+                logger.debug(f'self.pos was 0, starting from beginning')
+                logger.info(f'starting Playlist from beginning, current = {self.songs[self.pos]}')
             except IndexError:  # only if songs is empty
                 raise
 
         if not random:  # no random element choice
             self.pos += 1
             if self.pos > len(self.songs):
-                logger.info(f'{self.pos} is greater than {len(self.songs)}')
+                logger.debug(f'next position would be {self.pos}, but Playlist only has {len(self.songs)} songs')
+                logger.info('Playlist exceeded')
                 self.played = []
                 self.pos = 0
                 if not loop:
