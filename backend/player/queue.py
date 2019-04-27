@@ -8,13 +8,17 @@ from typing import List, Union
 from pytube import YouTube
 from sqlalchemy.orm import Session
 
-from backend_database.models import Songs, Playlists
+from config import SongTypes
+from backend_database.models import Songs, Playlists, Users
 from backend_database.song_utils import create as create_song
+from backend_database.playlist_utils import create as create_playlist
+from backend_database.playlist_utils import get as get_playlist
+from backend_database.playlist_utils import append as append_to_playlist
 from .exceptions import Duplicated, EOQError
 
 
 class Queue:
-    def __init__(self, identifier: int, songs: List[Songs] = None, title: str = '', pos: int = 0):
+    def __init__(self, identifier: int, songs: List[Songs] = None, title: str = 'Default', pos: int = 0):
         self.id_ = identifier
         self.title = title
         self.songs = {id_: song for id_, song in enumerate(sorted(songs), 1)} if songs is not None else {}
@@ -23,6 +27,8 @@ class Queue:
         self.pos = pos if pos in [s[0] for s in self.songs.items()] else 0
         self.prev = None if self.pos is 0 else self.songs.get(self.pos - 1, None)
         self.next = None if self.pos is 0 else self.songs.get(self.pos + 1, None)
+        self.loop = False
+        self.shuffle = False
 
     @staticmethod
     def from_playlist(playlist: Playlists):
@@ -31,14 +37,19 @@ class Queue:
     def __len__(self):
         return len(self.songs)
 
-    def to_json(self):
+    def is_empty(self):
+        return len(self) == 0
+
+    def to_dict(self):
+        songs = {id_: song.to_dict() for id_, song in self.songs.items()}
         return {
             'id_': self.id_,
             'title': self.title,
-            'songs': sorted({id_: song.to_json for id_, song in self.songs.items()}, key=lambda x: x[1].title),
+            'songs': songs,
+            # 'songs': sorted({id_: song.to_dict for id_, song in self.songs.items()}, key=lambda x: x[1].title),
             'played': self.played,
             'pos': self.pos,
-            'current': self.current.to_json(),
+            'current': None if not self.current else self.current.to_dict(),
             'next': self.next,
         }
 
@@ -112,6 +123,7 @@ class Queue:
             representing this object
         """
         song = create_song(
+            type_=SongTypes.FILE.value,
             filepath=filepath,
             artist=artist,
             title=title,
@@ -127,7 +139,7 @@ class Queue:
             raise
 
         if ret:
-            return self.to_json()
+            return self.to_dict()
 
     def add_db(self, song: Songs, ret: bool = False):
         """Adds a song from the database to this queue.
@@ -149,7 +161,7 @@ class Queue:
             raise
 
         if ret:
-            return self.to_json()
+            return self.to_dict()
 
     def add_youtube(self, url: str, ret: bool = False, db: Session = None):
         """Adds a YouTube song to the Queue, which may or may not already exist
@@ -166,10 +178,10 @@ class Queue:
             representing this object
         """
         yt = YouTube(url)
-        yt_song = yt.streams.filter(only_audio=True).first()
-        best_url = yt_song.url
         title = yt.title
-        song = create_song(filepath=best_url, title=title, length=int(yt.length), db=db)
+        if not title:
+            logger.info('Failed to get title from Video URL')
+        song = create_song(type_=SongTypes.YOUTUBE.value, filepath=url, title=title, length=int(yt.length), db=db)
 
         try:
             self._add(song)
@@ -177,22 +189,34 @@ class Queue:
             raise
 
         if ret:
-            return self.to_json()
+            return self.to_dict()
 
-    def get_next(self, *, loop: bool = False, random: bool = False):
+    def get_next(self, *, loop: bool = None, shuffle: bool = None) -> Songs:
         """Returns the next item in the queue.
 
         If the end of the queue is reached and loop is False, an exception is
         raised.
-        If random is True, a random element is picked
+        If loop is True, a random element is picked
+
+        Once loop or shuffle set, it will be saved till it is overridden.
 
         Args:
             loop (bool, optional): If True, the queue will start from the beginning
-            random (bool, optional): If True, a random song is picked
+            shuffle (bool, optional): If True, a random song is picked
 
         Returns:
             The next song which will be played
         """
+        if shuffle is None:
+            shuffle = self.shuffle
+        else:
+            self.shuffle = shuffle
+
+        if loop is None:
+            loop = self.loop
+        else:
+            self.loop = loop
+
         if self.next is None and self.pos is not 0:
             raise EOQError('No next item available')
         elif self.pos is not 0:
@@ -208,7 +232,7 @@ class Queue:
             except IndexError:  # only if songs is empty
                 raise
 
-        if not random:  # no random element choice
+        if shuffle is False:  # no random element choice
             self.pos += 1
             if self.pos > len(self.songs):
                 logger.debug(f'next position would be {self.pos}, but Playlist only has {len(self.songs)} songs')
@@ -243,7 +267,7 @@ class Queue:
 
     def all(self, *, loop: bool = False, random: bool = False):
         while True:
-            yield self.get_next(loop=loop, random=random)
+            yield self.get_next(loop=loop, shuffle=random)
             if not self.next:
                 break
 
@@ -255,4 +279,40 @@ class Queue:
 
     @property
     def current(self) -> Songs:
-        return self.songs[self.pos]
+        return self.songs.get(self.pos)
+
+    def to_playlist(self, current_user: Users, name: str = None, db: Session = None):
+        self.title = name if name is not None else self.title
+        if db:
+            if name is None and self.title == '':
+                raise RuntimeError('This should never happen')
+            if self.id_ is -1:
+                playlist = create_playlist(
+                    user=current_user, name=name, songs=[song for _, song in self.songs.items()], db=db)
+                self.id_ = playlist.id_
+            else:
+                playlist = get_playlist(self.id_, db=db)
+                if not playlist:
+                    self.id_ = -1
+                    logger.error('Cannot find this Playlist id!')
+                elif playlist.songs in [song for _, song in self.songs.items()]:
+                    logger.info('Updating Playlist')
+                    missing = [song for _, song in self.songs.items()] - playlist.songs
+                    print(missing)
+                    # append_to_playlist(playlist, songs=missing, db=db)
+                else:
+                    logger.info('Playlist up to date')
+
+        data = self.to_dict()
+        songs = data.get('songs')
+        indexed_songs = []
+        for index, song in songs.items():
+            indexed_songs.append(
+                {
+                    'index': index,
+                    'length': song.get('length', -1),
+                    'meta': song.get('meta'),
+                }
+            )
+        print(indexed_songs)
+        return {'title': data.get('title'), 'songs': indexed_songs}

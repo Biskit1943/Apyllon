@@ -15,6 +15,7 @@ app = FastAPI()
 from backend.routers import (
     player,
     users,
+    playlist,
 )
 import backend_database as bd
 from backend.player import player_
@@ -35,9 +36,9 @@ async def startup():
 #                                                                              #
 ################################################################################''')
     # # TODO:  This is just done for mocking
-    player_.add_youtube('https://www.youtube.com/watch?v=PXbU_UI-lAg', db=db)
+    # player_.add_youtube('https://www.youtube.com/watch?v=PXbU_UI-lAg', db=db)
     # player_.add_youtube('https://www.youtube.com/watch?v=LBZ-3Ugj1AQ', db=db)
-    player_.add_youtube('https://www.youtube.com/watch?v=U5u9glfqDsc', db=db)
+    # player_.add_youtube('https://www.youtube.com/watch?v=U5u9glfqDsc', db=db)
     db.close()
 
 
@@ -61,4 +62,13 @@ async def db_session_middleware(
 
 
 app.include_router(users.router)
-app.include_router(player.router)
+app.include_router(
+    player.router,
+    prefix="/player",
+    tags=["player"],
+)
+app.include_router(
+    playlist.router,
+    prefix="/player/playlist",
+    tags=["playlist"],
+)

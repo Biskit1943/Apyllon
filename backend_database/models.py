@@ -1,5 +1,7 @@
 from json import dumps
+from typing import List
 
+from pytube import YouTube
 from sqlalchemy import (
     Boolean,
     Column,
@@ -10,6 +12,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import relationship
 
+from config import get_type
 from . import Base
 
 __all__ = [
@@ -30,9 +33,9 @@ class Users(Base):
         return f'<{"Admin" if self.admin else "User"} {self.username}>'
 
     def __str__(self):
-        return dumps(self.to_json())
+        return dumps(self.to_dict())
 
-    def to_json(self):
+    def to_dict(self):
         return {
             'id': self.id_,
             'username': self.username,
@@ -43,7 +46,8 @@ class Users(Base):
 class Songs(Base):
     __tablename__ = 'Songs'
     id_ = Column('id', Integer, primary_key=True)
-    filepath = Column(String)
+    type_ = Column(Integer, index=True)
+    filepath = Column(String, unique=True)
     artist = Column(String(32))
     title = Column(String(64))
     album = Column(String(32))
@@ -54,18 +58,30 @@ class Songs(Base):
         return f'<Song {self.artist} - {self.title}>'
 
     def __str__(self):
-        return dumps(self.to_json())
+        return dumps(self.to_dict())
 
-    def to_json(self):
+    def to_dict(self):
         return {
             'id': self.id_,
+            'type': get_type(self.type_, str),
             'filepath': self.filepath,
-            'artist': self.artist,
-            'title': self.title,
-            'album': self.album,
-            'genre': self.genre,
+            'meta': {
+                'artist': self.artist,
+                'title': self.title,
+                'album': self.album,
+                'genre': self.genre,
+            },
             'length': self.length,
         }
+
+    def get_stream(self):
+        if self.type_ is 1:
+            return self.filepath
+        elif self.type_ is 2:
+            yt = YouTube(self.filepath)
+            yt_song = yt.streams.filter(only_audio=True).first()
+            best_url = yt_song.url
+            return best_url
 
 
 song_playlist_association_table = Table(
@@ -87,13 +103,21 @@ class Playlists(Base):
         return f'<Playlist {self.name}>'
 
     def __str__(self):
-        return dumps(self.to_json())
+        return dumps(self.to_dict())
 
-    def to_json(self):
+    def to_dict(self):
         return {
             'id': self.id_,
-            'name': self.name,
+            'title': self.name,
             'user_id': self.user_id,
-            'user': self.user.to_json(),
-            'songs': self.songs,
+            'user': self.user.to_dict(),
+            'songs': [s.to_dict() for s in self.songs],
         }
+
+    def add(self, *, song: Songs, songs: List[Songs]):
+        if song and song not in self.songs:
+            self.songs.append(song)
+        elif songs:
+            for song in songs:
+                if song not in self.songs:
+                    self.songs.append(song)

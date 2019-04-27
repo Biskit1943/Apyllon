@@ -10,24 +10,45 @@ router = APIRouter()
 
 
 @router.get('/state', response_model=PlayerState)
-async def get_player_state(db: Session = Depends(get_db)):
-    return
+async def get_player_state(_: Users = Depends(get_current_active_user)):
+    try:
+        state = player_.get_state()
+    except:
+        raise
+    return PlayerState(**state)
 
 
 @router.put('/play', response_model=PlayerState)
-async def play(db: Session = Depends(get_db), _: Users = Depends(get_current_active_user)):
+async def play(_: Users = Depends(get_current_active_user)):
     try:
-        player_.play()
+        state = player_.play()
     except:
         raise
-    return PlayerState(**{'loop': False, 'state': 'play', 'shuffle': False})
+    return PlayerState(**state)
 
 
 @router.put('/pause', response_model=PlayerState)
-async def pause(db: Session = Depends(get_db), _: Users = Depends(get_current_active_user)):
+async def pause(_: Users = Depends(get_current_active_user)):
     try:
-        player_.pause()
+        state = player_.pause()
     except:
         raise
-    return PlayerState(**{'loop': False, 'state': 'pause', 'shuffle': False})
+    return PlayerState(**state)
 
+
+@router.put('/stop', response_model=PlayerState)
+async def stop(_: Users = Depends(get_current_active_user)):
+    try:
+        state = player_.stop()
+    except:
+        raise
+    return PlayerState(**state)
+
+
+@router.put('/next', response_model=PlayerState)
+async def next(_: Users = Depends(get_current_active_user)):
+    try:
+        state = player_.next()
+    except:
+        raise
+    return PlayerState(**state)

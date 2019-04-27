@@ -42,7 +42,7 @@ async def register(
         raise HTTPException(status_code=409, detail="User already exist")
 
     new_user = create_user(db, user_in=user_in)
-    return User(**new_user.to_json())
+    return User(**new_user.to_dict())
 
 
 @router.get("/users/me", tags=['users', 'me'], response_model=User)

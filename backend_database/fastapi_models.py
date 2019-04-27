@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 from pydantic import BaseModel
 
@@ -7,7 +7,11 @@ __all__ = [
     'AdminIn',
     'PlayerState',
     'Playlist',
+    'PlaylistOut',
+    'PlaylistsOut',
+    'PlaylistIndexed',
     'Song',
+    'SongIn',
     'SongIndexed',
     'SongMeta',
     'Token',
@@ -54,11 +58,14 @@ class SongMeta(BaseModel):
     title: str = None
 
 
+class SongIn(BaseModel):
+    song_path: str
+    type: int
+
+
 class Song(BaseModel):
-    filename: str
     length: int
     meta: SongMeta
-    path: str
 
 
 class SongIndexed(Song):
@@ -66,13 +73,26 @@ class SongIndexed(Song):
 
 
 class PlayerState(BaseModel):
-    loop: bool
-    state: str
+    loop: bool = None
+    state: str = None
     next: Song = None
     current: Song = None
     previous: Song = None
-    shuffle: bool
+    shuffle: bool = None
+    queue_or_song: Union[str, Song] = None
 
 
 class Playlist(BaseModel):
+    title: str
+
+
+class PlaylistIndexed(Playlist):
     songs: List[SongIndexed]
+
+
+class PlaylistOut(Playlist):
+    songs: List[Song]
+
+
+class PlaylistsOut(BaseModel):
+    playlists: List[PlaylistOut]
