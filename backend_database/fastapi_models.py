@@ -83,7 +83,7 @@ class PlayerState(BaseModel):
 
 
 class Playlist(BaseModel):
-    title: str
+    title: str = None
 
 
 class PlaylistIndexed(Playlist):
