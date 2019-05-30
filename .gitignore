@@ -11,3 +11,4 @@
 # Project related
 app.sqlite
 **/.logs
+app.db

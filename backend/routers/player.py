@@ -52,3 +52,30 @@ async def next(_: Users = Depends(get_current_active_user)):
     except:
         raise
     return PlayerState(**state)
+
+
+@router.put('/previous', response_model=PlayerState)
+async def prev(_: Users = Depends(get_current_active_user)):
+    try:
+        state = player_.prev()
+    except:
+        raise
+    return PlayerState(**state)
+
+
+@router.put('/shuffle', response_model=PlayerState)
+async def shuffle(_: Users = Depends(get_current_active_user)):
+    try:
+        state = player_.shuffle()
+    except:
+        raise
+    return PlayerState(**state)
+
+
+@router.put('/loop', response_model=PlayerState)
+async def shuffle(_: Users = Depends(get_current_active_user)):
+    try:
+        state = player_.loop()
+    except:
+        raise
+    return PlayerState(**state)

@@ -34,8 +34,7 @@ async def route_login_access_token(
 async def register(
         *,
         db: Session = Depends(get_db),
-        user_in: UserIn,
-        _: Users = Depends(get_current_active_superuser)
+        user_in: UserIn
 ):
     user = get_user(db, user_in.username)
     if user:

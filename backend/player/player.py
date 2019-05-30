@@ -87,6 +87,28 @@ class Player:
             logger.error('No queue, nothing next to play...')
             return
         self.vlc_media_player.set_mrl(self.queue.get_next().get_stream())
+        return self.get_state()
+
+    def prev(self, *args, **kwargs):
+        if not self.queue:
+            logger.error('No queue, nothing previous to play...')
+            return
+        self.vlc_media_player.set_mrl(self.queue.get_prev().get_stream())
+        return self.get_state()
+
+    def shuffle(self, *args, **kwargs):
+        if not self.queue:
+            logger.error('No queue, nothing to shuffle...')
+            return
+        self.queue.shuffle = not self.queue.shuffle
+        return self.get_state()
+
+    def loop(self, *args, **kwargs):
+        if not self.queue:
+            logger.error('No queue, nothing to loop...')
+            return
+        self.queue.loop = not self.queue.loop
+        return self.get_state()
 
     def get_position(self):
         return self.vlc_media_player.get_position()
