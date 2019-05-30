@@ -12,3 +12,5 @@
 app.sqlite
 **/.logs
 app.db
+
+**/node_modules

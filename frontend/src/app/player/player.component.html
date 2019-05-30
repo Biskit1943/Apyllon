@@ -1,0 +1,21 @@
+<div class="player-container">
+  <h2>Music Player</h2>
+  <div class="info-container">
+    <img id="cover-img" src="../../assets/Tux-Linux-wallpaper_950.jpg" alt="Cover Image">
+    <a style="margin-top: 10px;">
+      <p>{{currentSong}}</p>
+    </a>
+  </div>
+  <div class="player-controls">
+    <div><mat-progress-bar mode="determinate" value="40" style="margin-bottom: 10px;"></mat-progress-bar></div>
+    <div class="buttons">
+      <button *ngIf="isShuffle" mat-icon-button class="btn blue" (click)="shuffle($event)"><mat-icon>shuffle</mat-icon></button>
+      <button *ngIf="!isShuffle" mat-icon-button class="btn" (click)="shuffle($event)"><mat-icon>shuffle</mat-icon></button>
+      <button mat-raised-button mat-icon-button class="btn" (click)="previous($event)"><mat-icon>skip_previous</mat-icon></button>
+      <button mat-raised-button mat-icon-button class="btn" (click)="playPause($event)"><mat-icon>play_arrow</mat-icon></button>
+      <button mat-raised-button mat-icon-button class="btn" (click)="next($event)"><mat-icon>skip_next</mat-icon></button>
+      <button *ngIf="isLoop" mat-icon-button class="btn blue" (click)="loop($event)"><mat-icon>loop</mat-icon></button>
+      <button *ngIf="!isLoop" mat-icon-button class="btn" (click)="loop($event)"><mat-icon>loop</mat-icon></button>
+    </div>
+  </div>
+</div>
