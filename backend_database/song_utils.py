@@ -55,3 +55,10 @@ def get_song(filepath: str, t: int, db: Session):
             return None
 
     return song
+
+
+def get_song_by_title(title: str, db: Session):
+    song = db.query(Songs).filter(Songs.title == title).first()
+    if song:
+        return song
+    raise FileNotFoundError('Song not Found')

@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AlertService, PlayerService } from '../_services';
 import { User } from '../_models';
-import { first } from "rxjs/operators";
 
 @Component({
     selector: 'app-player',
@@ -17,48 +16,61 @@ export class PlayerComponent {
     private currentArtist = '';
     private nextSong = '';
     private previousSong = '';
+    private playing = false;
 
     constructor(private player: PlayerService, private alertService: AlertService) {
-        this.update();
-        setInterval(() => {
-            this.update();
-        }, 10000);
+        this.player.getState().then((res) => {
+            if (res && res.hasOwnProperty('state')) {
+                this.update(res);
+            }
+            setInterval(async () => {
+                this.update(await this.player.getState());
+            }, 10000);
+        }).catch(err => {
+            this.alertService.error(err);
+            console.log(err);
+        });
     }
 
-    previous(event) {
-        const state = this.player.prev();
+    async previous(event) {
+        const state = this.update(await this.player.prev());
     }
 
-    next(event) {
-        const state = this.player.next();
+    async next(event) {
+        const state = this.update(await this.player.next());
     }
 
-    playPause(event) {
-        const state = this.player.playPause();
+    async playPause(event) {
+        try {
+            let state;
+            if (this.playing) {
+                state = await this.player.stop();
+            } else {
+                state = await this.player.play();
+            }
+            this.update(state);
+        } catch (err) {
+            this.alertService.error(err);
+            console.log(err);
+        }
     }
 
-    shuffle(event) {
-        this.player.shuffle(this.currentUser.username)
-            .pipe(first())
-            .subscribe(data => {
-                    this.isShuffle = !this.isShuffle;
-                },
-                err => {
-                    console.log(err);
-                    this.alertService.error(err);
-                });
+    async shuffle(event) {
+        try {
+            this.update(await this.player.shuffle());
+        } catch (err) {
+            this.alertService.error(err);
+            console.log(err);
+        }
     }
 
-    loop(event) {
-        this.player.loop(this.currentUser.username)
-            .pipe(first())
-            .subscribe(data => {
-                    this.isLoop = !this.isLoop;
-                },
-                err => {
-                    console.log(err);
-                    this.alertService.error(err);
-                });
+    async loop(event) {
+        try {
+            this.update(await this.player.loop());
+        } catch (err) {
+            this.alertService.error(err);
+            console.log(err);
+        }
     }
 
     async shuffled() {
@@ -77,11 +89,11 @@ export class PlayerComponent {
         }
     }
 
-    async update() {
+    async update(state) {
         try {
-            const state = await this.player.getState();
             if (state && state.hasOwnProperty('shuffle') && state.hasOwnProperty('loop')) {
-                console.log(state);
+                // console.log(state);
+                this.playing = state['state'] === 'play';
                 this.isLoop = state['loop'] === 'true';
                 this.isShuffle = state['shuffle'] === 'true';
                 this.currentSong = state['current'];

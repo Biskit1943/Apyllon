@@ -37,27 +37,27 @@ class Player:
         self.events = self.vlc_media_player.event_manager()
         self.events.event_attach(vlc.EventType.MediaPlayerEndReached, self.next)
 
-        self.state = PlayerState.STOP
+        self.state = PlayerState.STOP.value
         # this object take care about play/pause/stop events
         self.player = threading.Thread(target=self.observer, daemon=True)
         self.player.start()
 
     def observer(self):
         while True:
-            if self.state is PlayerState.PLAY and not self.vlc_media_player.is_playing():
+            if self.state is PlayerState.PLAY.value and not self.vlc_media_player.is_playing():
                 logger.debug('<=== play ===>')
                 if self.vlc_media_player.play() is -1:
                     logger.error('error while playing')
-            elif self.state is PlayerState.PAUSE and self.vlc_media_player.is_playing():
+            elif self.state is PlayerState.PAUSE.value and self.vlc_media_player.is_playing():
                 logger.info('<=== pause ===>')
                 self.vlc_media_player.pause()
-            elif self.state is PlayerState.STOP and self.vlc_media_player.is_playing():
+            elif self.state is PlayerState.STOP.value and self.vlc_media_player.is_playing():
                 logger.info('<=== stop ===>')
                 self.vlc_media_player.stop()
             time.sleep(0.5)
 
     def play(self, song: str = None):
-        if self.state is PlayerState.PLAY:
+        if self.state is PlayerState.PLAY.value:
             return self.get_state()
 
         if not song and not self.queue:
@@ -69,17 +69,17 @@ class Player:
         elif not self.vlc_media_player.get_media():
             self.next()
 
-        self.state = PlayerState.PLAY
+        self.state = PlayerState.PLAY.value
         return self.get_state()
 
     def pause(self):
-        if self.state is PlayerState.PLAY:
-            self.state = PlayerState.PAUSE
+        if self.state is PlayerState.PLAY.value:
+            self.state = PlayerState.PAUSE.value
             return self.get_state()
 
     def stop(self):
-        if self.state is PlayerState.PLAY:
-            self.state = PlayerState.STOP
+        if self.state is PlayerState.PLAY.value:
+            self.state = PlayerState.STOP.value
             return self.get_state()
 
     def next(self, *args, **kwargs):
@@ -125,6 +125,7 @@ class Player:
             }
         else:
             return {
+                'state': self.state,
                 'queue_or_song': self.song,
             }
 
@@ -133,7 +134,7 @@ class Player:
         self.vlc_media_player = self.vlc_instance.media_player_new()
         self.events = self.vlc_media_player.event_manager()
         self.events.event_attach(vlc.EventType.MediaPlayerEndReached, self.next)
-        self.state = PlayerState.STOP
+        self.state = PlayerState.STOP.value
 
         self.queue = queue
 

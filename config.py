@@ -18,6 +18,7 @@ MUSIC_LIB = '/home/max/Music'
 class SongTypes(Enum):
     FILE = 1
     YOUTUBE = 2
+    DATABASE = 3
 
 
 TYPES = {SongTypes.FILE.value: 'File', SongTypes.YOUTUBE.value: 'YouTube'}

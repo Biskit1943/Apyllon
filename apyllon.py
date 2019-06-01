@@ -51,8 +51,8 @@ async def startup():
 #                                                                              #
 ################################################################################''')
     # # TODO:  This is just done for mocking
-    player_.add_youtube('https://www.youtube.com/watch?v=PXbU_UI-lAg', db=db)
-    player_.add_youtube('https://www.youtube.com/watch?v=LBZ-3Ugj1AQ', db=db)
+    # player_.add_youtube('https://www.youtube.com/watch?v=PXbU_UI-lAg', db=db)
+    # player_.add_youtube('https://www.youtube.com/watch?v=LBZ-3Ugj1AQ', db=db)
     player_.add_youtube('https://www.youtube.com/watch?v=U5u9glfqDsc', db=db)
     db.close()
 

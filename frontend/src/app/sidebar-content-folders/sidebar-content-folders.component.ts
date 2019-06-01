@@ -13,6 +13,11 @@ export class SidebarContentFoldersComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.songs = await this.player.listSongs();
+     this.songs = await this.player.listSongs();
+  }
+
+  async playSong(song) {
+    console.log(song);
+    this.player.playSong(song.meta.title);
   }
 }

@@ -33,13 +33,34 @@ export class PlayerService {
         }
     }
 
-    async playPause() {
+    async play() {
         try {
-            if (await this.isPlaying()) {
-                return await this.http.put(`${environment.apiUrl}/player/pause`, {}).toPromise();
-            } else {
-                return await this.http.put(`${environment.apiUrl}/player/play`, {}).toPromise();
-            }
+            return await this.http.put(`${environment.apiUrl}/player/play`, {}).toPromise();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async playSong(song_path) {
+        try {
+            const song = {'song_path': song_path, 'type': 3};
+            return await this.http.put(`${environment.apiUrl}/player/playsong`, JSON.stringify(song)).toPromise();
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    async pause() {
+        try {
+            return await this.http.put(`${environment.apiUrl}/player/pause`, {}).toPromise();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async stop() {
+        try {
+            return await this.http.put(`${environment.apiUrl}/player/stop`, {}).toPromise();
         } catch (err) {
             console.log(err);
         }
@@ -91,9 +112,12 @@ export class PlayerService {
         })).toPromise();
     }
 
-    shuffle(username) {
-        return this.http.put(`${environment.apiUrl}/player/shuffle`,
-            JSON.stringify({'username': username}));
+    shuffle() {
+        try {
+            return this.http.put(`${environment.apiUrl}/player/shuffle`, {}).toPromise();
+        } catch (err) {
+            throw (err);
+        }
     }
 
     isLoop() {
@@ -104,15 +128,18 @@ export class PlayerService {
         })).toPromise();
     }
 
-    loop(username) {
-        return this.http.put(`${environment.apiUrl}/player/loop`,
-            JSON.stringify({'username': username}));
+    loop() {
+        try {
+            return this.http.put(`${environment.apiUrl}/player/loop`, {}).toPromise();
+        } catch (err) {
+            throw (err);
+        }
     }
 
     async listSongs() {
         try {
             const response = await this.http.get(`${environment.apiUrl}/player/playlist`).toPromise();
-            return response && response.hasOwnProperty('songs') ? response['songs'].map(song => song.meta.title) : [];
+            return response && response.hasOwnProperty('songs') ? response['songs'] : [];
         } catch (err) {
             console.log(err);
         }
