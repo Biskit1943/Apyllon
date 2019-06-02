@@ -39,7 +39,6 @@ async def play(song: SongIn, _: Users = Depends(get_current_active_user), db: Se
             state = player_.play(path)
         elif song and type_ == SongTypes.DATABASE.value:
             song = get_song_by_title(path, db)
-            # TODO: not working
             state = player_.play(song)
         else:
             state = player_.get_state()

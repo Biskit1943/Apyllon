@@ -25,7 +25,7 @@ export class PlayerComponent {
             }
             setInterval(async () => {
                 this.update(await this.player.getState());
-            }, 10000);
+            }, 2000);
         }).catch(err => {
             this.alertService.error(err);
             console.log(err);
@@ -92,13 +92,12 @@ export class PlayerComponent {
     async update(state) {
         try {
             if (state && state.hasOwnProperty('shuffle') && state.hasOwnProperty('loop')) {
-                // console.log(state);
                 this.playing = state['state'] === 'play';
                 this.isLoop = state['loop'] === 'true';
                 this.isShuffle = state['shuffle'] === 'true';
-                this.currentSong = state['current'];
-                this.nextSong = state['next'];
-                this.previousSong = state['previous'];
+                this.currentSong = state['current'] ? state['current'].meta.title : null;
+                this.nextSong = state['next'] ? state['next'].meta.title : null;
+                this.previousSong = state['previous'] ? state['previous'].meta.title : null;
             }
         } catch (err) {
             console.log(err);

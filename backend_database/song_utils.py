@@ -62,3 +62,9 @@ def get_song_by_title(title: str, db: Session):
     if song:
         return song
     raise FileNotFoundError('Song not Found')
+
+
+def get_youtube_url(filepath: str):
+    yt = YouTube(filepath)
+    yt_song = yt.streams.filter(only_audio=True).first()
+    return yt_song.url

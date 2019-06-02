@@ -17,7 +17,6 @@ export class SidebarContentFoldersComponent implements OnInit {
   }
 
   async playSong(song) {
-    console.log(song);
     this.player.playSong(song.meta.title);
   }
 }

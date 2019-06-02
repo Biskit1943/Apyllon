@@ -272,9 +272,9 @@ class Queue:
                 break
 
     def get_prev(self):
-        current = self.prev
-        self.next = self.current
-        self.pos = self.played.pop()
+        self.pos = self.pos - 1 if self.pos > 0 else self.pos
+        current = self.songs.get(self.pos)
+        self.next = self.songs.get(self.pos + 1) if len(self.songs) > self.pos else None
         return current
 
     @property

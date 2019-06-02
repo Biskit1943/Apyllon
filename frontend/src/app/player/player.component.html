@@ -12,7 +12,8 @@
       <button *ngIf="isShuffle" mat-icon-button class="btn blue" (click)="shuffle($event)"><mat-icon>shuffle</mat-icon></button>
       <button *ngIf="!isShuffle" mat-icon-button class="btn" (click)="shuffle($event)"><mat-icon>shuffle</mat-icon></button>
       <button mat-raised-button mat-icon-button class="btn" (click)="previous($event)"><mat-icon>skip_previous</mat-icon></button>
-      <button mat-raised-button mat-icon-button class="btn" (click)="playPause($event)"><mat-icon>play_arrow</mat-icon></button>
+      <button *ngIf="!playing" mat-raised-button mat-icon-button class="btn" (click)="playPause($event)"><mat-icon>play_arrow</mat-icon></button>
+      <button *ngIf="playing" mat-raised-button mat-icon-button class="btn" (click)="playPause($event)"><mat-icon>pause</mat-icon></button>
       <button mat-raised-button mat-icon-button class="btn" (click)="next($event)"><mat-icon>skip_next</mat-icon></button>
       <button *ngIf="isLoop" mat-icon-button class="btn blue" (click)="loop($event)"><mat-icon>loop</mat-icon></button>
       <button *ngIf="!isLoop" mat-icon-button class="btn" (click)="loop($event)"><mat-icon>loop</mat-icon></button>
