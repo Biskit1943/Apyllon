@@ -1,0 +1,16 @@
+# Byte-compiled / optimized / DLL files
+**/__pycache__
+**/*.py[cod]
+**/*$py.class
+
+**/venv
+
+# Pycharm related
+**/.idea
+
+# Project related
+app.sqlite
+**/.logs
+app.db
+
+**/node_modules

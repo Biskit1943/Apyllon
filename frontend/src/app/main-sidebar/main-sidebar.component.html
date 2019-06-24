@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary">Apyllon</mat-toolbar>
+    <div class="div-sidebar-content-folders">
+      <app-sidebar-content-folders></app-sidebar-content-folders>
+    </div>
+    <div class="div-sidebar-content-playlists">
+      <app-sidebar-content-playlists class="sidebar-content-playlists"></app-sidebar-content-playlists>
+    </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="toolbar-buttons">
+        <div class="logout-button">
+          <p><a [routerLink]="['/password']" [queryParams]="{'user': currentUser.username}">Change Password</a></p>
+        </div>
+        <div class="logout-button">
+          <p><a [routerLink]="['/login']">Logout</a></p>
+        </div>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div style="text-align:center; height:100vh;">
+      <app-player [currentUser]="currentUser"></app-player>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
